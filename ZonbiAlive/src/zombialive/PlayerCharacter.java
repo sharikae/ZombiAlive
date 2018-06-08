@@ -1,3 +1,4 @@
+package zombialive;
 /**
  * @author Shota Harikae
  */
