@@ -9,6 +9,10 @@ package zonbialive;
  *
  * @author C0116125
  */
+
+
 public class Dungeon {
+    private static int[][] dungeon={{0,0,0,0,1},
+                        {1,0,0,0,0}};
     
 }
