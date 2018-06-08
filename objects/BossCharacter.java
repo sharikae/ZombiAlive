@@ -12,6 +12,7 @@ package zonbialive;
 public class BossCharacter {
     private int bossHitPoint;
     private int bossAttack;
+
     public BossCharacter(int bossHitPoint, int bossAttack) {
         this.bossHitPoint = bossHitPoint;
     }
@@ -20,7 +21,11 @@ public class BossCharacter {
         return bossHitPoint;
     }
 
-    public int getBossAttack() {//‚±‚±‚ÅUŒ‚—Í‚ğŒˆ’è‚µƒ_ƒ[ƒW‚ğ•Ô‚·
+    public int getBossAttack() {//ã“ã“ã§æ”»æ’ƒåŠ›ã‚’æ±ºå®šã—ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¿”ã™
         return bossAttack;
     }
+    
+    
+    
+
 }
