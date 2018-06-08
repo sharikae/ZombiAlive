@@ -6,6 +6,7 @@
 package zombialive;
 
 import java.util.Scanner;
+import zombialive.Dungeon;
 
 /**
  *
@@ -27,11 +28,15 @@ public class ZombiAlive {
         PlayerCharacter pc=new PlayerCharacter();//プレイヤー変数の初期化
         //DaughterCharacter dc= new DaughterCharacter();//娘変数の初期化
         //Timer tm=new Timer();//タイマークラスの呼び出し。仮置き
-        int x,y;//プレイヤーのX,Y軸
+        int x = 0,y = 0;//プレイヤーのX,Y軸
+        int xd=0,yd=0;//プレイヤーが移動する向き
+        String st;//方向の受け皿
         boolean gameover=false;
+        boolean error=false;
 
         Scanner s = new Scanner(System.in);//これでキーを指定
         //説明文の出力------------------------------------------
+        
         //ボタンが押されたらスタート
 
         s.next();
@@ -45,7 +50,25 @@ public class ZombiAlive {
             //移動方向の入力(if文でその向きが行ける部屋方向かを指定
             do{
                 System.out.print("");
-                if(0==0){//行く方向が不正か？
+                st=s.next();//文字入力
+                switch(st){
+                    case"w"://上
+                        yd--;
+                        break;
+                    case"a"://左
+                        xd--;
+                        break;
+                    case"s"://下
+                        yd++;
+                        break;
+                    case"d"://右
+                        xd++;
+                        break;
+                    default://それ以外が打たれたら
+                        
+                        break;
+                }
+                if(x+xd<0||x+xd>8||y+yd<0||y+yd>8){//行く方向が不正か？
                     //不正の場合の処理
                 }else{
                     //不正じゃない場合の処理
