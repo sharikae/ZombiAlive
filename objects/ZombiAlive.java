@@ -90,7 +90,7 @@ public class ZombiAlive {
             
             
             
-        }while(0==0);//ゲーム終了がtrueならとかに変更する
+        }while(gameover==true);//ゲーム終了がtrueならとかに変更する
     }
     
 }
