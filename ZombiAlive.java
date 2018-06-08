@@ -5,6 +5,8 @@
  */
 package zombialive;
 
+import java.util.Scanner;
+
 /**
  *
  * @author C0116125
@@ -26,9 +28,13 @@ public class ZombiAlive {
         //DaughterCharacter dc= new DaughterCharacter();//娘変数の初期化
         //Timer tm=new Timer();//タイマークラスの呼び出し。仮置き
         int x,y;//プレイヤーのX,Y軸
+        boolean gameover=false;
+        Scanner s = new Scanner(System.in);//これでキーを指定
         
         //説明文の出力------------------------------------------
+        System.out.println("説明的なのを書く");
         //ボタンが押されたらスタート
+        s.next();
         
         //Timerのスタート
         
@@ -38,7 +44,13 @@ public class ZombiAlive {
             
             //移動方向の入力(if文でその向きが行ける部屋方向かを指定
             do{
-                
+                System.out.print("");
+                Scanner scans = new Scanner(System.in);//行く方向指定
+                if(0==0){//行く方向が不正か？
+                    //不正の場合の処理
+                }else{
+                    //不正じゃない場合の処理
+                }
             }while(0==0);//向きが正しくない場合はループ
             
             //覗くかの選択
@@ -81,7 +93,7 @@ public class ZombiAlive {
             
             
             
-        }while(0==0);//ゲーム終了がtrueならとかに変更する
+        }while(gameover==true);//ゲーム終了がtrueならとかに変更する
     }
     
 }
