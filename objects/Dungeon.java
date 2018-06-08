@@ -12,7 +12,22 @@ package zonbialive;
 
 
 public class Dungeon {
-    private static int[][] dungeon={{0,0,0,0,1},
-                        {1,0,0,0,0}};
+    
+    //クラス関数にしてあるけどこれ初期化の奴入れる必要がある
+    //とりあえず構造だけ
+    private static int[][] dungeon={{0,0,1,2,3,4,5,6},
+                                    {7,8,9,0,0,10,0,0},
+                                    {0,0,11,12,0,13,14,15},
+                                    {0,16,17,0,18,19,20,0},
+                                    {0,0,21,22,23,0,24,25},};
+    
+    public Dungeon(){
+       
+    }
+
+    public static int getDungeon(int x,int y) {
+        return dungeon[x][y];
+    }
+    
     
 }
