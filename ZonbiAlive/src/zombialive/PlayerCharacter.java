@@ -1,4 +1,7 @@
 package zombialive;
+
+import java.util.Random;
+
 /**
  * @author Shota Harikae
  */
@@ -51,7 +54,7 @@ public class PlayerCharacter {
         Random rand = new Random();
         switch (weapon) {
             case 0: // 素手
-                return [rand.nextInt(3) + 1, 0];
+                return [random.nextInt(3) + 1, 0];
             case 1: // ハンドガン
                 return [rand.nextInt(6) + 1, 0];
             case 2: // ショットガン
