@@ -9,10 +9,14 @@ package zonbialive;
  *
  * @author C0116125
  */
-public class BossCharacter {
-    private int bossHitPoint=50;
-    private int bossAttack;
-    
-    
+public class ZonbiAlive {
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+    }
+    
 }
