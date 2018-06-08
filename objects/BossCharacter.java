@@ -1,9 +1,4 @@
-﻿/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package zonbialive;
+package zonbialive;
 
 /**
  *
@@ -35,7 +30,7 @@ public class BossCharacter {
 
     public int getBossAttack() {//ここで攻撃力を決定しダメージを返す
         this.bossAttack=(int)(1+Math.random()*5);//1D5のダメージ
-        return bossAttack;
+        return bossAttack;//ダメージ値を返す
     }
     
     
