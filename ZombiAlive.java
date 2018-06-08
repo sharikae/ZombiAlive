@@ -29,9 +29,17 @@ public class ZombiAlive {
         //Timer tm=new Timer();//タイマークラスの呼び出し。仮置き
         int x,y;//プレイヤーのX,Y軸
         boolean gameover=false;
+<<<<<<< HEAD
+=======
+        Scanner s = new Scanner(System.in);//これでキーを指定
+>>>>>>> parent of f415233... 移動方向指定(適当版)
         
         //説明文の出力------------------------------------------
         //ボタンが押されたらスタート
+<<<<<<< HEAD
+=======
+        s.next();
+>>>>>>> parent of f415233... 移動方向指定(適当版)
         
         //Timerのスタート
         
@@ -42,7 +50,11 @@ public class ZombiAlive {
             //移動方向の入力(if文でその向きが行ける部屋方向かを指定
             do{
                 System.out.print("");
+<<<<<<< HEAD
                 Scanner scan = new Scanner(System.in);//行く方向指定
+=======
+                Scanner scans = new Scanner(System.in);//行く方向指定
+>>>>>>> parent of f415233... 移動方向指定(適当版)
                 if(0==0){//行く方向が不正か？
                     //不正の場合の処理
                 }else{
