@@ -16,6 +16,9 @@ public class ZonbiAlive {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //初期化
+        Dungeon dn=new Dungeon();
+        Room rm = new Room();
         
     }
     
