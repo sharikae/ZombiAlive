@@ -7,13 +7,6 @@ public class PlayerCharacter {
     int weapon = 0;
     boolean key = false;
 
-    public PlayerCharacter(int hp, int room, int weapon, boolean key) {
-        this.hp = hp;
-        this.room = room;
-        this.weapon = weapon;
-        this.key = key;
-    }
-
     public int getHp() {
         return hp;
     }
