@@ -3,19 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package zombiealive;
+package zonbialive;
 
 /**
  *
  * @author C0116125
  */
-public class ZombieAlive {
+public class ZonbiAlive {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //初期化
+        Dungeon dn=new Dungeon();
+        Room rm = new Room();
         
     }
     
