@@ -16,7 +16,7 @@ public class DaughterCharacter {
     boolean daughter_possible_action ;
     int daughter_impossible_action_turn ;
     int daughterPosition ;
-    int attackedTurn;
+    int numberOfStep = 0;
     
     public DaughterCharacter(){
         daughterAttack = 5;
@@ -36,23 +36,26 @@ public class DaughterCharacter {
     }
     
     public void turn_update(){
-        daughter_impossible_action_turn -= 1;
-        if(daughter_impossible_action_turn == 0){
-            daughter_possible_action = true;
+        if(daughter_possible_action ==false){
+            daughter_impossible_action_turn -= 1;
+            if(daughter_impossible_action_turn == 0){
+                daughter_possible_action = true;
+            }
         }
     }
     
-    public void move_daughter(){
-        
+    public void move_daughter(int[] playerOfStep){
+        if(daughter_possible_action == true){
+            numberOfStep += 1;
+            daughterPosition = playerOfStep[numberOfStep]; 
+        }
     }
     
-    public int battle_daughter(int playerAttack,int turn){
+    public void battle_daughter(int playerAttack,int turn){
         daughterDamage = playerAttack;
         daughterHp -= daughterDamage;
         daughter_possible_action = false;
         daughter_impossible_action_turn = 3;
         daughterDamage = 0;
-        attackedTurn = turn;
-        return daughterHp;
     }
 }
