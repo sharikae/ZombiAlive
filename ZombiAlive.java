@@ -27,17 +27,11 @@ public class ZombiAlive {
         PlayerCharacter pc=new PlayerCharacter();//プレイヤー変数の初期化
         //DaughterCharacter dc= new DaughterCharacter();//娘変数の初期化
         //Timer tm=new Timer();//タイマークラスの呼び出し。仮置き
-        int x = 0,y = 0;//プレイヤーのX,Y軸
-        int xd=0,yd = 0;//プレイヤーの移動先のx,y軸
-        boolean er=false;
+        int x,y;//プレイヤーのX,Y軸
         boolean gameover=false;
-        Scanner s = new Scanner(System.in);//これでキーを指定
-        //BufferReaderでも同じことが出来るし速いけど例外処理が必要な為無視
         
         //説明文の出力------------------------------------------
-        System.out.println("説明的なのを書く");
         //ボタンが押されたらスタート
-        s.next();//文字待ち等を行う
         
         //Timerのスタート
         
@@ -47,63 +41,17 @@ public class ZombiAlive {
             
             //移動方向の入力(if文でその向きが行ける部屋方向かを指定
             do{
-                er=false;//ループするかの処理
-                xd=0,yd=0;//行く方向の初期化
-                System.out.println("行く方向を指定してください");
-                System.out.println("w:上,a:左,s:下,d:右");
-                String sn = s.next();//行く方向指定
-                switch(sn){
-                    case "w"://上方向の場合
-                        yd--;//ベクトル変化
-                        
-                        break;
-                    case "a"://左の場合
-                        xd--;
-                        break;
-                    case"s"://下方向の場合
-                        yd++;
-                        break;
-                    case"d"://右方向の場合
-                        xd++;
-                    break;
-                    default:
-                        System.err.println("入力方向が不正です");
-                        er=true;
-                        break;
-                        
-                }
-                if(x+xd<0||x+xd>8||y+yd<0||y+yd>5){
-//行く方向指定がどう考えてもおかしい時かどうか
+                System.out.print("");
+                Scanner scan = new Scanner(System.in);//行く方向指定
+                if(0==0){//行く方向が不正か？
                     //不正の場合の処理
                 }else{
-                //不正じゃない場合の処理
+                    //不正じゃない場合の処理
                 }
-                switch(sn){
-                    case "w"://上方向の場合
-                        yd--;
-                        break;
-                    case "a"://左の場合
-                        xd--;
-                        break;
-                    case"s"://下方向の場合
-                        yd++;
-                        break;
-                    case"d"://右方向の場合
-                        xd++;
-                    break;
-                    default:
-                        System.err.println("入力方向が不正です");
-                        er=true;
-                        break;
-                        
-                }
-                        
-            }while(er=false);//向きが正しくない場合はループ
+            }while(0==0);//向きが正しくない場合はループ
             
             //覗くかの選択
-            System.out.println("覗きますか\nY or other key");
-            String ne=s.next();
-            if(ne=="Y"){//覗く
+            if(0==0){//覗く
                 //次の部屋情報の出力
                 
                 
