@@ -7,7 +7,7 @@ package zonbialive;
 
 /**
  *
- * @author C0116125
+ * @author C0116125佐藤啓
  */
 
 
