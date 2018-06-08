@@ -1,4 +1,4 @@
-package zonbialive;
+package zombialive;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

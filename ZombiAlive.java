@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package zonbialive;
+package zombialive;
 
 /**
  *
  * @author C0116125
  */
-public class ZonbiAlive {
+public class ZombiAlive {
 
     /**
      * @param args the command line arguments
@@ -17,8 +17,9 @@ public class ZonbiAlive {
     public static void main(String[] args) {
         // TODO code application logic here
         //初期化
-        Dungeon dn=new Dungeon();
-        Room rm = new Room();
+        Dungeon dn=new Dungeon();//ダンジョンを呼び出すだけで初期化
+        //Room rm = new Room();
+        PlayerCharacter pc=new PlayerCharacter();
         
     }
     
