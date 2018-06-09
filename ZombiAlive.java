@@ -65,15 +65,30 @@ public class ZombiAlive {
                         xd++;
                         break;
                     default://それ以外が打たれたら
-                        
+                        System.out.println("エラー文");
+                        error=true;//エラーなら巻き戻される
                         break;
                 }
-                if(x+xd<0||x+xd>8||y+yd<0||y+yd>8){//行く方向が不正か？
+                if(x+xd<0||x+xd>7||y+yd<0||y+yd>7){//行く方向が不正か？
                     //不正の場合の処理
-                }else{
-                    //不正じゃない場合の処理
+                    System.out.println("エラー文");
+                    error=true;
+                }else if(dn.getDungeon(x+xd, y+yd)==0){//ダンジョンクラス内が０なら
+                    System.out.println("エラー文");
+                    error=true;
+                }else if((dn.getDungeon(x, y)==14&&xd==-1) ||
+//現在ダンジョンクラスが14の時に左なら
+                        (dn.getDungeon(x, y)==19&&yd==-1)||
+                        //現在のダンジョンクラスが19の時に上なら
+                        (dn.getDungeon(x, y)==13&&(xd==1||yd==1))
+//現在13番部屋に居る時に下、右が押されたら
+                        ){
+                    //くっついてる部屋が壁ならば
+                    //現在はroom変数がない為ごり押しを行っている
+                    //room変数がエラーならば
+                    
                 }
-            }while(0==0);//向きが正しくない場合はループ
+            }while(error!=true);//向きが正しくない場合はループ
             
             //覗くかの選択
             if(0==0){//覗く
