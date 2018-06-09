@@ -24,15 +24,15 @@ public class ZombiAlive {
         //初期化----------------------------------
         int turn=0;//全体ターン数
         Dungeon dn=new Dungeon();//ダンジョンの初期化(呼び出すだけ)
-        //Room rm = new Room();
+        //Room rm = new Room();//roomの中身を各。ぶっちゃけcsvで良くn(ry
         PlayerCharacter pc=new PlayerCharacter();//プレイヤー変数の初期化
         //DaughterCharacter dc= new DaughterCharacter();//娘変数の初期化
         //Timer tm=new Timer();//タイマークラスの呼び出し。仮置き
         int x = 0,y = 0;//プレイヤーのX,Y軸
         int xd=0,yd=0;//プレイヤーが移動する向き
         String st;//方向の受け皿
-        boolean gameover=false;
-        boolean error=false;
+        boolean gameover=false;//ゲームオーバー(クリア)ならtrue
+        boolean error=false;//ループ処理から抜け出たくない時はtrue
 
         Scanner s = new Scanner(System.in);//これでキーを指定
         //説明文の出力------------------------------------------
@@ -97,23 +97,25 @@ public class ZombiAlive {
                 
             }else{//覗かない
                 //プレイヤーの移動処理
-                
+                x+=xd;//Ｘを移動した分だけ移動。
+                y+=yd;//y軸を移動した分だけ移動
                 //移動先にゾンビが居るか
+                
                 //(移動先の部屋番号にゾンビが存在するか)
-                if(0==0){//ゾンビが居る時の処理
-                    do{
+                if(0!=0){//ゾンビが居る時の処理
+                    do{//（戦闘処理は次回の授業で実装）
                     
                     }while(0==0);//戦闘終了処理が行われた場合
                 }else if(0==0){//key部屋の場合の処理
                     
                 }else if(0==0){//回復部屋か
                     
-                }else if(0==0){//boss部屋か
+                }else if(0!=0){//boss部屋か(次回の授業で実装)
                     //boss部屋の処理をここに書く。
                 }
             }
-            //娘の処理
-            if(0==0){//娘が移動可能か
+            //娘の処理(次回の授業で実装。)
+            if(0!=0){//娘が移動可能か
                 if(0==0){//プレイヤーの移動先(現在の部屋)に娘が居るか。
                     //現在の部屋に娘が居る時の処理
                     
@@ -121,7 +123,8 @@ public class ZombiAlive {
                     //娘の移動先にプレイヤーが居居た場合の処理
                     
                 }
-            }else if(0==0){//娘が復活したか
+            }else if(0!=0){//娘が復活したか(次回の授業で実装)
+                //if文の中身はturn+娘が倒されたターン>=3とかそんな感じになりそう
                 //娘復活する処理
             }
             
@@ -130,7 +133,9 @@ public class ZombiAlive {
             
             
             
-        }while(gameover==true);//ゲーム終了がtrueならとかに変更する
+        }while(gameover==true);
+//ゲーム終了がtrueならとかに変更する
+//コンティニューは実装する気はない
     }
     
 }
