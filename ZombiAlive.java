@@ -24,15 +24,15 @@ public class ZombiAlive {
         //初期化----------------------------------
         int turn=0;//全体ターン数
         Dungeon dn=new Dungeon();//ダンジョンの初期化(呼び出すだけ)
-        //Room rm = new Room();//roomの中身を各。ぶっちゃけcsvで良くn(ry
+        //Room rm = new Room();
         PlayerCharacter pc=new PlayerCharacter();//プレイヤー変数の初期化
         //DaughterCharacter dc= new DaughterCharacter();//娘変数の初期化
         //Timer tm=new Timer();//タイマークラスの呼び出し。仮置き
         int x = 0,y = 0;//プレイヤーのX,Y軸
         int xd=0,yd=0;//プレイヤーが移動する向き
         String st;//方向の受け皿
-        boolean gameover=false;//ゲームオーバー(クリア)ならtrue
-        boolean error=false;//ループ処理から抜け出たくない時はtrue
+        boolean gameover=false;
+        boolean error=false;
 
         Scanner s = new Scanner(System.in);//これでキーを指定
         //説明文の出力------------------------------------------
@@ -89,9 +89,11 @@ public class ZombiAlive {
                     
                 }
             }while(error!=true);//向きが正しくない場合はループ
-            
+            System.out.println("覗くかの選択");
+            //覗く選択氏は除く場合はy,覗かないならy以外の文字を打つようにすればいいと思う
+            st=s.next();//何かしら文字を打てば続行。
             //覗くかの選択
-            if(0==0){//覗く
+            if(st=="y"){//覗く
                 //次の部屋情報の出力
                 
                 
@@ -106,9 +108,9 @@ public class ZombiAlive {
                     do{//（戦闘処理は次回の授業で実装）
                     
                     }while(0==0);//戦闘終了処理が行われた場合
-                }else if(0==0){//key部屋の場合の処理
+                }else if(dn.getDungeon(x, y)==7){//key部屋の場合の処理
                     
-                }else if(0==0){//回復部屋か
+                }else if(dn.getDungeon(x, y)==15||dn.getDungeon(x, y)==12||dn.getDungeon(x, y)==5){//回復部屋か
                     
                 }else if(0!=0){//boss部屋か(次回の授業で実装)
                     //boss部屋の処理をここに書く。
