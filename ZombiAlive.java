@@ -28,11 +28,11 @@ public class ZombiAlive {
         PlayerCharacter pc=new PlayerCharacter();//プレイヤー変数の初期化
         //DaughterCharacter dc= new DaughterCharacter();//娘変数の初期化
         //Timer tm=new Timer();//タイマークラスの呼び出し。仮置き
-        int x = 0,y = 0;//プレイヤーのX,Y軸
+        int x = 7,y = 4;//プレイヤーのX,Y軸初期位置(たぶん25番部屋のはず)
         int xd=0,yd=0;//プレイヤーが移動する向き
         String st;//方向の受け皿
-        boolean gameover=false;
-        boolean error=false;
+        boolean gameover=false;//ゲームオーバーならtrue
+        boolean error=false;//問題があるならtrue
 
         Scanner s = new Scanner(System.in);//これでキーを指定
         //説明文の出力------------------------------------------
@@ -49,6 +49,7 @@ public class ZombiAlive {
             
             //移動方向の入力(if文でその向きが行ける部屋方向かを指定
             do{
+                error=false;//エラー初期化
                 System.out.print("");
                 st=s.next();//文字入力
                 switch(st){
@@ -86,6 +87,7 @@ public class ZombiAlive {
                     //くっついてる部屋が壁ならば
                     //現在はroom変数がない為ごり押しを行っている
                     //room変数がエラーならば
+                    error=true;
                     
                 }
             }while(error!=true);//向きが正しくない場合はループ
@@ -110,8 +112,18 @@ public class ZombiAlive {
                     }while(0==0);//戦闘終了処理が行われた場合
                 }else if(dn.getDungeon(x, y)==7){//key部屋の場合の処理
                     
-                }else if(dn.getDungeon(x, y)==15||dn.getDungeon(x, y)==12||dn.getDungeon(x, y)==5){//回復部屋か
+                }else if(dn.getDungeon(x, y)==15||dn.getDungeon(x, y)==12||dn.getDungeon(x, y)==5){//回復部屋か,
+//（かつ使用フラグが立っていないかとかにすれば一応ごり押しできる。）
                     
+                    if (pc.getHp()<30) {//プレイヤーのＨＰが初期値以下なら
+                        System.out.println("");//回復するかしないかの処理
+                        st = s.next();//yが撃ち込まれなかったら何もしない。
+                        if (st=="y") {//回復するなら
+                            pc.setHp(30);//HPを初期値にする
+                        }
+                    } else {
+                        System.out.println("ここは回復部屋だ。今は必要ない");
+                    }
                 }else if(0!=0){//boss部屋か(次回の授業で実装)
                     //boss部屋の処理をここに書く。
                 }
