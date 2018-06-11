@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package zombialive;
 
 import java.util.Scanner;
 import zombialive.Dungeon;
+import zombialive.PlayerCharacter;
 
 /**
  *
@@ -74,14 +76,14 @@ public class ZombiAlive {
                     //不正の場合の処理
                     System.out.println("エラー文");
                     error=true;
-                }else if(dn.getDungeon(x+xd, y+yd)==0){//ダンジョンクラス内が０なら
+                }else if(Dungeon.getDungeon(x+xd, y+yd)==0){//ダンジョンクラス内が０なら
                     System.out.println("エラー文");
                     error=true;
-                }else if((dn.getDungeon(x, y)==14&&xd==-1) ||
+                }else if((Dungeon.getDungeon(x, y)==14&&xd==-1) ||
 //現在ダンジョンクラスが14の時に左なら
-                        (dn.getDungeon(x, y)==19&&yd==-1)||
+                        (Dungeon.getDungeon(x, y)==19&&yd==-1)||
                         //現在のダンジョンクラスが19の時に上なら
-                        (dn.getDungeon(x, y)==13&&(xd==1||yd==1))
+                        (Dungeon.getDungeon(x, y)==13&&(xd==1||yd==1))
 //現在13番部屋に居る時に下、右が押されたら
                         ){
                     //くっついてる部屋が壁ならば
@@ -95,7 +97,7 @@ public class ZombiAlive {
             //覗く選択氏は除く場合はy,覗かないならy以外の文字を打つようにすればいいと思う
             st=s.next();//何かしら文字を打てば続行。
             //覗くかの選択
-            if(st=="y"){//覗く
+            if("y".equals(st)){//覗く
                 //次の部屋情報の出力
                 
                 
@@ -110,15 +112,15 @@ public class ZombiAlive {
                     do{//（戦闘処理は次回の授業で実装）
                     
                     }while(0==0);//戦闘終了処理が行われた場合
-                }else if(dn.getDungeon(x, y)==7){//key部屋の場合の処理
+                }else if(Dungeon.getDungeon(x, y)==7){//key部屋の場合の処理
                     
-                }else if(dn.getDungeon(x, y)==15||dn.getDungeon(x, y)==12||dn.getDungeon(x, y)==5){//回復部屋か,
+                }else if(Dungeon.getDungeon(x, y)==15||Dungeon.getDungeon(x, y)==12||Dungeon.getDungeon(x, y)==5){//回復部屋か,
 //（かつ使用フラグが立っていないかとかにすれば一応ごり押しできる。）
                     
                     if (pc.getHp()<30) {//プレイヤーのＨＰが初期値以下なら
                         System.out.println("");//回復するかしないかの処理
                         st = s.next();//yが撃ち込まれなかったら何もしない。
-                        if (st=="y") {//回復するなら
+                        if ("y".equals(st)) {//回復するなら
                             pc.setHp(30);//HPを初期値にする
                         }
                     } else {
