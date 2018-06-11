@@ -1,6 +1,9 @@
 /**
  * @author Shota Harikae
+ * @author c0116125 Hiraku Sato
  */
+package zombialive;
+
 public class PlayerCharacter {
     int hp = 30;
     int room = 0;
@@ -19,6 +22,10 @@ public class PlayerCharacter {
         return room;
     }
 
+    public boolean getKey(){
+        return key;
+    }
+    
     public void setRoom(int room) {
         this.room = room;
     }

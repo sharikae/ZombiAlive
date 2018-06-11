@@ -96,6 +96,9 @@ public class ZombiAlive {
                     System.out.println("エラー４");
                     error=true;
                     
+                }else if (Dungeon.getDungeon(x, y)==5&&xd==1&&pc.getKey()==false) {
+                    System.out.println("鍵がないので開かない");
+                    error=true;
                 }
             }while(error==true);//向きが正しくない場合はループ
             System.out.println("覗くかの選択");
@@ -133,8 +136,10 @@ public class ZombiAlive {
                     } else {
                         System.out.println("今は必要ないようだ");
                     }
-                }else if(0!=0){//boss部屋か(次回の授業で実装)
+                }else if(Dungeon.getDungeon(x, y)==6){//boss部屋か(戦闘は次回の授業で実装)
                     //boss部屋の処理をここに書く。
+                    System.out.println("ボス部屋だ");
+                    gameover=true;
                 }
             }
             //娘の処理(次回の授業で実装。)
