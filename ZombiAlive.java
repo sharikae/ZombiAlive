@@ -38,21 +38,24 @@ public class ZombiAlive {
 
         Scanner s = new Scanner(System.in);//これでキーを指定
         //説明文の出力------------------------------------------
-        
+        System.out.println("スタートする場合はボタンを押す。");
         //ボタンが押されたらスタート
-
-        s.next();
+        st=s.next();
         
         //Timerのスタート
         
         //ゲーム終了までループする文
         do{
             //部屋情報の表示(行ける部屋方向に矢印を出力)
-            
+            System.out.println("現在の部屋番号:"+Dungeon.getDungeon(x, y));
+            System.out.println("x:"+x+",y:"+y);
             //移動方向の入力(if文でその向きが行ける部屋方向かを指定
             do{
                 error=false;//エラー初期化
-                System.out.print("");
+                xd=0;
+                yd=0;
+                System.out.print("方向を入力してください");
+                System.out.println("xd:"+xd+"yd:"+yd);
                 st=s.next();//文字入力
                 switch(st){
                     case"w"://上
@@ -68,16 +71,17 @@ public class ZombiAlive {
                         xd++;
                         break;
                     default://それ以外が打たれたら
-                        System.out.println("エラー文");
+                        System.out.println("エラー文1");
                         error=true;//エラーなら巻き戻される
                         break;
                 }
-                if(x+xd<0||x+xd>7||y+yd<0||y+yd>7){//行く方向が不正か？
+                System.out.println("xd:"+xd+"yd:"+yd);
+                if(x+xd<0   ||  x+xd>7  ||  y+yd<0  ||    y+yd>7){//行く方向が不正か？
                     //不正の場合の処理
-                    System.out.println("エラー文");
+                    System.out.println("エラー文2");
                     error=true;
                 }else if(Dungeon.getDungeon(x+xd, y+yd)==0){//ダンジョンクラス内が０なら
-                    System.out.println("エラー文");
+                    System.out.println("エラー文3");
                     error=true;
                 }else if((Dungeon.getDungeon(x, y)==14&&xd==-1) ||
 //現在ダンジョンクラスが14の時に左なら
@@ -89,18 +93,20 @@ public class ZombiAlive {
                     //くっついてる部屋が壁ならば
                     //現在はroom変数がない為ごり押しを行っている
                     //room変数がエラーならば
+                    System.out.println("エラー４");
                     error=true;
                     
                 }
-            }while(error!=true);//向きが正しくない場合はループ
+            }while(error==true);//向きが正しくない場合はループ
             System.out.println("覗くかの選択");
             //覗く選択氏は除く場合はy,覗かないならy以外の文字を打つようにすればいいと思う
             st=s.next();//何かしら文字を打てば続行。
+            
             //覗くかの選択
             if("y".equals(st)){//覗く
                 //次の部屋情報の出力
-                
-                
+                System.out.println("覗いた結果");
+                System.out.println("覗き先の部屋番号:"+Dungeon.getDungeon(x+xd, y+yd));
             }else{//覗かない
                 //プレイヤーの移動処理
                 x+=xd;//Ｘを移動した分だけ移動。
@@ -113,18 +119,19 @@ public class ZombiAlive {
                     
                     }while(0==0);//戦闘終了処理が行われた場合
                 }else if(Dungeon.getDungeon(x, y)==7){//key部屋の場合の処理
-                    
+                    System.out.println("鍵がある");
+                    pc.setKey(true);
                 }else if(Dungeon.getDungeon(x, y)==15||Dungeon.getDungeon(x, y)==12||Dungeon.getDungeon(x, y)==5){//回復部屋か,
 //（かつ使用フラグが立っていないかとかにすれば一応ごり押しできる。）
-                    
+                    System.out.println("回復部屋だ");
                     if (pc.getHp()<30) {//プレイヤーのＨＰが初期値以下なら
-                        System.out.println("");//回復するかしないかの処理
+                        System.out.println("回復しますか？");//回復するかしないかの処理
                         st = s.next();//yが撃ち込まれなかったら何もしない。
                         if ("y".equals(st)) {//回復するなら
                             pc.setHp(30);//HPを初期値にする
                         }
                     } else {
-                        System.out.println("ここは回復部屋だ。今は必要ない");
+                        System.out.println("今は必要ないようだ");
                     }
                 }else if(0!=0){//boss部屋か(次回の授業で実装)
                     //boss部屋の処理をここに書く。
@@ -149,7 +156,7 @@ public class ZombiAlive {
             
             
             
-        }while(gameover==true);
+        }while(gameover!=true);
 //ゲーム終了がtrueならとかに変更する
 //コンティニューは実装する気はない
     }
