@@ -76,7 +76,7 @@ public class ZombiAlive {
                         break;
                 }
                 System.out.println("xd:"+xd+"yd:"+yd);
-                if(x+xd<0   ||  x+xd>7  ||  y+yd<0  ||    y+yd>7){//行く方向が不正か？
+                if(x+xd<0   ||  x+xd>7  ||  y+yd<0  ||    y+yd>4){//行く方向が不正か？
                     //不正の場合の処理
                     System.out.println("エラー文2");
                     error=true;
