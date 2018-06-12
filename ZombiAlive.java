@@ -49,10 +49,11 @@ public class ZombiAlive {
             //部屋情報の表示(行ける部屋方向に矢印を出力)
             System.out.println("現在の部屋番号:"+Dungeon.getDungeon(x, y));
             System.out.println("x:"+x+",y:"+y);
+            System.out.println("現在の体力:"+pc.getAboutHp());
             //移動方向の入力(if文でその向きが行ける部屋方向かを指定
             do{
                 error=false;//エラー初期化
-                xd=0;
+                xd=0;//初期化
                 yd=0;
                 System.out.print("方向を入力してください");
                 System.out.println("xd:"+xd+"yd:"+yd);

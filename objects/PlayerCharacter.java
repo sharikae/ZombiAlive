@@ -13,6 +13,16 @@ public class PlayerCharacter {
     public int getHp() {
         return hp;
     }
+    
+    public String getAboutHp(){
+        String str="denger";
+        if (hp>=15) {
+            str="fine";
+        } else if(hp>10){
+            str="Caution";
+        }
+        return str;
+    }
 
     public void setHp(int hp) {
         this.hp = hp;
