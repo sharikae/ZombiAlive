@@ -15,9 +15,9 @@ public class PlayerCharacter {
     }
     
     public String getAboutHp(){
-        String str="denger";
+        String str="Denger";
         if (hp>=15) {
-            str="fine";
+            str="Fine";
         } else if(hp>10){
             str="Caution";
         }
