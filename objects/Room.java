@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Jikken;
+package zombiealive;
 
 /**
  *
@@ -23,15 +23,17 @@ public class Room {
         int zombieNum = 0;
         
         Room(){
-            while(true){
+            int x=0;
+            while(x<25){//25部屋の初期化
                 zombieLocator();
                 Inventory();
                 Daughter();
                 nextMove();
+                x++;
             }
         }
         
-        public void zombieLocator(){
+        private void zombieLocator(){
             
         if(zombie=true){
             zombieNum +=1;
@@ -41,7 +43,7 @@ public class Room {
             }
         }
         
-        public void Inventory(){
+        private void Inventory(){
         if(key=true){
             System.out.println("You have a key.");
         }else{
@@ -55,7 +57,7 @@ public class Room {
             }
         }
         
-        public void Daughter(){
+        private void Daughter(){
         if(daughter=true){
             System.out.println("a daughter is here.");
         }else{
@@ -63,7 +65,7 @@ public class Room {
             }
         }
         
-        public void nextMove(){
+        private void nextMove(){
         if(north=true){
             //Move to Northの処理
         }else if(west=true){
