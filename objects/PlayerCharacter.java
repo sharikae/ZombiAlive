@@ -2,11 +2,12 @@
  * @author Shota Harikae
  * @author c0116125 Hiraku Sato
  */
-package zombialive;
+package zombiealive;
+//import java.util.Random;
 
 public class PlayerCharacter {
     int hp = 30;
-    int room = 0;
+    int room = 25;
     int weapon = 0;
     boolean key = false;
 
@@ -15,9 +16,9 @@ public class PlayerCharacter {
     }
     
     public String getAboutHp(){
-        String str="Denger";
+        String str="denger";
         if (hp>=15) {
-            str="Fine";
+            str="fine";
         } else if(hp>10){
             str="Caution";
         }
@@ -56,13 +57,15 @@ public class PlayerCharacter {
         this.key = key;
     }
 
-    public int[] getAttackDamage() {
+/*    public int[] getAttackDamage() {
         Random rand = new Random();
         switch (weapon) {
             case 0: // 素手
                 return [rand.nextInt(3) + 1, 0];
+                break;
             case 1: // ハンドガン
                 return [rand.nextInt(6) + 1, 0];
+                break;
             case 2: // ショットガン
                 return [rand.nextInt(10) + 1, 0];
             case 3: // マシンガン
@@ -70,7 +73,8 @@ public class PlayerCharacter {
             case 4: // グレネードランチャー
                 return [rand.nextInt(6) + 1, 1];
             case 5: // ロケットランチャー
-                return [rand.nextInt(10) + 1, 1]
+                return [rand.nextInt(10) + 1, 1];
+
         }
-    }
+    }*/
 }

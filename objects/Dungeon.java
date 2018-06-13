@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package zombialive;
+package zombiealive;
 
 /**
  *
@@ -22,9 +22,20 @@ public class Dungeon {
                                     {0,0,21,22,23,0,24,25}};
     //ここで書き入れる場合用の奴
     
-    
     public Dungeon(){//とりあえず呼び出し。クラス関数なのでとりあえず存在を決定する用
-       
+        System.out.println("Dungeonの部屋番号表示");
+        for(int i= 0;i<5;i++){
+           System.out.print("{");
+           for(int j=0;j<8;j++){
+               System.out.print(dungeon[i][j] + ",");
+           }
+           System.out.println("},");
+       }
+        System.out.println("");
+    }
+    
+    public int setDungeon(int x,int y){
+        return dungeon[y][x];
     }
     
     //座標を入力して部屋番号を返す。部屋番号がない場合は0

@@ -1,4 +1,4 @@
-package zombialive;
+package zombiealive;
 
 /**
  *
