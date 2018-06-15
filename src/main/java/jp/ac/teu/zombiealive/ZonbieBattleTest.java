@@ -3,10 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package zombiealive;
+package jp.ac.teu.zombiealive;
 
 import java.util.Scanner;
 import javafx.scene.transform.Scale;
+import jp.ac.teu.zombiealive.objects.BossCharacter;
+import jp.ac.teu.zombiealive.objects.DaughterCharacter;
+import jp.ac.teu.zombiealive.objects.PlayerCharacter;
+import jp.ac.teu.zombiealive.objects.ZombieCharacter;
 
 /**
  *
@@ -39,7 +43,12 @@ public class ZonbieBattleTest {
         
         System.out.println("武器番号の指定\n"
                 + "0:素手\n"
-                + "1:");
+                + "1:ハンドガン\n"
+                + "2:ショットガン\n"
+                + "3:マシンガン\n"
+                + "4:グレネードランチャー\n"
+                + "5:ロケットランチャー\n"
+                + "Another key:戦闘開始");
         String str;
         Scanner s = new Scanner(System.in);//これでキーを指定
         str=s.next();
