@@ -59,42 +59,47 @@ public class Battle {
         int n=i;//書き換えを行うので一応やっとく処理
         int x=0;
         switch (n){
-            case 2:
-                zc3.damageToZombie(99);
-            case 1:
-                zc2.damageToZombie(99);
+            case 2://２体なら
+                zc3.damageToZombie(99);//ゾンビ3はいない
+            case 1://１体なら
+                zc2.damageToZombie(99);//ゾンビ2もいない
         }
         while (finished) {
-            //int[] a=pc.getAttackDamage();//とりあえず帰ってくるのは[]ではない場合の処理
-            int a=2,b=1,c=2;//仮置きダメージ表
-            if (pc.getWeapon()<3) {//全体攻撃じゃなければ
+            int[] a=pc.getAttackDamage();//とりあえず帰ってくるのは[]ではない場合の処理
+            if (a[1]==0) {//全体攻撃じゃなければ
                 if (zc3.getHp() > 0) {//ゾンビ３が死んでなければ
-                    zc3.damageToZombie(a);
+                    zc3.damageToZombie(a[0]);
                     x=3;
                 } else if (zc2.getHp() > 0) {//ゾンビ2が死んでなければ
-                    zc2.damageToZombie(a);
+                    zc2.damageToZombie(a[0]);
                     x=2;
                 } else if (zc1.getHp() > 0) {//ゾンビ1が死んでなければ
-                    zc1.damageToZombie(a);
+                    zc1.damageToZombie(a[0]);
                     x=1;
                 }
-                System.out.println("あなたはゾンビ"+x+"に"+a+"ダメージを与えた");
-            }else{//全体攻撃ならば
-                zc3.damageToZombie(a);
-                zc2.damageToZombie(b);
-                zc1.damageToZombie(c);
-                System.out.println("あなたはゾンビ1に"+a+"ダメージ\n"
-                        + "ゾンビ2に"+b+"ダメージ\n"
-                                + "ゾンビ3に"+c+"ダメージを与えた！");
-            }
+                System.out.println("あなたはゾンビ"+x+"に"+a[0]+"ダメージを与えた");
                 
+            }else{//全体攻撃ならば
+                zc3.damageToZombie(a[0]);
+                zc2.damageToZombie(a[0]);
+                zc1.damageToZombie(a[0]);
+                
+                System.out.println("あなたは"+n+"体に"+a[0]+"ダメージ与えた！");
+                
+            }
+            
             
             if (zc1.getHp()<=0&&zc2.getHp()<=0&&zc3.getHp()<=0) {//ゾンビが0ならば
                 System.out.println("全ての敵を倒した！");
                 break;//勝利は初期化されてるので戻る
             }
+            n=0;//生存確認
+            if (zc1.getHp()>0)  n++;//ゾンビ1の生存確認
+            if(zc2.getHp()>0)   n++;//ゾンビ2の生存確認
+            if(zc3.getHp()>0)   n++;//ゾンビ3の生存確認
+            
             System.out.println("あなたは"+n+"ダメージを喰らった!");
-            pc.setHp(pc.getHp()-n);//ゾンビの数分のダメージ喰らう
+            pc.setHp(pc.getHp()-n);
             if (pc.getHp()<=0) {
                 System.out.println("あなたは死んだ！");
                 vs=false;
