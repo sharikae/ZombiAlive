@@ -46,7 +46,7 @@ public class ZombieAlive {
             /* ステータス表示 */
             mng.restWindow();                               // 画面クリア
             mng.displayStatus(                              // ステータス表示
-                    Dungeon.getDungeon(x, y),
+                    pc.getRoom(),
                     pc.getAboutHp()
             );
 
