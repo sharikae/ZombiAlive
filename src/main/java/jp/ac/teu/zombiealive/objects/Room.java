@@ -18,6 +18,9 @@ public class Room {
 
     public Room(int roomNo) {
         zombieNum = 0;
+    }
+
+    public int getZombieNum(int roomNo) {
         switch (roomNo) {
             case 2:
             case 4:
@@ -51,7 +54,42 @@ public class Room {
             default:
                 zombieNum = 0;
         }
+        return zombieNum;
+    }
 
+    public void zombieLocator() {
+
+        if (zombie = true) {
+            zombieNum += 1;
+            System.out.println(zombieNum + " Zombies found!");
+        } else {
+            System.out.println("No Zombies.");
+        }
+    }
+
+    public void Inventory() {
+        if (key = true) {
+            System.out.println("You have a key.");
+        } else {
+            System.out.println("You don't have a key.");
+        }
+
+        if (item = true) {
+            System.out.println("You have an Item.");
+        } else {
+            System.out.println("You don't have an Item.");
+        }
+    }
+
+    public void Daughter() {
+        if (daughter = true) {
+            System.out.println("a daughter is here.");
+        } else {
+            System.out.println("No daughter here.");
+        }
+    }
+    
+    public boolean[] nextMove(int roomNo) {        
         switch (roomNo) {
             case 1:
             case 18:
@@ -104,45 +142,7 @@ public class Room {
             default:
                 break;
         }
-    }
-
-    public int getZombieNum() {
-        return zombieNum;
-    }
-
-    public void zombieLocator() {
-
-        if (zombie = true) {
-            zombieNum += 1;
-            System.out.println(zombieNum + " Zombies found!");
-        } else {
-            System.out.println("No Zombies.");
-        }
-    }
-
-    public void Inventory() {
-        if (key = true) {
-            System.out.println("You have a key.");
-        } else {
-            System.out.println("You don't have a key.");
-        }
-
-        if (item = true) {
-            System.out.println("You have an Item.");
-        } else {
-            System.out.println("You don't have an Item.");
-        }
-    }
-
-    public void Daughter() {
-        if (daughter = true) {
-            System.out.println("a daughter is here.");
-        } else {
-            System.out.println("No daughter here.");
-        }
-    }
-
-    public boolean[] nextMove() {
+        
         boolean[] nextMove = new boolean[4];
         if (north == true) {
             nextMove[0] = true;
