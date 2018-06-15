@@ -122,26 +122,35 @@ public class PlayerCharacter {
 
     }
 
-   public int[] getAttackDamage() {
+    public int[] getAttackDamage() {
         Random rand = new Random();
-        int[] b= new int[2];
+        int[] a = new int[2];
         switch (weapon) {
             case 0: // 素手
-                int a =(int)(Math.random()*3 + 1);
-                return b;
+                a[0] = rand.nextInt(3);
+                a[1] = 0;
                 break;
             case 1: // ハンドガン
-                return [rand.nextInt(6) + 1, 0];
+                a[0] = rand.nextInt(6);
+                a[1] = 0;
                 break;
             case 2: // ショットガン
-                return [rand.nextInt(10) + 1, 0];
+                a[0] = rand.nextInt(10);
+                a[1] = 0;
+                break;
             case 3: // マシンガン
-                return [rand.nextInt(3) + 1, 1];
+                a[0] = rand.nextInt(3);
+                a[1] = 1;
+                break;
             case 4: // グレネードランチャー
-                return [rand.nextInt(6) + 1, 1];
+                a[0] = rand.nextInt(6);
+                a[1] = 1;
+                break;
             case 5: // ロケットランチャー
-                return [rand.nextInt(10) + 1, 1];
-
+                a[0] = rand.nextInt(10);
+                a[1] = 1;
+                break;
         }
+        return a;
     }
 }
