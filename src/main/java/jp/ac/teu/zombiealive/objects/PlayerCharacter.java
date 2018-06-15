@@ -14,6 +14,10 @@ public class PlayerCharacter {
     private boolean key = false;
     private String read;
 
+    private int yd = 0;
+    private int xd = 0;
+    private int tmp_roomId;
+
 
     public int getHp() {
         return hp;
@@ -65,12 +69,12 @@ public class PlayerCharacter {
 
         // TODO Player Move Logic
 
+        tmp_roomId = 0;
+        xd = 0;
+        yd = 0;
+
         Console.write("行き先の方向を指定してください");
         Console.write("W:↑ A:← S:↓ D:→");
-
-        int yd = 0;
-        int xd = 0;
-        int tmp_roomId;
 
         read = Console.read();
 
@@ -92,21 +96,22 @@ public class PlayerCharacter {
                 return false;
         }
 
-        tmp_roomId = Dungeon.getDungeon(y + yd,x + xd);
 
-//        try {
-//            tmp_roomId = Dungeon.getDungeon(y + yd,x + xd);
-//        } catch (Exception e) {
-//            Console.write("移動できません");
-//            return false;
-//        }
+        try {
+            tmp_roomId = Dungeon.getDungeon(y + yd,x + xd);
+            System.out.println(tmp_roomId);
+        } catch (Exception e) {
+            Console.write("移動できません");
+            return false;
+        }
 
         if (tmp_roomId == 0) {
             Console.write("移動できません");
             return false;
         } else {
             roomId = tmp_roomId;
-            tmp_roomId = 0;
+            y = y + yd;
+            x = x + xd;
             return true;
         }
     }
