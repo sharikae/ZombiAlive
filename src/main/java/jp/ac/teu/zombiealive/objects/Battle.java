@@ -5,12 +5,15 @@
  */
 package jp.ac.teu.zombiealive.objects;
 
+import jp.ac.teu.zombiealive.util.Console;
+
 /**
  *
  * @author C0116125
  */
 public class Battle {
     private static PlayerCharacter pc;
+    Manager mg=new Manager();
     public Battle(PlayerCharacter p){//初期化
         this.pc=p;
     }
@@ -34,14 +37,14 @@ public class Battle {
                 System.out.println("敵を倒した！");
                 break;//勝利は初期化されてるので戻る
             }
-            
+            System.out.println("あなたは1ダメージを喰らった!");
             pc.setHp(pc.getHp()-1);//１ダメージ喰らう
             if (pc.getHp()<=0) {
                 System.out.println("あなたは死んだ！");
                 vs=false;
                 break;
             }
-            
+            Console.write("現在の体力状態: " + pc.getHp());
             
         }
         return vs;

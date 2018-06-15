@@ -28,6 +28,7 @@ public class BattleTest {
         PlayerCharacter pc = new PlayerCharacter();         // プレイヤー変数の初期化
         DaughterCharacter dc = new DaughterCharacter();     // 娘変数の初期化
         Manager mng = new Manager();
+        int i=1;//戦闘回数
         
         boolean k=true;//初期テスト用
         while (k) {//テスト終了まで持続            
@@ -60,8 +61,11 @@ public class BattleTest {
             }
             System.out.println("に変更しました。");
             Battle b=new Battle(pc);
-            k = Battle.vsZombie(pc, 1);
-            
+            k = Battle.vsZombie(pc, 1);//戦闘処理
+            pc=Battle.getPc();//PCのデータを戻す
+            i++;//ターン経過
+            System.out.println("pcHP:"+pc.getHp());
+            System.out.println("現在ターン数;"+i);
         }
     }
     
