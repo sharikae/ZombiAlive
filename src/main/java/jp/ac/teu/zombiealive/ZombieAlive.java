@@ -1,6 +1,7 @@
 package jp.ac.teu.zombiealive;
 
 import java.util.Scanner;
+import jp.ac.teu.zombiealive.objects.Battle;
 
 import jp.ac.teu.zombiealive.objects.Dungeon;
 import jp.ac.teu.zombiealive.objects.PlayerCharacter;
@@ -23,7 +24,7 @@ public class ZombieAlive {
     public static int y = 4;                      // プレイヤーのX,Y軸初期位置(たぶん25番部屋のはず)
     public static int xd = 0, yd = 0;             // プレイヤーが移動する向き
     public static String st;                      // 方向の受け皿
-    public static boolean alive = true;           // ゲームオーバーならtrue
+    public static boolean alive = true;           // ゲームオーバーならfalse
     public static boolean error = false;          // 問題があるならtrue
     public static boolean Moved = true;
 
@@ -66,9 +67,22 @@ public class ZombieAlive {
              */
 
             // TODO battle logic
-
+            if(0!=0){//ゾンビが居たら
+               if(0>1){//ゾンビが2体以上居たら
+                   alive=Battle.vsZombie(pc, x);//複数ゾンビ用の処理
+               }else{//ゾンビが1体ならば
+                   alive=Battle.vsZombie(pc);//ゾンビ1体用の処理
+               } 
+               pc=Battle.getPc();//戦闘終了処理
+            }
             // TODO battle boss logic
-
+            if (0!=0) {//ボス部屋ならば
+                alive=Battle.vsBoss(pc, dc);//ボス戦闘の開始
+                if (alive) {//ボス戦闘に勝利したら
+                    //エンディング処理
+                    System.out.println("Game ｸﾘｱｧ");
+                }
+            }
             // TODO recovery logic
 
             // TODO Daughter logic
