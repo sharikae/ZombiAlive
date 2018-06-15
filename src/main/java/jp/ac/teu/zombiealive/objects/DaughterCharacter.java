@@ -50,4 +50,10 @@ public class DaughterCharacter {
             daughterPosition = playerOfStep[numberOfStep];
         }
     }
+
+    public void setDaughterPosition(int daughterPosition) {
+        this.daughterPosition = daughterPosition;
+    }
+    
+    
 }

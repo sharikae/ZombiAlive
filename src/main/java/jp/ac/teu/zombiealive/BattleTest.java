@@ -61,11 +61,20 @@ public class BattleTest {
             }
             System.out.println("に変更しました。");
             Battle b=new Battle(pc);
-            k = Battle.vsZombie(pc, 3);//戦闘処理
+            int x=Integer.parseInt(Console.read());
+            if (x==1) {//1体だけなら
+                k=Battle.vsZombie(pc);
+            } else if(x>1&&x<4){//1~3でゾンビの数指定
+                k = Battle.vsZombie(pc, x);
+            }else {//boss戦闘処理テスト
+                dc.setDaughterPosition(6);;//今回限定の処理
+                k=Battle.vsBoss(pc, dc);
+            }//戦闘処理
+            
             pc=Battle.getPc();//PCのデータを戻す
             i++;//ターン経過
             System.out.println("pcHP:"+pc.getHp());
-            System.out.println("現在ターン数;"+i);
+            System.out.println("現在戦闘回数;"+i);
         }
     }
     
