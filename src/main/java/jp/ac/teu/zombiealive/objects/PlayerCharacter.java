@@ -76,28 +76,30 @@ public class PlayerCharacter {
 
         switch (read) {
             case"w"://上
-                yd--;
-                break;
-            case"a"://左
                 xd--;
                 break;
+            case"a"://左
+                yd--;
+                break;
             case"s"://下
-                yd++;
+                xd++;
                 break;
             case"d"://右
-                xd++;
+                yd++;
                 break;
             default:
                 Console.write("W:↑ A:← S:↓ D:→で入力してください");
                 return false;
         }
 
-        try {
-            tmp_roomId = Dungeon.getDungeon(y + yd,x + xd);
-        } catch (Exception e) {
-            Console.write("移動できません");
-            return false;
-        }
+        tmp_roomId = Dungeon.getDungeon(y + yd,x + xd);
+
+//        try {
+//            tmp_roomId = Dungeon.getDungeon(y + yd,x + xd);
+//        } catch (Exception e) {
+//            Console.write("移動できません");
+//            return false;
+//        }
 
         if (tmp_roomId == 0) {
             Console.write("移動できません");
