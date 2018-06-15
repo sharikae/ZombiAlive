@@ -5,6 +5,7 @@
  */
 package jp.ac.teu.zombiealive;
 
+import jp.ac.teu.zombiealive.objects.Battle;
 import jp.ac.teu.zombiealive.objects.DaughterCharacter;
 import jp.ac.teu.zombiealive.objects.Dungeon;
 import jp.ac.teu.zombiealive.objects.Manager;
@@ -58,6 +59,9 @@ public class BattleTest {
                 break;
             }
             System.out.println("に変更しました。");
+            Battle b=new Battle(pc);
+            k = Battle.vsZombie(pc, 1);
+            
         }
     }
     
