@@ -127,27 +127,27 @@ public class PlayerCharacter {
         int[] a = new int[2];
         switch (weapon) {
             case 0: // 素手
-                a[0] = rand.nextInt(3);
+                a[0] = rand.nextInt(3) + 1;
                 a[1] = 0;
                 break;
             case 1: // ハンドガン
-                a[0] = rand.nextInt(6);
+                a[0] = rand.nextInt(6) + 1;
                 a[1] = 0;
                 break;
             case 2: // ショットガン
-                a[0] = rand.nextInt(10);
+                a[0] = rand.nextInt(10) + 1;
                 a[1] = 0;
                 break;
             case 3: // マシンガン
-                a[0] = rand.nextInt(3);
+                a[0] = rand.nextInt(3) + 1;
                 a[1] = 1;
                 break;
             case 4: // グレネードランチャー
-                a[0] = rand.nextInt(6);
+                a[0] = rand.nextInt(6) + 1;
                 a[1] = 1;
                 break;
             case 5: // ロケットランチャー
-                a[0] = rand.nextInt(10);
+                a[0] = rand.nextInt(10) + 1;
                 a[1] = 1;
                 break;
         }
