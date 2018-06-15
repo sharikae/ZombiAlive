@@ -23,10 +23,12 @@ public class BattleTest {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
         PlayerCharacter pc = new PlayerCharacter();         // プレイヤー変数の初期化
         DaughterCharacter dc = new DaughterCharacter();     // 娘変数の初期化
+        Manager mng = new Manager();
         
-        boolean k=false;//初期テスト用
+        boolean k=true;//初期テスト用
         while (k) {//テスト終了まで持続            
             System.out.println("武器選択");
             switch (Integer.parseInt(Console.read())) {

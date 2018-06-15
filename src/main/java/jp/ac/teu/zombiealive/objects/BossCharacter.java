@@ -25,7 +25,6 @@ public class BossCharacter {
         if (this.bossHitPoint < 0) {
             this.bossHitPoint = 0;
         }
-        ;
         return bossHitPoint;
     }
 
