@@ -2,6 +2,8 @@ package jp.ac.teu.zombiealive.objects;
 
 import jp.ac.teu.zombiealive.util.Console;
 import jp.ac.teu.zombiealive.objects.Dungeon;
+import java.util.Queue;
+import java.util.ArrayDeque;
 
 import java.util.Random;
 
@@ -13,11 +15,10 @@ public class PlayerCharacter {
     private int weapon = 0;
     private boolean key = false;
     private String read;
-
     private int yd = 0;
     private int xd = 0;
     private int tmp_roomId;
-
+    Queue<Integer> step = new ArrayDeque<Integer>();
 
     public int getHp() {
         return hp;
@@ -31,6 +32,14 @@ public class PlayerCharacter {
             str = "Caution";
         }
         return str;
+    }
+    
+    public void setNumberOfStep(){
+        step.add(roomId);
+    }
+    
+    public Queue getNumberOfStep(){
+        return step;
     }
 
     public void setHp(int hp) {
@@ -66,7 +75,6 @@ public class PlayerCharacter {
     }
 
     public boolean move() {
-
         // TODO Player Move Logic
 
         tmp_roomId = 0;

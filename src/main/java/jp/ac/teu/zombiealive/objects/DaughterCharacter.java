@@ -1,5 +1,7 @@
 package jp.ac.teu.zombiealive.objects;
 
+import java.util.Queue;
+
 /**
  * @author C0115222
  */
@@ -41,19 +43,14 @@ public class DaughterCharacter {
         daughterHp -= playerAttack;
         daughter_possible_action = false;
         daughter_impossible_action_turn = 3;
-        numberOfStep = 0;
     }
 
-    public void move_daughter(int[] playerOfStep) {  //娘の移動処理
+    public void move_daughter(Queue<Integer> playerOfStep) {  //娘の移動処理
         if (daughter_possible_action == true) {
-            numberOfStep += 1;
-            daughterPosition = playerOfStep[numberOfStep];
+            daughterPosition = playerOfStep.poll();
+        } else {
+            playerOfStep.poll();
         }
     }
-
-    public void setDaughterPosition(int daughterPosition) {
-        this.daughterPosition = daughterPosition;
-    }
-    
     
 }
