@@ -8,6 +8,7 @@ import java.util.ArrayDeque;
 import java.util.Random;
 
 public class PlayerCharacter {
+
     private int hp = 30;
     private int roomId = 25;
     private int x = 4;
@@ -33,13 +34,21 @@ public class PlayerCharacter {
         }
         return str;
     }
-    
-    public void setNumberOfStep(){
+
+    public void setNumberOfStep() {
         step.add(roomId);
     }
-    
-    public Queue getNumberOfStep(){
+
+    public Queue getNumberOfStep() {
         return step;
+    }
+
+    public int getXPosition() {
+        return y;
+    }
+
+    public int getYPosition() {
+        return x;
     }
 
     public void setHp(int hp) {
@@ -87,16 +96,16 @@ public class PlayerCharacter {
         read = Console.read();
 
         switch (read) {
-            case"w"://上
+            case "w"://上
                 xd--;
                 break;
-            case"a"://左
+            case "a"://左
                 yd--;
                 break;
-            case"s"://下
+            case "s"://下
                 xd++;
                 break;
-            case"d"://右
+            case "d"://右
                 yd++;
                 break;
             default:
@@ -104,9 +113,8 @@ public class PlayerCharacter {
                 return false;
         }
 
-
         try {
-            tmp_roomId = Dungeon.getDungeon(y + yd,x + xd);
+            tmp_roomId = Dungeon.getDungeon(y + yd, x + xd);
             System.out.println(tmp_roomId);
         } catch (Exception e) {
             Console.write("移動できません");
@@ -127,38 +135,24 @@ public class PlayerCharacter {
     public void escape() {
 
         // TODO Player Escape Logic
-
     }
 
     public int[] getAttackDamage() {
         Random rand = new Random();
-        int[] a = new int[2];
         switch (weapon) {
             case 0: // 素手
-                a[0] = rand.nextInt(3) + 1;
-                a[1] = 0;
-                break;
+                return new int[]{rand.nextInt(3) + 1, 0};
             case 1: // ハンドガン
-                a[0] = rand.nextInt(6) + 1;
-                a[1] = 0;
-                break;
+                return new int[]{rand.nextInt(6) + 1, 0};
             case 2: // ショットガン
-                a[0] = rand.nextInt(10) + 1;
-                a[1] = 0;
-                break;
+                return new int[]{rand.nextInt(10) + 1, 0};
             case 3: // マシンガン
-                a[0] = rand.nextInt(3) + 1;
-                a[1] = 1;
-                break;
+                return new int[]{rand.nextInt(3) + 1, 1};
             case 4: // グレネードランチャー
-                a[0] = rand.nextInt(6) + 1;
-                a[1] = 1;
-                break;
+                return new int[]{rand.nextInt(6) + 1, 1};
             case 5: // ロケットランチャー
-                a[0] = rand.nextInt(10) + 1;
-                a[1] = 1;
-                break;
+                return new int[]{rand.nextInt(10) + 1, 1};
         }
-        return a;
+        return new int[]{0, 0};
     }
 }

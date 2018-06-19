@@ -35,6 +35,7 @@ public class DaughterCharacter {
             daughter_impossible_action_turn -= 1;
             if (daughter_impossible_action_turn == 0) {
                 daughter_possible_action = true;
+                System.out.println("娘の叫び声が聞こえた");
             }
         }
     }
@@ -53,4 +54,8 @@ public class DaughterCharacter {
         }
     }
     
+    public void setDaughterPosition(int daughterPosition){
+        this.daughterPosition = daughterPosition;
+    }
+
 }
