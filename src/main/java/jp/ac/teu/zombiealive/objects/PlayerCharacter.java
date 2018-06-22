@@ -135,6 +135,9 @@ public class PlayerCharacter {
                 y = y + yd;
                 x = x + xd;
                 return true;
+            }else{
+                Console.write("鍵がかかっているようだ･･･");
+                return false;
             }
         } else if(tmp_roomId == 13){
             if(roomId == 14 | roomId ==19){
