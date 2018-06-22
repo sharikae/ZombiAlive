@@ -1,7 +1,6 @@
 package jp.ac.teu.zombiealive.objects;
 
 import java.util.Queue;
-import jp.ac.teu.zombiealive.util.Console;
 
 /**
  * @author C0115222
@@ -31,17 +30,12 @@ public class DaughterCharacter {
         return daughterPosition;
     }
 
-    public boolean isDaughter_possible_action() {//娘が移動可能かを返す(移動可能の場合true)
-        return daughter_possible_action;
-    }
-
     public void turn_update() {  //行動可能までのターンが経っているかの判定
         if (daughter_possible_action == false) {
             daughter_impossible_action_turn -= 1;
             if (daughter_impossible_action_turn == 0) {
                 daughter_possible_action = true;
                 System.out.println("娘の叫び声が聞こえた");
-                Console.read();
             }
         }
     }
@@ -52,15 +46,13 @@ public class DaughterCharacter {
         daughter_impossible_action_turn = 3;
     }
 
-    public void move_daughter(Queue<Integer> playerOfStep) {  //娘の移動処理
+    public void move_daughter(int playerOfStep) {  //娘の移動処理
         if (daughter_possible_action == true) {
-            daughterPosition = playerOfStep.poll();
-        } else {
-            playerOfStep.poll();
+            daughterPosition = playerOfStep;
         }
     }
     
-    public void setDaughterPosition(int daughterPosition){//娘の現在位置を変更
+    public void setDaughterPosition(int daughterPosition){
         this.daughterPosition = daughterPosition;
     }
 
