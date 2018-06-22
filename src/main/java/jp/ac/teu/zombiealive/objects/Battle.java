@@ -16,7 +16,7 @@ public class Battle {
     private static PlayerCharacter pc;
     private static DaughterCharacter dt;
     Manager mg=new Manager();
-    private static boolean test=false;//テスト用か(trueでテスト用)
+    private static boolean test=true;//テスト用か(trueでテスト用)
     
     private static boolean finished=true;//終了したら
     private static boolean vs=true;//戦闘に敗北したらfalseになる,
