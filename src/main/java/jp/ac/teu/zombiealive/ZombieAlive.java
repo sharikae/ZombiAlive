@@ -50,6 +50,9 @@ public class ZombieAlive {
                     Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()),
                     pc.getAboutHp()
             );
+            if (true) {//テスト用,
+                System.out.println("娘の部屋:" + dc.get_daughterPosition());//テスト用
+            }
 
             /* プレイヤー移動 */
             do {
@@ -67,11 +70,28 @@ public class ZombieAlive {
                 pc = Battle.getPc();//戦闘終了処理
                 rm.setZombieNum(pc.getRoom());//ルーム番号処理
                 //武器ドロップ判定処理
-                /*int i=;
+                int i=0;
+                switch(pc.getRoom()){
+                    case 14: 
+                        i=1;
+                        break;
+                    case 16:
+                        i=2;
+                        break;
+                    case 2:
+                        i=3;
+                        break;
+                    case 4:
+                        i=4;
+                        break;
+                    case 13:
+                        i=5;
+                        break;
+                }
                 if(i>0){//武器があるなら
-                Equipment e=new Equipment(pc);
-                pc=e.getEqu();//武器を装備するか判定処理
-                }*/
+                    Equipment e=new Equipment(pc);
+                    pc=e.getEqu(i);//武器を装備するか判定処理
+                }
             }
 
             //ボス部屋判定
@@ -107,10 +127,10 @@ public class ZombieAlive {
             pc.setNumberOfStep();//主人公の現在位置を記憶
             if (dc.isDaughter_possible_action()) {//娘が移動可能の場合
                 //娘との接触判定
-                if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入ってくるか
+                if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入っているか
                     alive=Battle.vsDauter(pc, dc);//戦闘
-                    pc=Battle.getPc();//主人公の初期化
-                    dc=Battle.getDt();//娘の初期化
+                    pc=Battle.getPc();//主人公の戦闘後処理
+                    dc=Battle.getDt();//娘の戦闘後処理
                 }else{//戦闘しなければ
                     //娘の移動処理
                     dc.move_daughter(pc.getNumberOfStep());//移動処理

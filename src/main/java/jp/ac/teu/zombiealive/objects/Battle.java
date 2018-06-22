@@ -173,5 +173,33 @@ public class Battle {
 
         return vs;
     }
+<<<<<<< HEAD
 
+=======
+    
+    public static boolean vsDauter(PlayerCharacter p,DaughterCharacter d){
+        dt=d;
+        pc=p;//初期化
+        vs=true;
+        int a;
+        System.out.println("娘が出現した娘の攻撃で5ダメージを喰らった");
+        pc.setHp(pc.getHp()-5);
+        if(pc.getHp()<=0){
+            System.out.println("娘に殺されてしまった!");
+            vs=false;
+        }//死んだら
+        a=pc.getAttackDamage()[0];
+        System.out.println("あなたの反撃\n娘に"+a+"ダメージを与えてしまった");
+        dt.battle_daughter(a);
+        if (dt.get_hp()<=0) {//娘死んだら
+            System.out.println("娘を殺してしまった！");
+            vs=false;            
+        }
+        pc.clearStep();//主人公の位置を削除
+        System.out.println("Please Any Key");
+       Console.read();
+        return vs;
+    } 
+    
+>>>>>>> 4c062a72e95e82fefc46ce537e04b7f9f8c0c637
 }
