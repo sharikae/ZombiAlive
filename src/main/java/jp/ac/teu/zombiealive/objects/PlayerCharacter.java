@@ -57,7 +57,7 @@ public class PlayerCharacter {
     }
 
     public void setHp(int hp) {
-        System.out.println("HPが回復しました");
+        //System.out.println("HPが回復しました");
         this.hp = hp;
     }
 
@@ -140,6 +140,11 @@ public class PlayerCharacter {
             if(roomId == 14 | roomId ==19){
                 Console.write("移動できません");
                 return false;
+            }else{
+                roomId = tmp_roomId;
+                y = y + yd;
+                x = x + xd;
+                return true;
             }
         }else {
             roomId = tmp_roomId;
