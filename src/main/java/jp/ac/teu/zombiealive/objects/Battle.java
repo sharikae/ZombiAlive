@@ -203,7 +203,7 @@ public class Battle {
             System.out.println("娘を殺してしまった！");
             vs=false;            
         }
-        
+        pc.clearStep();//主人公の位置を削除
         System.out.println("Please Any Key");
        Console.read();
         return vs;
