@@ -16,6 +16,7 @@ public class Battle {
     private static PlayerCharacter pc;
     private static DaughterCharacter dt;
     Manager mg=new Manager();
+    private static boolean test=false;//テスト用か(trueでテスト用)
     
     private static boolean finished=true;//終了したら
     private static boolean vs=true;//戦闘に敗北したらfalseになる,
@@ -47,6 +48,8 @@ public class Battle {
             System.out.println("あなたは"+a+"ダメージを与えた");
             if (zc.getHp()<=0) {//ゾンビが0ならば
                 System.out.println("敵を倒した！");
+                System.out.println("Please Any Key");
+                Console.read();
                 break;//勝利は初期化されてるので戻る
             }
             System.out.println("あなたは1ダメージを喰らった!");
@@ -56,7 +59,11 @@ public class Battle {
                 vs=false;
                 break;
             }
-            Console.write("現在の体力状態: " + pc.getHp());
+            if (test) {
+                Console.write("現在の体力状態: " + pc.getHp() + "\nPlease Any Key");
+            }else{
+                Console.write("現在の体力状態: " + pc.getAboutHp()+ "\nPlease Any Key");
+            }
             Console.read();
             
         }
@@ -120,8 +127,12 @@ public class Battle {
                 vs=false;
                 break;
             }
-            Console.write("現在の体力状態: " + pc.getHp());
-            
+            if (test) {
+                Console.write("現在の体力状態: " + pc.getHp() + "\nPlease Any Key");
+            }else{
+                Console.write("現在の体力状態: " + pc.getAboutHp()+ "\nPlease Any Key");
+            }
+            Console.read();
         }
         return vs;
     }
@@ -165,7 +176,13 @@ public class Battle {
             dt.turn_update();
             turn++;
         }
-        
+        if (test) {
+            Console.write("現在の体力状態: " + pc.getHp() + "\nPlease Any Key");
+        }else{
+            Console.write("現在の体力状態: " + pc.getAboutHp()+ "\nPlease Any Key");
+        }
+        System.out.println("Please Any Key");
+        Console.read();
         return vs;
     }
     
@@ -186,7 +203,10 @@ public class Battle {
         if (dt.get_hp()<=0) {//娘死んだら
             System.out.println("娘を殺してしまった！");
             vs=false;
+            
         }
+        System.out.println("Please Any Key");
+       Console.read();
         return vs;
     } 
     
