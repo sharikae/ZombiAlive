@@ -177,7 +177,6 @@ public class Battle {
             }else{
                 Console.write("現在の体力状態: " + pc.getAboutHp()+ "\nPlease Any Key");
             }
-            System.out.println("Please Any Key");
             Console.read();
             dt.turn_update();
             turn++;
