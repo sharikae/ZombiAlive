@@ -32,6 +32,10 @@ public class Manager {
             Console.write("");
         }
     }
+
+    public void displayRoom(int roomNum) {
+
+    }
 }
 
 
