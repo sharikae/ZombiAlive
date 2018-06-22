@@ -104,7 +104,7 @@ public class ZombieAlive {
             // TODO recovery logic
             // TODO Daughter logic
             //現在の位置を記憶
-            
+            pc.setNumberOfStep();//主人公の現在位置を記憶
             if (dc.isDaughter_possible_action()) {//娘が移動可能の場合
                 //娘との接触判定
                 if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入ってくるか
@@ -113,7 +113,7 @@ public class ZombieAlive {
                     dc=Battle.getDt();//娘の初期化
                 }
                 //娘の移動処理
-                
+                dc.move_daughter(pc.getNumberOfStep());//移動処理
                 //娘との接触判定
                 if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入ってくるか
                     alive=Battle.vsDauter(pc, dc);//戦闘
