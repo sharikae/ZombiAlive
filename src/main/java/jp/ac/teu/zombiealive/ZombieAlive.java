@@ -23,7 +23,7 @@ public class ZombieAlive {
     public static int y = 4;                      // プレイヤーのX,Y軸初期位置(たぶん25番部屋のはず)
     public static int xd = 0, yd = 0;             // プレイヤーが移動する向き
     public static String st;                      // 方向の受け皿
-    public static boolean alive = true;           // ゲームオーバーならtrue
+    public static boolean alive = true;           // ゲームオーバーならfalse
     public static boolean error = false;          // 問題があるならtrue
     public static boolean Moved = true;
 
@@ -52,14 +52,39 @@ public class ZombieAlive {
                     Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()),
                     pc.getAboutHp()
             );
-            
+
             /* プレイヤー移動 */
             do {
                 Moved = pc.move();
             } while (!Moved);
-            if(rm.getZombieNum(Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition())) > 0){
-                Battle.vsZombie(pc,rm.getZombieNum(Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition())));
+            
+            //ゾンビ戦闘判定
+            x=rm.getZombieNum(pc.getRoom());
+            if (x > 0) {//ゾンビが存在するならば
+                if (x > 1) {//ゾンビが1体より多いならば
+                    alive = Battle.vsZombie(pc, x);//複数処理
+                } else {
+                    alive = Battle.vsZombie(pc);//単体用
+                }
+                pc = Battle.getPc();//戦闘終了処理
             }
+
+            //ボス部屋判定
+            if (pc.getRoom() == 6) {
+                alive = Battle.vsBoss(pc, dc);
+                if (alive) {
+                    System.out.println("GAME ｸﾘｱｧ");
+                }
+            }
+
+            if (rm.getItem(Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()))) {
+                Console.write("回復アイテムを見つけました。使用するならUを入力してください");
+                if ("u".equals(Console.read())) {
+                    pc.setHp(30);
+                    rm.setItem(Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()));
+                }
+            }
+
             /* 室内調査 */
             // TODO Room check logic
             /*
