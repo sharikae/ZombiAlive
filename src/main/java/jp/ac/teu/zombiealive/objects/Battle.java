@@ -161,7 +161,7 @@ public class Battle {
             System.out.println("ボスからの攻撃で"+b+"ダメージを喰らった！");
             pc.setHp(pc.getHp()-b);
             if(pc.getHp()<=0){
-                System.out.println("あなたはしんだ！");
+                System.out.println("ボスに敗北した...");
                 vs=false;
                 break;
             }//死んだら
@@ -194,7 +194,7 @@ public class Battle {
         System.out.println("娘が出現した娘の攻撃で5ダメージを喰らった");
         pc.setHp(pc.getHp()-5);
         if(pc.getHp()<=0){
-            System.out.println("YouDead！");
+            System.out.println("娘に殺されてしまった!");
             vs=false;
         }//死んだら
         a=pc.getAttackDamage()[0];

@@ -53,15 +53,19 @@ public class ZombieAlive {
             do {
                 Moved = pc.move();
             } while (!Moved);
-            if (rm.getZombieNum(pc.getRoom()) > 0) {
-                if (rm.getZombieNum(pc.getRoom()) > 1) {
-                    alive = Battle.vsZombie(pc, x);
+            
+            //ゾンビ戦闘判定
+            x=rm.getZombieNum(pc.getRoom());
+            if (x > 0) {//ゾンビが存在するならば
+                if (x > 1) {//ゾンビが1体より多いならば
+                    alive = Battle.vsZombie(pc, x);//複数処理
                 } else {
-                    alive = Battle.vsZombie(pc);
+                    alive = Battle.vsZombie(pc);//単体用
                 }
-                pc = Battle.getPc();
+                pc = Battle.getPc();//戦闘終了処理
             }
 
+            //ボス部屋判定
             if (pc.getRoom() == 6) {
                 alive = Battle.vsBoss(pc, dc);
                 if (alive) {
