@@ -107,10 +107,16 @@ public class ZombieAlive {
                 Console.write("回復アイテムを見つけました。使用するならUを入力してください");
                 if ("u".equals(Console.read())) {
                     pc.setHp(30);
+                    System.out.println("HPが回復しました");
                     rm.setItem(Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()));
                 }
             }
-
+            if(rm.getKey(pc.getRoom())){//現在部屋に鍵があるか
+                System.out.println("鍵が落ちている･･･\nとりあえず取っておこう");
+                pc.setKey(true);//鍵を手に入れる処理
+                Console.read();
+            }
+            
             /* 室内調査 */
             // TODO Room check logic
             /*
