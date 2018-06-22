@@ -67,6 +67,8 @@ public class ZombieAlive {
                     alive = Battle.vsZombie(pc);//単体用
                 }
                 pc = Battle.getPc();//戦闘終了処理
+                rm.setZombieNum(pc.getRoom());//ルーム番号処理
+                
             }
 
             //ボス部屋判定
