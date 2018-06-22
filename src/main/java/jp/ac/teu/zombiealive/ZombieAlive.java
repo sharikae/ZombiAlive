@@ -8,6 +8,7 @@ import jp.ac.teu.zombiealive.objects.PlayerCharacter;
 import jp.ac.teu.zombiealive.objects.Room;
 import jp.ac.teu.zombiealive.objects.BossCharacter;
 import jp.ac.teu.zombiealive.objects.DaughterCharacter;
+import jp.ac.teu.zombiealive.objects.Equipment;
 
 import jp.ac.teu.zombiealive.objects.Manager;
 import jp.ac.teu.zombiealive.util.Console;
@@ -36,12 +37,8 @@ public class ZombieAlive {
         DaughterCharacter dc = new DaughterCharacter();     // 娘変数の初期化
         Timer tm = new Timer();
         tm.getTimer();
-
-        mng.displayIntroduction();                          // タイトル出力
-        if (Console.read().equals("1")) {                   // ルール表示
-            mng.displayHelp();
-            Console.read();
-        }                                                  // Press any key
+        mng.displayIntroduction();                          // 説明文出力
+        Console.read();                                     // Press any key
 
         // TODO Timer logic here
         //ゲーム終了までループ
@@ -68,7 +65,10 @@ public class ZombieAlive {
                 }
                 pc = Battle.getPc();//戦闘終了処理
                 rm.setZombieNum(pc.getRoom());//ルーム番号処理
-                
+                //武器ドロップ判定処理
+                if(0>0){//武器があるなら
+                    Equipment e=new Equipment();
+                }
             }
 
             //ボス部屋判定
