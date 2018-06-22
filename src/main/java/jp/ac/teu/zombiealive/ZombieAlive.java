@@ -114,6 +114,7 @@ public class ZombieAlive {
             if(rm.getKey(pc.getRoom())){//現在部屋に鍵があるか
                 System.out.println("鍵が落ちている･･･\nとりあえず取っておこう");
                 pc.setKey(true);//鍵を手に入れる処理
+                rm.setKey(pc.getRoom());//鍵が無くなる処理
                 Console.read();
             }
             
