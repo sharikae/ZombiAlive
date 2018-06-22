@@ -111,14 +111,15 @@ public class ZombieAlive {
                     alive=Battle.vsDauter(pc, dc);//戦闘
                     pc=Battle.getPc();//主人公の初期化
                     dc=Battle.getDt();//娘の初期化
-                }
-                //娘の移動処理
-                dc.move_daughter(pc.getNumberOfStep());//移動処理
-                //娘との接触判定
-                if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入ってくるか
-                    alive=Battle.vsDauter(pc, dc);//戦闘
-                    pc=Battle.getPc();//主人公の初期化
-                    dc=Battle.getDt();//娘の初期化
+                }else{//戦闘しなければ
+                    //娘の移動処理
+                    dc.move_daughter(pc.getNumberOfStep());//移動処理
+                    //娘との接触判定
+                    if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入ってくるか
+                        alive=Battle.vsDauter(pc, dc);//戦闘
+                        pc=Battle.getPc();//主人公の初期化
+                        dc=Battle.getDt();//娘の初期化
+                    }
                 }
             }else{
                 dc.turn_update();//娘の復活処理
