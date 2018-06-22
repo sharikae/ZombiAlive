@@ -29,10 +29,18 @@ public class Battle {
         return pc;
     }
 
-    public static boolean vsZombie(PlayerCharacter p) {
-        finished = true;//終了したら
-        vs = true;//戦闘に敗北したらfalseになる,
-        ZombieCharacter zc = new ZombieCharacter();
+    public static DaughterCharacter getDt() {
+        return dt;
+    }
+    
+    
+    
+    public static boolean vsZombie(PlayerCharacter p){
+        System.out.println("ゾンビがあらわれた！");
+        finished=true;//終了したら
+        vs=true;//戦闘に敗北したらfalseになる,
+        ZombieCharacter zc=new ZombieCharacter();
+        pc=p;
         while (finished) {
             //int[] a=pc.getAttackDamage();//とりあえず帰ってくるのは[]ではない場合の処理
             int a=2;
