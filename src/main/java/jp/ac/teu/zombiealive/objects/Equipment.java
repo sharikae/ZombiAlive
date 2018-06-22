@@ -36,7 +36,7 @@ public class Equipment {
                 break;
             }
         System.out.println("がある。\n装備しますか?\n(装備する場合はY)");
-        if (Console.read()=="y") {
+        if ("y".equals(Console.read())) {
             System.out.println("装備しました");
             pc.setWeapon(weaponNo);
         }else{
