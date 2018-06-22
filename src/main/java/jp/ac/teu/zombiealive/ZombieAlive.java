@@ -66,16 +66,19 @@ public class ZombieAlive {
                 pc = Battle.getPc();//戦闘終了処理
                 rm.setZombieNum(pc.getRoom());//ルーム番号処理
                 //武器ドロップ判定処理
-                if(0>0){//武器があるなら
-                    Equipment e=new Equipment();
-                }
+                /*int i=;
+                if(i>0){//武器があるなら
+                Equipment e=new Equipment(pc);
+                pc=e.getEqu();//武器を装備するか判定処理
+                }*/
             }
 
             //ボス部屋判定
             if (pc.getRoom() == 6) {
                 alive = Battle.vsBoss(pc, dc);
                 if (alive) {
-                    System.out.println("GAME ｸﾘｱｧ");
+                    System.out.println("GAME CLEAR");
+                    break;
                 }
             }
 
