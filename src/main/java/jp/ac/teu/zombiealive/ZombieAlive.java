@@ -16,7 +16,6 @@ import jp.ac.teu.zombiealive.util.Timer;
 /**
  * @author C0116125
  */
-
 public class ZombieAlive {
 
     public static int turn = 0;                   // 全体ターン数
@@ -32,22 +31,21 @@ public class ZombieAlive {
 
         Manager mng = new Manager();
         Dungeon dn = new Dungeon();                         // ダンジョンの初期化
-        Room rm = new Room(0);                      // 部屋クラスの初期化
+        Room rm = new Room();                      // 部屋クラスの初期化
         PlayerCharacter pc = new PlayerCharacter();         // プレイヤー変数の初期化
         DaughterCharacter dc = new DaughterCharacter();     // 娘変数の初期化
-        Timer tm = new Timer();                             //タイマークラスの呼び出し
-
+        Timer tm = new Timer();
+        tm.getTimer();
         mng.displayIntroduction();                          // 説明文出力
         Console.read();                                     // Press any key
 
         // TODO Timer logic here
-
         //ゲーム終了までループ
         while (alive) {
             /* ステータス表示 */
             mng.restWindow();                               // 画面クリア
-            mng.displayStatus(                              // ステータス表示
-                    pc.getRoom(),
+            mng.displayStatus( // ステータス表示
+                    Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()),
                     pc.getAboutHp()
             );
 
@@ -55,7 +53,29 @@ public class ZombieAlive {
             do {
                 Moved = pc.move();
             } while (!Moved);
+            if (rm.getZombieNum(pc.getRoom()) > 0) {
+                if (rm.getZombieNum(pc.getRoom()) > 1) {
+                    alive = Battle.vsZombie(pc, x);
+                } else {
+                    alive = Battle.vsZombie(pc);
+                }
+                pc = Battle.getPc();
+            }
 
+            if (pc.getRoom() == 6) {
+                alive = Battle.vsBoss(pc, dc);
+                if (alive) {
+                    System.out.println("GAME ｸﾘｱｧ");
+                }
+            }
+
+            if (rm.getItem(Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()))) {
+                Console.write("回復アイテムを見つけました。使用するならUを入力してください");
+                if ("u".equals(Console.read())) {
+                    pc.setHp(30);
+                    rm.setItem(Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()));
+                }
+            }
 
             /* 室内調査 */
             // TODO Room check logic
@@ -65,28 +85,10 @@ public class ZombieAlive {
                 鍵部屋か
                 ボス部屋か
              */
-
             // TODO battle logic
-            if(rm.getZombieNum(pc.getRoom())>0){//ゾンビが居たら(0以上なら)
-               if(rm.getZombieNum(pc.getRoom())>1){//ゾンビが2体以上居たら
-                   alive=Battle.vsZombie(pc, x);//複数ゾンビ用の処理
-               }else{//ゾンビが1体ならば
-                   alive=Battle.vsZombie(pc);//ゾンビ1体用の処理
-               } 
-               pc=Battle.getPc();//戦闘終了処理
-            }
             // TODO battle boss logic
-            if (pc.getRoom()==6) {//ボス部屋ならば
-                alive=Battle.vsBoss(pc, dc);//ボス戦闘の開始
-                if (alive) {//ボス戦闘に勝利したら
-                    //エンディング処理
-                    System.out.println("Game ｸﾘｱｧ");
-                }
-            }
             // TODO recovery logic
-
             // TODO Daughter logic
-
             turn++;
         }
     }
