@@ -39,9 +39,14 @@ public class PlayerCharacter {
         step.add(roomId);
     }
 
-    public Queue getNumberOfStep() {
-        return step;
+    public int getNumberOfStep() {
+        return step.poll();
     }
+
+    public void clearStep() {//全削除処理
+        step.clear();
+    }
+
 
     public int getXPosition() {
         return y;
@@ -52,6 +57,7 @@ public class PlayerCharacter {
     }
 
     public void setHp(int hp) {
+        System.out.println("HPが回復しました");
         this.hp = hp;
     }
 
@@ -83,11 +89,6 @@ public class PlayerCharacter {
         this.key = key;
     }
 
-    public void clearStep() {//全削除処理
-        step.clear();
-    }
-
-    
     public boolean move() {
         // TODO Player Move Logic
 
@@ -120,7 +121,6 @@ public class PlayerCharacter {
 
         try {
             tmp_roomId = Dungeon.getDungeon(y + yd, x + xd);
-            System.out.println(tmp_roomId);
         } catch (Exception e) {
             Console.write("移動できません");
             return false;
@@ -129,12 +129,25 @@ public class PlayerCharacter {
         if (tmp_roomId == 0) {
             Console.write("移動できません");
             return false;
-        } else {
+        } else if (tmp_roomId == 6) {
+            if (key) {
+                roomId = tmp_roomId;
+                y = y + yd;
+                x = x + xd;
+                return true;
+            }
+        } else if(tmp_roomId == 13){
+            if(roomId == 14 | roomId ==19){
+                Console.write("移動できません");
+                return false;
+            }
+        }else {
             roomId = tmp_roomId;
             y = y + yd;
             x = x + xd;
             return true;
         }
+        return false;
     }
 
     public void escape() {
