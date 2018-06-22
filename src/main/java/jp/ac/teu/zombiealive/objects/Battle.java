@@ -172,17 +172,17 @@ public class Battle {
                 dt=Battle.getDt();
                 pc=Battle.getPc();
             }
-            
+            if (test) {
+                Console.write("現在の体力状態: " + pc.getHp() + "\nPlease Any Key");
+            }else{
+                Console.write("現在の体力状態: " + pc.getAboutHp()+ "\nPlease Any Key");
+            }
+            System.out.println("Please Any Key");
+            Console.read();
             dt.turn_update();
             turn++;
         }
-        if (test) {
-            Console.write("現在の体力状態: " + pc.getHp() + "\nPlease Any Key");
-        }else{
-            Console.write("現在の体力状態: " + pc.getAboutHp()+ "\nPlease Any Key");
-        }
-        System.out.println("Please Any Key");
-        Console.read();
+        
         return vs;
     }
     
