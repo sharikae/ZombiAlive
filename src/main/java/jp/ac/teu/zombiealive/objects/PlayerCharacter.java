@@ -83,6 +83,11 @@ public class PlayerCharacter {
         this.key = key;
     }
 
+    public void clearStep() {//全削除処理
+        step.clear();
+    }
+
+    
     public boolean move() {
         // TODO Player Move Logic
 
