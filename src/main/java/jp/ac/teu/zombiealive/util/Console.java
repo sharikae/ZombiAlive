@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Console {
 
     public static String read() {
+        Console.writeNoCR("> ");
         Scanner scan = new Scanner(System.in);
         String inputKeyCode="";
         inputKeyCode = scan.next();

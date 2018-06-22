@@ -15,7 +15,6 @@ import jp.ac.teu.zombiealive.util.Console;
 public class Battle {
 
     private static PlayerCharacter pc;
-    Manager mg = new Manager();
 
     private static boolean finished = true;//終了したら
     private static boolean vs = true;//戦闘に敗北したらfalseになる,

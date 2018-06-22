@@ -36,8 +36,12 @@ public class ZombieAlive {
         DaughterCharacter dc = new DaughterCharacter();     // 娘変数の初期化
         Timer tm = new Timer();
         tm.getTimer();
-        mng.displayIntroduction();                          // 説明文出力
-        Console.read();                                     // Press any key
+
+        mng.displayIntroduction();                          // タイトル出力
+        if (Console.read().equals("1")) {                   // ルール表示
+            mng.displayHelp();
+            Console.read();
+        }                                                  // Press any key
 
         // TODO Timer logic here
         //ゲーム終了までループ
