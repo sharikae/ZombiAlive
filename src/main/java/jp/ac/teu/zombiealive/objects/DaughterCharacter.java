@@ -30,6 +30,10 @@ public class DaughterCharacter {
         return daughterPosition;
     }
 
+    public boolean isDaughter_possible_action() {//娘が移動可能かを返す(移動可能の場合true)
+        return daughter_possible_action;
+    }
+
     public void turn_update() {  //行動可能までのターンが経っているかの判定
         if (daughter_possible_action == false) {
             daughter_impossible_action_turn -= 1;
@@ -54,7 +58,7 @@ public class DaughterCharacter {
         }
     }
     
-    public void setDaughterPosition(int daughterPosition){
+    public void setDaughterPosition(int daughterPosition){//娘の現在位置を変更
         this.daughterPosition = daughterPosition;
     }
 

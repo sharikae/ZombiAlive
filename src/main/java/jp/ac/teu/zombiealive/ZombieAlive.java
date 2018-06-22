@@ -1,5 +1,6 @@
 package jp.ac.teu.zombiealive;
 
+import java.util.Queue;
 import java.util.Scanner;
 import jp.ac.teu.zombiealive.objects.Battle;
 
@@ -102,6 +103,26 @@ public class ZombieAlive {
             // TODO battle boss logic
             // TODO recovery logic
             // TODO Daughter logic
+            //現在の位置を記憶
+            
+            if (dc.isDaughter_possible_action()) {//娘が移動可能の場合
+                //娘との接触判定
+                if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入ってくるか
+                    alive=Battle.vsDauter(pc, dc);//戦闘
+                    pc=Battle.getPc();//主人公の初期化
+                    dc=Battle.getDt();//娘の初期化
+                }
+                //娘の移動処理
+                
+                //娘との接触判定
+                if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入ってくるか
+                    alive=Battle.vsDauter(pc, dc);//戦闘
+                    pc=Battle.getPc();//主人公の初期化
+                    dc=Battle.getDt();//娘の初期化
+                }
+            }else{
+                dc.turn_update();//娘の復活処理
+            }
             turn++;
         }
     }

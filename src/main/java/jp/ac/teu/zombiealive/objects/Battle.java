@@ -202,9 +202,9 @@ public class Battle {
         dt.battle_daughter(a);
         if (dt.get_hp()<=0) {//娘死んだら
             System.out.println("娘を殺してしまった！");
-            vs=false;
-            
+            vs=false;            
         }
+        
         System.out.println("Please Any Key");
        Console.read();
         return vs;
