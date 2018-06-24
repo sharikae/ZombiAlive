@@ -6,6 +6,8 @@
 package jp.ac.teu.zombiealive.objects;
 
 import com.sun.java.swing.plaf.windows.WindowsBorders;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jp.ac.teu.zombiealive.util.Console;
 
 /**
@@ -48,9 +50,15 @@ public class Battle {
             System.out.println("あなたは"+a+"ダメージを与えた");
             if (zc.getHp()<=0) {//ゾンビが0ならば
                 System.out.println("敵を倒した！");
-                System.out.println("Please Any Key");
-                Console.read();
+                //System.out.println("Please Any Key");
+                //Console.read();
                 break;//勝利は初期化されてるので戻る
+            }
+            try {
+                //Console.read();
+                Thread.sleep(500);//１秒待つ
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println("あなたは1ダメージを喰らった!");
             pc.setHp(pc.getHp()-1);//１ダメージ喰らう
@@ -60,13 +68,23 @@ public class Battle {
                 break;
             }
             if (test) {
-                Console.write("現在の体力状態: " + pc.getHp() + "\nPlease Any Key");
+                Console.write("現在の体力状態: " + pc.getHp());
             }else{
-                Console.write("現在の体力状態: " + pc.getAboutHp()+ "\nPlease Any Key");
+                Console.write("現在の体力状態: " + pc.getAboutHp());
             }
+            /*
+            System.out.println("Please Any key");
             Console.read();
-            
+            */
+            try {
+                //Console.read();
+                Thread.sleep(1000);//１秒待つ
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        System.out.println("Please Any Key");
+        Console.read();
         return vs;
     }
     
@@ -107,12 +125,16 @@ public class Battle {
                 System.out.println("あなたは"+n+"体に"+a[0]+"ダメージ与えた！");
                 
             }
-            
+            try {
+                //Console.read();
+                Thread.sleep(500);//１秒待つ
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             if (zc1.getHp()<=0&&zc2.getHp()<=0&&zc3.getHp()<=0) {//ゾンビが0ならば
-                System.out.println("全ての敵を倒した！\n"
-                        + "please any key");
-                Console.read();
+                System.out.println("全ての敵を倒した！y");
+                //Console.read();
                 break;//勝利は初期化されてるので戻る
             }
             n=0;//生存確認
@@ -128,12 +150,23 @@ public class Battle {
                 break;
             }
             if (test) {
-                Console.write("現在の体力状態: " + pc.getHp() + "\nPlease Any Key");
+                Console.write("現在の体力状態: " + pc.getHp() );
             }else{
-                Console.write("現在の体力状態: " + pc.getAboutHp()+ "\nPlease Any Key");
+                Console.write("現在の体力状態: " + pc.getAboutHp());
             }
+            /*
+            System.out.println("Please Any key");
             Console.read();
+            */
+            try {
+                //Console.read();
+                Thread.sleep(1000);//１秒待つ
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        System.out.println("Please Any Key");
+        Console.read();
         return vs;
     }
     
@@ -156,8 +189,14 @@ public class Battle {
                 System.out.println("ボスを倒した！");
                 break;
             }
-            b=bc.getBossAttack();
-
+            try {
+                //Console.read();
+                Thread.sleep(500);//.5秒待つ
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            b=bc.getBossAttack();//ボスの攻撃力参照
             System.out.println("ボスからの攻撃で"+b+"ダメージを喰らった！");
             pc.setHp(pc.getHp()-b);
             if(pc.getHp()<=0){
@@ -165,7 +204,12 @@ public class Battle {
                 vs=false;
                 break;
             }//死んだら
-            
+            try {
+                //Console.read();
+                Thread.sleep(1000);//１秒待つ
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+            }
             if(dt.get_daughterPosition()==6&&dt.daughter_possible_action){//部屋に入っているかつ移動可能ならば
                 //ここに娘出現時の処理を行う。
                 vs=Battle.vsDauter(pc, dt);
@@ -177,7 +221,13 @@ public class Battle {
             }else{
                 Console.write("現在の体力状態: " + pc.getAboutHp()+ "\nPlease Any Key");
             }
-            Console.read();
+            //Console.read();
+            try {
+                //Console.read();
+                Thread.sleep(1000);//１秒待つ
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dt.turn_update();
             turn++;
         }
