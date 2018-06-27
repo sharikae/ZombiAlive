@@ -52,13 +52,13 @@ public class DaughterCharacter {
         daughter_impossible_action_turn = 3;
     }
 
-    public void move_daughter(int pOS) {  //娘の移動処理
+    public void move_daughter(int position) {  //娘の移動処理
         if (daughter_possible_action == true) {
-            daughterPosition = pOS;
-        } 
+            daughterPosition = position;
+        }
     }
-    
-    public void setDaughterPosition(int daughterPosition){//娘の現在位置を変更
+
+    public void setDaughterPosition(int daughterPosition) {//娘の現在位置を変更
         this.daughterPosition = daughterPosition;
     }
 

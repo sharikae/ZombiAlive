@@ -6,13 +6,12 @@ import java.util.Scanner;
 /**
  * @author C0116221 Shota Harikae
  */
-
 public class Console {
 
     public static String read() {
         Console.writeNoCR("> ");
         Scanner scan = new Scanner(System.in);
-        String inputKeyCode="";
+        String inputKeyCode = "";
         inputKeyCode = scan.next();
         return inputKeyCode;
     }

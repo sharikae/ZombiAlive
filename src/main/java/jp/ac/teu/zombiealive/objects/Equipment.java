@@ -12,12 +12,14 @@ import jp.ac.teu.zombiealive.util.Console;
  * @author C0116125
  */
 public class Equipment {
+
     private PlayerCharacter pc;
+
     public Equipment(PlayerCharacter p) {
-        pc=p;
+        pc = p;
     }
-    
-    public PlayerCharacter getEqu(int weaponNo){
+
+    public PlayerCharacter getEqu(int weaponNo) {
         switch (weaponNo) {
             case 1: // ハンドガン
                 System.out.print("ハンドガン");
@@ -34,14 +36,17 @@ public class Equipment {
             case 5: // ロケットランチャー
                 System.out.print("ロケットランチャー");
                 break;
-            }
+        }
+
         System.out.println("がある。\n装備しますか?\n(装備する場合はY)");
+
         if ("y".equals(Console.read())) {
             System.out.println("装備しました");
             pc.setWeapon(weaponNo);
-        }else{
+        } else {
             System.out.println("ドロップした武器を放棄しました");
         }
+
         System.out.println("Please Any key");
         Console.read();
         return pc;

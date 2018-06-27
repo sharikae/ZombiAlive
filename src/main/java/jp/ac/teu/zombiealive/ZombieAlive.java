@@ -1,7 +1,5 @@
 package jp.ac.teu.zombiealive;
 
-import java.util.Queue;
-import java.util.Scanner;
 import jp.ac.teu.zombiealive.objects.Battle;
 
 import jp.ac.teu.zombiealive.objects.Dungeon;
@@ -37,65 +35,84 @@ public class ZombieAlive {
         PlayerCharacter pc = new PlayerCharacter();         // プレイヤー変数の初期化
         DaughterCharacter dc = new DaughterCharacter();     // 娘変数の初期化
         Timer tm = new Timer();
-        tm.getTimer();
-        mng.displayIntroduction();                          // 説明文出力
-        Console.read();                                     // Press any key
 
-        // TODO Timer logic here
+        mng.displayIntroduction();                          // タイトル出力
+        if (Console.read().equals("1")) {
+            mng.displayHelp();                             // ルール表示
+            Console.write("Please Any Key");
+            Console.read();                                // Press any key
+        }
+
         //ゲーム終了までループ
         while (alive) {
-            /* ステータス表示 */
-            mng.restWindow();                               // 画面クリア
-            mng.displayStatus( // ステータス表示
-                    Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()),
-                    pc.getAboutHp()
-            );
-            if (true) {//テスト用,
-                System.out.println("娘の部屋:" + dc.get_daughterPosition());//テスト用
+
+            if (tm.getTimer()) {
+                Console.write("TIME UP!!");
+                Console.write("zombie virusに侵食されてしまった！");
+                break;
             }
 
-            /* プレイヤー移動 */
+            /* ステータス表示 */
+            mng.restWindow();  // 画面クリア
+            rm.mapRoom();
+            mng.displayStatus( // ステータス表示
+                    pc.getRoom(),
+                    pc.getAboutHp()
+            );
+
+            //プレイヤー移動 
             do {
+                rm.resetPlayerMapRoom(pc.getRoom());
                 Moved = pc.move();
             } while (!Moved);
-            
+            rm.setPlayerMapRoom(pc.getRoom());
+            rm.setMapRoom(pc.getRoom());
+
             //ゾンビ戦闘判定
-            x=rm.getZombieNum(pc.getRoom());
-            if (x > 0) {//ゾンビが存在するならば
-                if (x > 1) {//ゾンビが1体より多いならば
-                    alive = Battle.vsZombie(pc, x);//複数処理
+            int num = rm.getZombieNum(pc.getRoom());
+            if (num > 0) {//ゾンビが存在するならば
+                mng.restWindow();
+                rm.mapRoom();
+
+                if (num > 1) {//ゾンビが1体より多いならば
+                    alive = Battle.vsZombie(pc, num);//複数処理
                 } else {
                     alive = Battle.vsZombie(pc);//単体用
                 }
+
                 pc = Battle.getPc();//戦闘終了処理
                 rm.setZombieNum(pc.getRoom());//ルーム番号処理
+                rm.resetMapRoom(pc.getRoom());
+
                 //武器ドロップ判定処理
-                int i=0;
-                switch(pc.getRoom()){
-                    case 14: 
-                        i=1;
+                int weaponNo = 0;
+                switch (pc.getRoom()) {
+                    case 14:
+                        weaponNo = 1;
                         break;
                     case 16:
-                        i=2;
+                        weaponNo = 2;
                         break;
                     case 2:
-                        i=3;
+                        weaponNo = 3;
                         break;
                     case 4:
-                        i=4;
+                        weaponNo = 4;
                         break;
                     case 13:
-                        i=5;
+                        weaponNo = 5;
                         break;
                 }
-                if(i>0){//武器があるなら
-                    Equipment e=new Equipment(pc);
-                    pc=e.getEqu(i);//武器を装備するか判定処理
+
+                if (weaponNo > 0) {//武器があるなら
+                    Equipment e = new Equipment(pc);
+                    pc = e.getEqu(weaponNo);//武器を装備するか判定処理
                 }
             }
 
             //ボス部屋判定
             if (pc.getRoom() == 6) {
+                Console.write("鍵を使用しました");
                 alive = Battle.vsBoss(pc, dc);
                 if (alive) {
                     System.out.println("GAME CLEAR");
@@ -103,55 +120,51 @@ public class ZombieAlive {
                 }
             }
 
-            if (rm.getItem(Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()))) {
-                Console.write("回復アイテムを見つけました。使用するならUを入力してください");
+            if (rm.getItem(pc.getRoom())) {
+                Console.write("救急箱を見つけました。使用するならUを入力してください");
                 if ("u".equals(Console.read())) {
                     pc.setHp(30);
-                    System.out.println("HPが回復しました");
-                    rm.setItem(Dungeon.getDungeon(pc.getXPosition(), pc.getYPosition()));
+                    rm.setItem(pc.getRoom());
+                    rm.resetMapRoom(pc.getRoom());
+                    Console.write("救急箱を使用し、HPが回復しました");
+                    Console.read();
                 }
             }
-            if(rm.getKey(pc.getRoom())){//現在部屋に鍵があるか
+
+            if (rm.getKey(pc.getRoom())) {//現在部屋に鍵があるか
                 System.out.println("鍵が落ちている･･･\nとりあえず取っておこう");
                 pc.setKey(true);//鍵を手に入れる処理
                 rm.setKey(pc.getRoom());//鍵が無くなる処理
                 Console.read();
             }
-            
-            /* 室内調査 */
-            // TODO Room check logic
-            /*
-                ゾンビがいるか
-                回復アイテムがあるか
-                鍵部屋か
-                ボス部屋か
-             */
-            // TODO battle logic
-            // TODO battle boss logic
-            // TODO recovery logic
-            // TODO Daughter logic
+
             //現在の位置を記憶
             pc.setNumberOfStep();//主人公の現在位置を記憶
+
+            // TODO Daughter logic
             if (dc.isDaughter_possible_action()) {//娘が移動可能の場合
                 //娘との接触判定
-                if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入っているか
-                    alive=Battle.vsDauter(pc, dc);//戦闘
-                    pc=Battle.getPc();//主人公の戦闘後処理
-                    dc=Battle.getDt();//娘の戦闘後処理
-                }else{//戦闘しなければ
+                if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入っているか
+                    alive = Battle.vsDaughter(pc, dc);//戦闘
+                    pc = Battle.getPc();//主人公の戦闘後処理
+                    dc = Battle.getDc();//娘の戦闘後処理
+                } else {//戦闘しなければ
                     //娘の移動処理
                     dc.move_daughter(pc.getNumberOfStep());//移動処理
                     //娘との接触判定
-                    if (dc.get_daughterPosition()==pc.getRoom()) {//娘が部屋に入ってくるか
-                        alive=Battle.vsDauter(pc, dc);//戦闘
-                        pc=Battle.getPc();//主人公の初期化
-                        dc=Battle.getDt();//娘の初期化
+                    if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入ってくるか
+                        alive = Battle.vsDaughter(pc, dc);//戦闘
+                        pc = Battle.getPc();//主人公の初期化
+                        dc = Battle.getDc();//娘の初期化
                     }
                 }
-            }else{
+
+            } else {
                 dc.turn_update();//娘の復活処理
             }
             turn++;
+
         }
+
     }
 }

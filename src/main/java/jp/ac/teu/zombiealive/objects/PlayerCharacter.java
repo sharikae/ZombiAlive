@@ -47,15 +47,6 @@ public class PlayerCharacter {
         step.clear();
     }
 
-
-    public int getXPosition() {
-        return y;
-    }
-
-    public int getYPosition() {
-        return x;
-    }
-
     public void setHp(int hp) {
         //System.out.println("HPが回復しました");
         this.hp = hp;
@@ -126,36 +117,36 @@ public class PlayerCharacter {
             return false;
         }
 
-        if (tmp_roomId == 0) {
-            Console.write("移動できません");
-            return false;
-        } else if (tmp_roomId == 6) {
-            if (key) {
-                roomId = tmp_roomId;
-                y = y + yd;
-                x = x + xd;
-                return true;
-            }else{
-                Console.write("鍵がかかっているようだ･･･");
-                return false;
-            }
-        } else if(tmp_roomId == 13){
-            if(roomId == 14 | roomId ==19){
+        switch (tmp_roomId) {
+            case 0:
                 Console.write("移動できません");
                 return false;
-            }else{
+            case 6:
+                if (key) {
+                    roomId = tmp_roomId;
+                    y = y + yd;
+                    x = x + xd;
+                    return true;
+                } else {
+                    Console.write("鍵がかかっているようだ･･･");
+                    return false;
+                }
+            case 13:
+                if (roomId == 14 | roomId == 19) {
+                    Console.write("移動できません");
+                    return false;
+                } else {
+                    roomId = tmp_roomId;
+                    y = y + yd;
+                    x = x + xd;
+                    return true;
+                }
+            default:
                 roomId = tmp_roomId;
                 y = y + yd;
                 x = x + xd;
                 return true;
-            }
-        }else {
-            roomId = tmp_roomId;
-            y = y + yd;
-            x = x + xd;
-            return true;
         }
-        return false;
     }
 
     public void escape() {
