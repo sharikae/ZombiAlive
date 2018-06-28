@@ -44,8 +44,8 @@ public class Battle {
         pc = p;
 
         while (finished) {
-            //int[] a=pc.getAttackDamage();//とりあえず帰ってくるのは[]ではない場合の処理
-            int a = 2;
+            int a=pc.getAttackDamage()[0];//とりあえず帰ってくるのは[]ではない場合の処理
+            //int a = 2;このままだとダメージが強制的に  2になる
             zc.damageToZombie(a);
             System.out.println("あなたは" + a + "ダメージを与えた");
             if (zc.getHp() <= 0) {//ゾンビが0ならば
