@@ -20,6 +20,7 @@ public class Battle {
     private static DaughterCharacter dc;
     Manager mg = new Manager();
     private static boolean test = false;//テスト用か(trueでテスト用)
+    private static long time=500;//ウェイトタイムを修正する際はここで決定
 
     private static boolean finished = true;//終了したら
     private static boolean vs = true;//戦闘に敗北したらfalseになる,
@@ -57,7 +58,7 @@ public class Battle {
 
             try {
                 //Console.read();
-                Thread.sleep(500);//１秒待つ
+                Thread.sleep(time);//１秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -83,7 +84,7 @@ public class Battle {
              */
             try {
                 //Console.read();
-                Thread.sleep(500);//１秒待つ
+                Thread.sleep(time);//１秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -132,7 +133,7 @@ public class Battle {
             }
             try {
                 //Console.read();
-                Thread.sleep(500);//１秒待つ
+                Thread.sleep(time);//time/1000秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -168,7 +169,7 @@ public class Battle {
 
             try {
                 //Console.read();
-                Thread.sleep(500);//0.5秒待つ
+                Thread.sleep(time);//time/1000秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -199,7 +200,7 @@ public class Battle {
             }
             try {
                 //Console.read();
-                Thread.sleep(500);//.5秒待つ
+                Thread.sleep(time);//.5秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -214,7 +215,7 @@ public class Battle {
             }//死んだら
             try {
                 //Console.read();
-                Thread.sleep(500);//0.5秒待つ
+                Thread.sleep(time);//0.5秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -233,7 +234,7 @@ public class Battle {
             }
 
             try {
-                Thread.sleep(1000);//１秒待つ
+                Thread.sleep(time);//time/1000秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
