@@ -83,7 +83,7 @@ public class Battle {
              */
             try {
                 //Console.read();
-                Thread.sleep(1000);//１秒待つ
+                Thread.sleep(500);//１秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -121,7 +121,7 @@ public class Battle {
                     zc1.damageToZombie(a[0]);
                     x = 1;
                 }
-                System.out.println("あなたはゾンビ" + x + "に" + a[0] + "ダメージを与えた");
+                System.out.println("あなたはゾンビ" + x + "に" + a[0] + "ダメージを与えた!");
 
             } else {//全体攻撃ならば
                 zc3.damageToZombie(a[0]);
@@ -138,7 +138,7 @@ public class Battle {
             }
 
             if (zc1.getHp() <= 0 && zc2.getHp() <= 0 && zc3.getHp() <= 0) {//ゾンビが0ならば
-                System.out.println("全ての敵を倒した！y");
+                System.out.println("全ての敵を倒した！");
                 //Console.read();
                 break;//勝利は初期化されてるので戻る
             }
@@ -168,7 +168,7 @@ public class Battle {
 
             try {
                 //Console.read();
-                Thread.sleep(1000);//１秒待つ
+                Thread.sleep(500);//0.5秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -214,7 +214,7 @@ public class Battle {
             }//死んだら
             try {
                 //Console.read();
-                Thread.sleep(1000);//１秒待つ
+                Thread.sleep(500);//0.5秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -227,9 +227,9 @@ public class Battle {
             }
 
             if (test) {
-                Console.write("現在の体力状態: " + pc.getHp() + "\nPlease Any Key");
+                Console.write("現在の体力状態: " + pc.getHp() );
             } else {
-                Console.write("現在の体力状態: " + pc.getAboutHp() + "\nPlease Any Key");
+                Console.write("現在の体力状態: " + pc.getAboutHp() );
             }
 
             try {
@@ -250,7 +250,7 @@ public class Battle {
         vs = true;
         int attack;
 
-        System.out.println("娘が出現した娘の攻撃で5ダメージを喰らった");
+        System.out.println("娘が出現した娘の攻撃で5ダメージを喰らった!");
         pc.setHp(pc.getHp() - 5);
 
         if (pc.getHp() <= 0) {
@@ -259,7 +259,7 @@ public class Battle {
         }//死んだら
 
         attack = pc.getAttackDamage()[0];
-        System.out.println("あなたの反撃\n娘に" + attack + "ダメージを与えてしまった");
+        System.out.println("あなたの反撃!\n娘に" + attack + "ダメージを与えてしまった!");
         dc.battle_daughter(attack);
 
         if (dc.get_hp() <= 0) {//娘死んだら
