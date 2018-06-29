@@ -22,19 +22,19 @@ public class Equipment {
     public PlayerCharacter getEqu(int weaponNo) {
         switch (weaponNo) {
             case 1: // ハンドガン
-                System.out.print("ハンドガン");
+                System.out.print("ハンドガン(ATK:1-6,単体)");
                 break;
             case 2: // ショットガン
-                System.out.print("ショットガン");
+                System.out.print("ショットガン(ATK:1-10,単体)");
                 break;
             case 3: // マシンガン
-                System.out.print("マシンガン");
+                System.out.print("マシンガン(ATK:1-3,全体)");
                 break;
             case 4: // グレネードランチャー
-                System.out.print("グレネードランチャー");
+                System.out.print("グレネードランチャー(ATK:1-6,全体)");
                 break;
             case 5: // ロケットランチャー
-                System.out.print("ロケットランチャー");
+                System.out.print("ロケットランチャー(ATK:1-10,全体)");
                 break;
         }
 
