@@ -121,8 +121,8 @@ public class ZombieAlive {
             }
 
             if (rm.getItem(pc.getRoom())) {
-                Console.write("救急箱を見つけました。使用するならUを入力してください");
-                if ("u".equals(Console.read())) {
+                Console.write("救急箱を見つけました。使用するならyを入力してください");
+                if ("y".equals(Console.read())) {
                     pc.setHp(30);
                     rm.setItem(pc.getRoom());
                     rm.resetMapRoom(pc.getRoom());
