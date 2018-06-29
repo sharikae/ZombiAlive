@@ -10,8 +10,8 @@ public class Console {
 
     public static String read() {
         Console.writeNoCR("> ");
-        Scanner scan = new Scanner(System.in);
         String inputKeyCode = "";
+        Scanner scan = new Scanner(System.in);
         inputKeyCode = scan.next();
         return inputKeyCode;
     }
@@ -30,5 +30,10 @@ public class Console {
         } catch (InterruptedException exception) {
             System.out.println("InterruptedException 例外");
         }
+    }
+
+    public static void waitInput() {
+        Scanner scan = new Scanner(System.in);
+        scan.nextLine();
     }
 }

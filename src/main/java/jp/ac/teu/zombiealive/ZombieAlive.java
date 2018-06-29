@@ -40,7 +40,7 @@ public class ZombieAlive {
         if (Console.read().equals("1")) {
             mng.displayHelp();                             // ルール表示
             Console.write("Press Any Key");
-            Console.read();                                // Press any key
+            Console.waitInput();                           // Press any key
         }
 
         //ゲーム終了までループ
