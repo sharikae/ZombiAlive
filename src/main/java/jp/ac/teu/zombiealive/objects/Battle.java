@@ -38,12 +38,13 @@ public class Battle {
     }
 
     public static boolean vsZombie(PlayerCharacter p) {
-        System.out.println("ゾンビがあらわれた！");
         finished = true;//終了したら
         vs = true;//戦闘に敗北したらfalseになる,
         ZombieCharacter zc = new ZombieCharacter();
         pc = p;
-
+        System.out.println("ゾンビが現れた！");
+        Console.read();
+        System.out.println("戦闘開始！");
         while (finished) {
             int a=pc.getAttackDamage()[0];//とりあえず帰ってくるのは[]ではない場合の処理
             //int a = 2;このままだとダメージが強制的に  2になる
@@ -101,13 +102,18 @@ public class Battle {
         ZombieCharacter zc2 = new ZombieCharacter();
         ZombieCharacter zc3 = new ZombieCharacter();
         int num = i;//書き換えを行うので一応やっとく処理
-        int x = 0;
+        int x = 3;
         switch (num) {
             case 2://２体なら
                 zc3.damageToZombie(99);//ゾンビ3はいない
+                x-=1;
             case 1://１体なら
                 zc2.damageToZombie(99);//ゾンビ2もいない
+                x-=1;
         }
+        System.out.println("ゾンビが"+x+"体現れた！");
+        Console.read();
+        System.out.println("戦闘開始！");
         while (finished) {
             int[] a = pc.getAttackDamage();//とりあえず帰ってくるのは[]ではない場合の処理
 
@@ -188,6 +194,9 @@ public class Battle {
         int a, b;
 
         System.out.println("ボスが立ちはだかった！");
+        Console.read();
+        System.out.println("戦闘開始!");
+        
 
         while (finished) {
             System.out.println("現在の状態:" + pc.getAboutHp());
