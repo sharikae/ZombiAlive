@@ -257,6 +257,7 @@ public class Battle {
         if (pc.getHp() <= 0) {
             System.out.println("娘に殺されてしまった!");
             vs = false;
+            return vs;
         }//死んだら
 
         attack = pc.getAttackDamage()[0];
@@ -266,6 +267,7 @@ public class Battle {
         if (dc.get_hp() <= 0) {//娘死んだら
             System.out.println("娘を殺してしまった！");
             vs = false;
+            
         }
 
         pc.clearStep();//主人公の位置を削除
