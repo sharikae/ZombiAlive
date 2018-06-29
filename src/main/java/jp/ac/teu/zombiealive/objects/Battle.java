@@ -8,6 +8,7 @@ package jp.ac.teu.zombiealive.objects;
 import com.sun.java.swing.plaf.windows.WindowsBorders;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static jp.ac.teu.zombiealive.ZombieAlive.alive;
 import jp.ac.teu.zombiealive.util.Console;
 
 /**
@@ -90,7 +91,7 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("Press Any Key");
+        System.out.println("戦闘終了\n+Press Any Key");
         Console.read();
         return vs;
     }
@@ -180,7 +181,7 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("Press Any Key");
+        System.out.println("戦闘終了\n+Press Any Key");
         Console.read();
         return vs;
     }
@@ -192,6 +193,7 @@ public class Battle {
         int turn = 0;
         vs = true;
         int a, b;
+        pc.setRoom(6);//とりあえず置いとくだけのやつ。最悪いらない
 
         System.out.println("ボスが立ちはだかった！");
         Console.read();
@@ -228,14 +230,26 @@ public class Battle {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            pc.setNumberOfStep();
             if (dc.get_daughterPosition() == 6 && dc.daughter_possible_action) {//部屋に入っているかつ移動可能ならば
                 //ここに娘出現時の処理を行う。
                 vs = Battle.vsDaughter(pc, dc);
                 dc = Battle.getDc();
                 pc = Battle.getPc();
+            }else{
+                //System.out.println("アクション");//テスト用
+                dc.move_daughter(pc.getNumberOfStep());//移動処理
+                //娘との接触判定
+                if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入ってくるか
+                    alive = Battle.vsDaughter(pc, dc);//戦闘
+                    pc = Battle.getPc();//主人公の初期化
+                    dc = Battle.getDc();//娘の初期化
+                }
+                if(!alive){//もし娘に殺された(殺した)なら
+                    System.out.println("GAME OVER");
+                    break;
+                } 
             }
-
             if (test) {
                 Console.write("現在の体力状態: " + pc.getHp() );
             } else {
@@ -250,7 +264,7 @@ public class Battle {
             dc.turn_update();
             turn++;
         }
-
+        System.out.println("ボスを倒した。\n戦闘終了");
         return vs;
     }
 
