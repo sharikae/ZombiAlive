@@ -27,8 +27,7 @@ public class BattleTest {
 
         PlayerCharacter pc = new PlayerCharacter();         // プレイヤー変数の初期化
         DaughterCharacter dc = new DaughterCharacter();     // 娘変数の初期化
-        Manager mng = new Manager();
-        int i = 0;//戦闘回数
+        int i = 0;                                          //戦闘回数
 
         boolean k = true;//初期テスト用
         boolean test = true;

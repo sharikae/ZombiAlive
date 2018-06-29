@@ -39,7 +39,7 @@ public class ZombieAlive {
         mng.displayIntroduction();                          // タイトル出力
         if (Console.read().equals("1")) {
             mng.displayHelp();                             // ルール表示
-            Console.write("Please Any Key");
+            Console.write("Press Any Key");
             Console.read();                                // Press any key
         }
 

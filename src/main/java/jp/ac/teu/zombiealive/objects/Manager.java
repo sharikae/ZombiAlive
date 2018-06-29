@@ -24,18 +24,19 @@ public class Manager {
     }
 
     public void displayHelp() {
-        Console.write("ターン制\n"
-                + "１５分以内にクリアしなければ死亡\n"
-                + "（１移動あたり１ターン）\n"
-                + "３ターン後に娘が追いかけてくる\n"
-                + "戦闘時はランダム攻撃\n"
+        Console.write("========== 操作方法 ==========\n"
+                + "移動： W↑ A← S↓ D→\n"
+                + "Press any key： なにか文字を入力してEnter\n\n"
+                + "========== ルール ==========\n"
+                + "１５分以内にダンジョン内を探索し、奥地にある研究者を倒してワクチンを入手せよ\n"
+                + "３ターン後には、ゾンビ化した娘が追いかけてくる\n"
+                + "戦闘時はランダム攻撃だ\n"
                 + "通常ゾンビのHPは６\n"
-                + "ゾンビが武器をドロップするかも\n"
-                + "戦わないで１部屋戻れる\n"
-                + "自分のHPが半分になった時と瀕死のときに警告\n"
+                + "ゾンビが武器をドロップする\n"
+                + "自分のHPの細かい表示はない。状況を判断して回復せよ\n"
                 + "素手のダメージは1-3\n"
-                + "娘とエンカウントした場合、娘からのダメージと娘へのダメージが入る\n"
-                + "武器は交換式");
+                + "娘とエンカウントした場合、娘からのダメージと娘へのダメージが入ってしまう\n"
+                + "武器は交換式だ");
     }
 
     public void displayStatus(int roomNum, String aboutHp) {
@@ -51,5 +52,12 @@ public class Manager {
 
     public void displayRoom(int roomNum) {
 
+    }
+
+    public void displayScore() {
+        Console.write("========== RESULT ==========\n");
+        Console.write("CLEAR TIME: ");
+        Console.write("KILLED ZOMBIE: \n");
+        Console.write("TOTAL SCORE: ");
     }
 }

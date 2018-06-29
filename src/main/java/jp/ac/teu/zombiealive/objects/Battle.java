@@ -89,7 +89,7 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("Please Any Key");
+        System.out.println("Press Any Key");
         Console.read();
         return vs;
     }
@@ -174,7 +174,7 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("Please Any Key");
+        System.out.println("Press Any Key");
         Console.read();
         return vs;
     }
@@ -269,7 +269,7 @@ public class Battle {
         }
 
         pc.clearStep();//主人公の位置を削除
-        System.out.println("Please Any Key");
+        System.out.println("Press Any Key");
         Console.read();
         return vs;
     }
