@@ -34,7 +34,6 @@ public class ZombieAlive {
         Room rm = new Room();                      // 部屋クラスの初期化
         PlayerCharacter pc = new PlayerCharacter();         // プレイヤー変数の初期化
         DaughterCharacter dc = new DaughterCharacter();     // 娘変数の初期化
-        Timer tm = new Timer();
 
         mng.displayIntroduction();                          // タイトル出力
         if (Console.read().equals("1")) {
@@ -42,6 +41,8 @@ public class ZombieAlive {
             Console.write("Press Any Key");
             Console.waitInput();                           // Press any key
         }
+
+        Timer tm = new Timer();     //Timerの初期化
 
         //ゲーム終了までループ
         while (alive) {
@@ -56,7 +57,7 @@ public class ZombieAlive {
             mng.restWindow();  // 画面クリア
             rm.mapRoom();
             mng.displayStatus( // ステータス表示
-                    pc.getRoom(),
+                    pc.getWeapon(),
                     pc.getAboutHp()
             );
 
@@ -73,6 +74,7 @@ public class ZombieAlive {
             if (num > 0) {//ゾンビが存在するならば
                 mng.restWindow();
                 rm.mapRoom();
+                mng.displayZombie();
 
                 if (num > 1) {//ゾンビが1体より多いならば
                     alive = Battle.vsZombie(pc, num);//複数処理
@@ -112,30 +114,32 @@ public class ZombieAlive {
 
             //ボス部屋判定
             if (pc.getRoom() == 6) {
+                mng.restWindow();
                 Console.write("鍵を使用しました");
                 alive = Battle.vsBoss(pc, dc);
                 if (alive) {
-                    System.out.println("GAME CLEAR");
+                    mng.displayGameClear();
                     break;
                 }
             }
 
             if (rm.getItem(pc.getRoom())) {
+                rm.mapRoom();
                 Console.write("救急箱を見つけました。使用するならyを入力してください");
                 if ("y".equals(Console.read())) {
                     pc.setHp(30);
                     rm.setItem(pc.getRoom());
                     rm.resetMapRoom(pc.getRoom());
                     Console.write("救急箱を使用し、HPが回復しました");
-                    Console.read();
+                    Console.waitInput();
                 }
             }
 
             if (rm.getKey(pc.getRoom())) {//現在部屋に鍵があるか
-                System.out.println("鍵が落ちている･･･\nとりあえず取っておこう");
+                Console.write("鍵が落ちている･･･\nとりあえず取っておこう");
                 pc.setKey(true);//鍵を手に入れる処理
                 rm.setKey(pc.getRoom());//鍵が無くなる処理
-                Console.read();
+                Console.waitInput();
             }
 
             //現在の位置を記憶
@@ -148,20 +152,28 @@ public class ZombieAlive {
                     alive = Battle.vsDaughter(pc, dc);//戦闘
                     pc = Battle.getPc();//主人公の戦闘後処理
                     dc = Battle.getDc();//娘の戦闘後処理
+
                 } else {//戦闘しなければ
                     //娘の移動処理
                     dc.move_daughter(pc.getNumberOfStep());//移動処理
+
                     //娘との接触判定
                     if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入ってくるか
                         alive = Battle.vsDaughter(pc, dc);//戦闘
                         pc = Battle.getPc();//主人公の初期化
                         dc = Battle.getDc();//娘の初期化
                     }
+
                 }
 
             } else {
                 dc.turn_update();//娘の復活処理
             }
+
+            if (!alive) {
+                mng.displayGameOver();
+            }
+
             turn++;
 
         }

@@ -48,7 +48,7 @@ public class Equipment {
         }
 
         System.out.println("Please Any key");
-        Console.read();
+        Console.waitInput();
         return pc;
     }
 }

@@ -23,6 +23,64 @@ public class Manager {
         Console.write("                           1.Help");
     }
 
+    public void displayZombie() {
+        Console.write("");
+        Console.write(
+                "                     ■■                   \n"
+                + "                      ■      ■        ■  ■\n"
+                + "                      ■               ■  ■\n"
+                + "■■■■■  ■■■  ■■■■ ■■■  ■■■■   ■   ■■■  ■  ■\n"
+                + "■  ■  ■  ■■ ■■ ■■  ■  ■■  ■  ■  ■  ■  ■  ■\n"
+                + "  ■■ ■■   ■ ■   ■  ■  ■   ■  ■ ■■■■■  ■  ■\n"
+                + "  ■  ■■   ■ ■   ■  ■  ■   ■  ■ ■■         \n"
+                + " ■  ■ ■  ■■ ■   ■  ■  ■   ■  ■  ■         \n"
+                + "■■■■■  ■■■  ■■ ■■■■■■■■■■■  ■■■  ■■■  ■  ■\n");
+    }
+
+    public void displayGameOver() {
+        Console.write("");
+        Console.write(""
+                + "   ■■■■    ■    ■■■    ■■■ ■■■■■ \n"
+                + " ■■   ■    ■■    ■■    ■■  ■■  ■■\n"
+                + " ■        ■■■    ■■■   ■■  ■■    \n"
+                + "■■        ■ ■    ■ ■  ■ ■  ■■■■  \n"
+                + "■■   ■■■  ■ ■■   ■ ■  ■ ■  ■■ ■  \n"
+                + " ■    ■  ■■■■■   ■  ■■  ■  ■■    \n"
+                + " ■■   ■  ■   ■■  ■  ■■  ■  ■■   ■\n"
+                + "  ■■■■■ ■■■ ■■■■■■■ ■■ ■■■ ■■■■■■\n"
+                + "                                                             \n"
+                + "  ■■■■  ■■■  ■■■ ■■■■■  ■■■■■    \n"
+                + " ■■   ■  ■■   ■  ■■  ■■ ■■  ■■   \n"
+                + " ■    ■   ■  ■   ■■     ■■  ■■   \n"
+                + "■■    ■■  ■  ■   ■■■■   ■■  ■    \n"
+                + "■■    ■■  ■■ ■   ■■ ■   ■■■■■    \n"
+                + " ■    ■    ■■    ■■     ■■  ■    \n"
+                + " ■■   ■    ■■    ■■   ■ ■■  ■    \n"
+                + "  ■■■■     ■     ■■■■■■ ■■■ ■■   \n");
+    }
+    
+    public void displayGameClear() {
+        Console.write("");
+        Console.write(
+                  "   ■■■■    ■    ■■■    ■■■ ■■■■■    \n"
+                + " ■■   ■    ■■    ■■    ■■  ■■  ■■   \n"
+                + " ■        ■■■    ■■■   ■■  ■■       \n"
+                + "■■        ■ ■    ■ ■  ■ ■  ■■■■     \n"
+                + "■■   ■■■  ■ ■■   ■ ■  ■ ■  ■■ ■     \n"
+                + " ■    ■  ■■■■■   ■  ■■  ■  ■■       \n"
+                + " ■■   ■  ■   ■■  ■  ■■  ■  ■■   ■   \n"
+                + "  ■■■■■ ■■■ ■■■■■■■ ■■ ■■■ ■■■■■■   \n"
+                + "                                    \n"
+                + "   ■■■■ ■■■    ■■■■■    ■     ■■■■■ \n"
+                + " ■■   ■ ■■     ■■  ■■   ■■    ■■  ■■\n"
+                + " ■      ■■     ■■      ■■■    ■■  ■■\n"
+                + "■■      ■■     ■■■■    ■ ■    ■■  ■ \n"
+                + "■■      ■■     ■■ ■    ■ ■■   ■■■■■ \n"
+                + " ■      ■■     ■■     ■■■■■   ■■  ■ \n"
+                + " ■■   ■ ■■  ■■ ■■   ■ ■   ■■  ■■  ■ \n"
+                + "  ■■■■■ ■■■■■  ■■■■■■■■■ ■■■■ ■■■ ■■");
+    }
+
     public void displayHelp() {
         Console.write("========== 操作方法 ==========\n"
                 + "移動： W↑ A← S↓ D→\n"
@@ -39,8 +97,28 @@ public class Manager {
                 + "武器は交換式だ");
     }
 
-    public void displayStatus(int roomNum, String aboutHp) {
-        Console.write("現在の部屋番号: " + roomNum);
+    public void displayStatus(int weapon, String aboutHp) {
+        Console.writeNoCR("現在の所持武器: ");
+        switch(weapon){
+            case 0: // 素手
+                Console.writeNoCR("素手");
+                break;
+            case 1: // ハンドガン
+                Console.writeNoCR("ハンドガン");
+                break;
+            case 2: // ショットガン
+                Console.writeNoCR("ショットガン");
+                break;
+            case 3: // マシンガン
+                Console.writeNoCR("マシンガン");
+                break;
+            case 4: // グレネードランチャー
+                Console.writeNoCR("グレネードランチャー");
+                break;
+            case 5: // ロケットランチャー
+                Console.writeNoCR("ロケットランチャー");
+                break;
+        }
         Console.write("現在の体力状態: " + aboutHp);
     }
 
@@ -48,10 +126,6 @@ public class Manager {
         for (int i = 0; i < 30; i++) {
             Console.write("");
         }
-    }
-
-    public void displayRoom(int roomNum) {
-
     }
 
     public void displayScore() {

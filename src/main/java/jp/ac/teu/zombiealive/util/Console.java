@@ -18,10 +18,18 @@ public class Console {
 
     public static void write(String text) {
         System.out.println(text);
+        
     }
 
     public static void writeNoCR(String text) {
         System.out.print(text);
+    }
+    
+    public static void writeClosed(int num) {
+        for (int i = 0; i < num; i++) {
+            System.out.print("◆");
+        }
+        System.out.println("");
     }
 
     public static void sleep(int seconds) {

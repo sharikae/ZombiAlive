@@ -1,6 +1,5 @@
 package jp.ac.teu.zombiealive.objects;
 
-import java.util.Queue;
 import jp.ac.teu.zombiealive.util.Console;
 
 /**
@@ -40,8 +39,9 @@ public class DaughterCharacter {
             daughter_impossible_action_turn -= 1;
             if (daughter_impossible_action_turn == 0) {
                 daughter_possible_action = true;
-                System.out.println("娘の叫び声が聞こえた");
-                Console.read();
+                Console.write("娘の叫び声が聞こえた");
+                Console.write("娘が追ってきそうだ....");
+                Console.waitInput();
             }
         }
     }

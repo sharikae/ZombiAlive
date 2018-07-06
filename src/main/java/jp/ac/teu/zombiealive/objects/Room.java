@@ -207,14 +207,16 @@ public class Room {
             for (int j = 0; j < 6; j++) {
                 for (int k = 0; k < 8; k++) {
                     if (room[4][dungeon[i][k]] == 1) {
-                        Console.writeNoCR(r[dungeon[i][k]][j]);
+                        System.out.print(r[dungeon[i][k]][j]);
                     } else {
-                        Console.writeNoCR(r[0][j]);
+                        System.out.print(r[0][j]);
                     }
                 }
-                Console.write("");
+                System.out.println("");
             }
         }
+        Console.write("*=壁   D=扉   Z=ZOMBIE   B=BOSS   P=PLAYER");
+        Console.write("H=回復アイテム   K=KEY   L=ロックされた扉");
     }
 
     public void resetMapRoom(int roomNo) {

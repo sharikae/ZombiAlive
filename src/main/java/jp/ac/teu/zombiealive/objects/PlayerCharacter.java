@@ -19,7 +19,7 @@ public class PlayerCharacter {
     private int yd = 0;
     private int xd = 0;
     private int tmp_roomId;
-    Queue<Integer> step = new ArrayDeque<Integer>();
+    Queue<Integer> step = new ArrayDeque<>();
 
     public int getHp() {
         return hp;

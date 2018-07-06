@@ -19,7 +19,7 @@ public class Battle {
 
     private static PlayerCharacter pc;
     private static DaughterCharacter dc;
-    Manager mg = new Manager();
+    static Manager mng = new Manager();
     private static boolean test = false;//テスト用か(trueでテスト用)
     private static long time=500;//ウェイトタイムを修正する際はここで決定
 
@@ -43,33 +43,34 @@ public class Battle {
         vs = true;//戦闘に敗北したらfalseになる,
         ZombieCharacter zc = new ZombieCharacter();
         pc = p;
-        System.out.println("ゾンビが現れた！");
-        Console.read();
-        System.out.println("戦闘開始！");
+        Console.write("ゾンビが現れた！Press Any Key");
+        Console.waitInput();
+        Console.write("戦闘開始！");
+        
         while (finished) {
             int a=pc.getAttackDamage()[0];//とりあえず帰ってくるのは[]ではない場合の処理
             //int a = 2;このままだとダメージが強制的に  2になる
             zc.damageToZombie(a);
-            System.out.println("あなたは" + a + "ダメージを与えた");
+            Console.write("あなたは" + a + "ダメージを与えた");
             if (zc.getHp() <= 0) {//ゾンビが0ならば
-                System.out.println("敵を倒した！");
-                //System.out.println("Please Any Key");
-                //Console.read();
+                Console.write("敵を倒した！");
+                //Console.write("Please Any Key");
+                //Console.waitInput();
                 break;//勝利は初期化されてるので戻る
             }
 
             try {
-                //Console.read();
+                //Console.waitInput();
                 Thread.sleep(time);//１秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            System.out.println("あなたは1ダメージを喰らった!");
+            Console.write("あなたは1ダメージを喰らった!");
             pc.setHp(pc.getHp() - 1);//１ダメージ喰らう
 
             if (pc.getHp() <= 0) {
-                System.out.println("あなたは死んだ！");
+                Console.write("あなたは死んだ！");
                 vs = false;
                 break;
             }
@@ -81,18 +82,18 @@ public class Battle {
             }
 
             /*
-            System.out.println("Please Any key");
-            Console.read();
+            Console.write("Please Any key");
+            Console.waitInput();
              */
             try {
-                //Console.read();
+                //Console.waitInput();
                 Thread.sleep(time);//１秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("戦闘終了\n+Press Any Key");
-        Console.read();
+        Console.write("戦闘終了\nPress Any Key");
+        Console.waitInput();
         return vs;
     }
 
@@ -112,9 +113,9 @@ public class Battle {
                 zc2.damageToZombie(99);//ゾンビ2もいない
                 x-=1;
         }
-        System.out.println("ゾンビが"+x+"体現れた！");
-        Console.read();
-        System.out.println("戦闘開始！");
+        Console.write("ゾンビが"+x+"体現れた！");
+        Console.waitInput();
+        Console.write("戦闘開始！");
         while (finished) {
             int[] a = pc.getAttackDamage();//とりあえず帰ってくるのは[]ではない場合の処理
 
@@ -129,25 +130,25 @@ public class Battle {
                     zc1.damageToZombie(a[0]);
                     x = 1;
                 }
-                System.out.println("あなたはゾンビ" + x + "に" + a[0] + "ダメージを与えた!");
+                Console.write("あなたはゾンビ" + x + "に" + a[0] + "ダメージを与えた!");
 
             } else {//全体攻撃ならば
                 zc3.damageToZombie(a[0]);
                 zc2.damageToZombie(a[0]);
                 zc1.damageToZombie(a[0]);
-                System.out.println("あなたは" + num + "体に" + a[0] + "ダメージ与えた！");
+                Console.write("あなたは" + num + "体に" + a[0] + "ダメージ与えた！");
 
             }
             try {
-                //Console.read();
+                //Console.waitInput();
                 Thread.sleep(time);//time/1000秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             if (zc1.getHp() <= 0 && zc2.getHp() <= 0 && zc3.getHp() <= 0) {//ゾンビが0ならば
-                System.out.println("全ての敵を倒した！");
-                //Console.read();
+                Console.write("全ての敵を倒した！");
+                //Console.waitInput();
                 break;//勝利は初期化されてるので戻る
             }
             num = 0;//生存確認
@@ -160,10 +161,10 @@ public class Battle {
             if (zc3.getHp() > 0) {
                 num++;//ゾンビ3の生存確認
             }
-            System.out.println("あなたは" + num + "ダメージを喰らった!");
+            Console.write("あなたは" + num + "ダメージを喰らった!");
             pc.setHp(pc.getHp() - num);
             if (pc.getHp() <= 0) {
-                System.out.println("あなたは死んだ！");
+                Console.write("あなたは死んだ！");
                 vs = false;
                 break;
             }
@@ -175,14 +176,15 @@ public class Battle {
             }
 
             try {
-                //Console.read();
+                //Console.waitInput();
                 Thread.sleep(time);//time/1000秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println("戦闘終了\n+Press Any Key");
-        Console.read();
+        Console.write("戦闘終了");
+        Console.write("Press Any Key");
+        Console.waitInput();
         return vs;
     }
 
@@ -195,37 +197,37 @@ public class Battle {
         int a, b;
         pc.setRoom(6);//とりあえず置いとくだけのやつ。最悪いらない
 
-        System.out.println("ボスが立ちはだかった！");
-        Console.read();
-        System.out.println("戦闘開始!");
+        Console.write("ボスが立ちはだかった！");
+        Console.waitInput();
+        Console.write("戦闘開始!");
         
 
         while (finished) {
-            System.out.println("現在の状態:" + pc.getAboutHp());
+            Console.write("現在の状態:" + pc.getAboutHp());
             a = pc.getAttackDamage()[0];
-            System.out.println("あなたは" + a + "ダメージを与えた！");
+            Console.write("あなたは" + a + "ダメージを与えた！");
             bc.damagedHitPoint(a);//ダメージ処理
             if (bc.getBossHitPoint() <= 0) {//ボスが死んだら
-                System.out.println("ボスを倒した！");
+                Console.write("ボスを倒した！");
                 break;
             }
             try {
-                //Console.read();
+                //Console.waitInput();
                 Thread.sleep(time);//.5秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             b = bc.getBossAttack();//ボスの攻撃力参照
-            System.out.println("ボスからの攻撃で" + b + "ダメージを喰らった！");
+            Console.write("ボスからの攻撃で" + b + "ダメージを喰らった！");
             pc.setHp(pc.getHp() - b);
             if (pc.getHp() <= 0) {
-                System.out.println("ボスに敗北した...");
+                Console.write("ボスに敗北した...");
                 vs = false;
                 break;
             }//死んだら
             try {
-                //Console.read();
+                //Console.waitInput();
                 Thread.sleep(time);//0.5秒待つ
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
@@ -237,7 +239,7 @@ public class Battle {
                 dc = Battle.getDc();
                 pc = Battle.getPc();
             }else{
-                //System.out.println("アクション");//テスト用
+                //Console.write("アクション");//テスト用
                 dc.move_daughter(pc.getNumberOfStep());//移動処理
                 //娘との接触判定
                 if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入ってくるか
@@ -246,7 +248,7 @@ public class Battle {
                     dc = Battle.getDc();//娘の初期化
                 }
                 if(!alive){//もし娘に殺された(殺した)なら
-                    System.out.println("GAME OVER");
+                    Console.write("GAME OVER");
                     break;
                 } 
             }
@@ -264,7 +266,7 @@ public class Battle {
             dc.turn_update();
             turn++;
         }
-        System.out.println("ボスを倒した。\n戦闘終了");
+        Console.write("ボスを倒した。\n戦闘終了");
         return vs;
     }
 
@@ -273,29 +275,42 @@ public class Battle {
         pc = p;//初期化
         vs = true;
         int attack;
+        
+        Console.write("    ■                     ■                        ");
+        Console.write("    ■                     ■      ■             ■  ■");
+        Console.write("    ■                     ■      ■             ■  ■");
+        Console.write(" ■■■■  ■■■   ■   ■   ■■■  ■■■■  ■■■■  ■■■  ■ ■ ■  ■");
+        Console.write("■■ ■■  ■  ■  ■   ■  ■  ■  ■■  ■  ■   ■  ■  ■■  ■  ■");
+        Console.write("■   ■   ■■■  ■   ■  ■  ■  ■   ■  ■   ■   ■ ■   ■  ■");
+        Console.write("■   ■ ■■  ■  ■   ■  ■■■   ■   ■  ■   ■■■■■ ■   ■  ■");
+        Console.write("■■ ■■ ■   ■  ■  ■■  ■     ■   ■  ■   ■     ■       ");
+        Console.write(" ■■■■  ■■■■   ■■ ■  ■■■■■ ■   ■  ■■   ■■■  ■   ■  ■");
+        Console.write("                    ■   ■                          ");
+        Console.write("                    ■■■■                           ");
 
-        System.out.println("娘が出現した娘の攻撃で5ダメージを喰らった!");
+        Console.write("出現した娘の攻撃で5ダメージを喰らった!");
         pc.setHp(pc.getHp() - 5);
 
         if (pc.getHp() <= 0) {
-            System.out.println("娘に殺されてしまった!");
+            Console.write("娘に殺されてしまった!");
             vs = false;
             return vs;
         }//死んだら
 
         attack = pc.getAttackDamage()[0];
-        System.out.println("あなたの反撃!\n娘に" + attack + "ダメージを与えてしまった!");
+        Console.write("あなたの反撃!\n娘に" + attack + "ダメージを与えてしまった!");
         dc.battle_daughter(attack);
 
         if (dc.get_hp() <= 0) {//娘死んだら
-            System.out.println("娘を殺してしまった！");
+            Console.write("娘を殺してしまった！");
             vs = false;
-            
+        }else{
+            Console.write("娘は気絶してしまった...");
         }
 
         pc.clearStep();//主人公の位置を削除
-        System.out.println("Press Any Key");
-        Console.read();
+        Console.write("Press Any Key");
+        Console.waitInput();
         return vs;
     }
 
