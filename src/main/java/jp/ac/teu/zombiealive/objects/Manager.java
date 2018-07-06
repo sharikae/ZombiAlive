@@ -138,6 +138,6 @@ public class Manager {
         Console.write("========== RESULT ==========\n");
         Console.write("CLEAR TIME: ");
         Console.write("KILLED ZOMBIE: "+ZombieCharacter.getKill());
-        Console.write("TOTAL SCORE: ");
+        Console.write("TOTAL SCORE: " +ZombieCharacter.getKill()*100+1000);
     }
 }
