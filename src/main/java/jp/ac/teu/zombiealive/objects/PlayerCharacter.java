@@ -27,7 +27,7 @@ public class PlayerCharacter {
 
     public static String getAboutHp() {
         String str = "denger";
-        if (hp >= 15) {
+        if (hp >= 20) {
             str = "fine";
         } else if (hp > 10) {
             str = "Caution";
@@ -80,7 +80,7 @@ public class PlayerCharacter {
         this.key = key;
     }
 
-    public boolean move() {
+    public boolean move(int[][] room) {
         // TODO Player Move Logic
 
         tmp_roomId = 0;
@@ -122,6 +122,7 @@ public class PlayerCharacter {
                 return false;
             case 6:
                 if (key) {
+                    escape(room);
                     roomId = tmp_roomId;
                     y = y + yd;
                     x = x + xd;
@@ -135,12 +136,14 @@ public class PlayerCharacter {
                     Console.text("移動できません");
                     return false;
                 } else {
+                    escape(room);
                     roomId = tmp_roomId;
                     y = y + yd;
                     x = x + xd;
                     return true;
                 }
             default:
+                escape(room);
                 roomId = tmp_roomId;
                 y = y + yd;
                 x = x + xd;
@@ -148,9 +151,36 @@ public class PlayerCharacter {
         }
     }
 
-    public void escape() {
+    public void escape(int[][] room) {
+        Console.write("次の部屋を覗きますか？");
+        Console.write("覗くならyを入力してください");
+        if ("y".equals(Console.read())) {
+            Console.write("次の部屋の情報を表示します");
+            Console.write("ゾンビの数　：" + room[0][tmp_roomId]);
+            if (room[1][tmp_roomId] == 1) {
+                Console.write("アイテムがありそうだ");
+            } else {
+                Console.write("アイテムはなさそうだ");
+            }
+            if (room[2][tmp_roomId] == 1) {
+                Console.write("鍵がありそうだ");
+            } else {
+                Console.write("鍵はなさそうだ");
+            }
+            if (room[3][tmp_roomId] == 1) {
+                Console.write("BOSSがいそうだ");
+            } else {
+                Console.write("BOSSはいないようだ");
+            }
+            tmp_roomId = roomId;
+            yd = 0;
+            xd = 0;
+            Console.waitInput();
 
-        // TODO Player Escape Logic
+        } else {
+            Console.write("次の部屋にそのまま移行します");
+            Console.waitInput();
+        }
     }
 
     public int[] getAttackDamage() {

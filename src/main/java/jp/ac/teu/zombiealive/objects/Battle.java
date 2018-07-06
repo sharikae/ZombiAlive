@@ -21,7 +21,7 @@ public class Battle {
     private static DaughterCharacter dc;
     static Manager mng = new Manager();
     private static boolean test = false;//テスト用か(trueでテスト用)
-    private static long time=500;//ウェイトタイムを修正する際はここで決定
+    private static long time=800;//ウェイトタイムを修正する際はここで決定
 
     private static boolean finished = true;//終了したら
     private static boolean vs = true;//戦闘に敗北したらfalseになる,
@@ -43,7 +43,8 @@ public class Battle {
         vs = true;//戦闘に敗北したらfalseになる,
         ZombieCharacter zc = new ZombieCharacter();
         pc = p;
-        Console.text("ゾンビが現れた！Press Any Key");
+        Console.text("ゾンビが現れた！");
+        //Console.write("Press Any Key");
         Console.waitInput();
         Console.text("戦闘開始！");
         
@@ -92,7 +93,8 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        Console.text("戦闘終了\nPress Any Key");
+        Console.text("戦闘終了");
+        //Console.write("Press Any Key");
         Console.waitInput();
         return vs;
     }
@@ -106,12 +108,13 @@ public class Battle {
         int num = i;//書き換えを行うので一応やっとく処理
         int x = 3;
         switch (num) {
-            case 2://２体なら
-                zc3.damageToZombie(99);//ゾンビ3はいない
-                x-=1;
             case 1://１体なら
                 zc2.damageToZombie(99);//ゾンビ2もいない
                 x-=1;
+            case 2://２体なら
+                zc3.damageToZombie(99);//ゾンビ3はいない
+                x-=1;
+            
         }
         Console.text("ゾンビが"+x+"体現れた！");
         Console.waitInput();
@@ -183,7 +186,7 @@ public class Battle {
             }
         }
         Console.text("戦闘終了");
-        Console.text("Press Any Key");
+        //Console.write("Press Any Key");
         Console.waitInput();
         return vs;
     }
@@ -192,7 +195,7 @@ public class Battle {
         BossCharacter bc = new BossCharacter();
         dc = d;
         pc = p;//初期化
-        int turn = 0;
+        
         vs = true;
         int a, b;
         pc.setRoom(6);//とりあえず置いとくだけのやつ。最悪いらない
@@ -203,7 +206,6 @@ public class Battle {
         
 
         while (finished) {
-            Console.text("現在の状態:" + pc.getAboutHp());
             a = pc.getAttackDamage()[0];
             Console.text("あなたは" + a + "ダメージを与えた！");
             bc.damagedHitPoint(a);//ダメージ処理
@@ -223,8 +225,7 @@ public class Battle {
             pc.setHp(pc.getHp() - b);
             if (pc.getHp() <= 0) {
                 Console.text("ボスに敗北した...");
-                vs = false;
-                break;
+                return false;
             }//死んだら
             try {
                 //Console.waitInput();
@@ -233,24 +234,25 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
             pc.setNumberOfStep();
-            if (dc.get_daughterPosition() == 6 && dc.daughter_possible_action) {//部屋に入っているかつ移動可能ならば
-                //ここに娘出現時の処理を行う。
-                vs = Battle.vsDaughter(pc, dc);
-                dc = Battle.getDc();
-                pc = Battle.getPc();
-            }else{
-                //Console.write("アクション");//テスト用
-                dc.move_daughter(pc.getNumberOfStep());//移動処理
-                //娘との接触判定
-                if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入ってくるか
-                    alive = Battle.vsDaughter(pc, dc);//戦闘
-                    pc = Battle.getPc();//主人公の初期化
-                    dc = Battle.getDc();//娘の初期化
+            if (dc.daughter_possible_action) {
+                if (dc.get_daughterPosition() == 6) {//部屋に入っているかつ移動可能ならば
+                    //ここに娘出現時の処理を行う。
+                    vs = Battle.vsDaughter(pc, dc);
+                } else {
+                    //Console.write("アクション");//テスト用
+                    dc.move_daughter(pc.getNumberOfStep());//移動処理
+                    //娘との接触判定
+                    if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入ってくるか
+                        alive = Battle.vsDaughter(pc, dc);//戦闘
+                    }
+                    if (!alive) {//もし娘に殺された(殺した)なら
+                        Console.write("GAME OVER");
+                        return false;
+                    }                    
                 }
-                if(!alive){//もし娘に殺された(殺した)なら
-                    Console.text("GAME OVER");
-                    break;
-                } 
+
+                //System.out.println("DT:"+dc.get_hp());
+                //System.out.println("PC:"+pc.getHp());
             }
             if (test) {
                 Console.text("現在の体力状態: " + pc.getHp() );
@@ -264,9 +266,8 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
             dc.turn_update();
-            turn++;
         }
-        Console.text("ボスを倒した。\n戦闘終了");
+        Console.text("戦闘終了");
         return vs;
     }
 
@@ -287,16 +288,28 @@ public class Battle {
         Console.write(" ■■■■  ■■■■   ■■ ■  ■■■■■ ■   ■  ■■   ■■■  ■   ■  ■");
         Console.write("                    ■   ■                          ");
         Console.write("                    ■■■■                           ");
-
+        try {
+            //Console.waitInput();
+            Thread.sleep(time);//１秒待つ
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Console.text("出現した娘の攻撃で5ダメージを喰らった!");
         pc.setHp(pc.getHp() - 5);
-
+        
         if (pc.getHp() <= 0) {
             Console.text("娘に殺されてしまった!");
             vs = false;
             return vs;
         }//死んだら
-
+        
+        try {
+            //Console.waitInput();
+            Thread.sleep(time);//１秒待つ
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         attack = pc.getAttackDamage()[0];
         Console.text("あなたの反撃!\n娘に" + attack + "ダメージを与えてしまった!");
         dc.battle_daughter(attack);
@@ -309,7 +322,7 @@ public class Battle {
         }
 
         pc.clearStep();//主人公の位置を削除
-        Console.text("Press Any Key");
+        //Console.write("Press Any Key");
         Console.waitInput();
         return vs;
     }

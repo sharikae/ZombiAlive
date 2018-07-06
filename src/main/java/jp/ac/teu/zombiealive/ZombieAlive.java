@@ -5,7 +5,6 @@ import jp.ac.teu.zombiealive.objects.Battle;
 import jp.ac.teu.zombiealive.objects.Dungeon;
 import jp.ac.teu.zombiealive.objects.PlayerCharacter;
 import jp.ac.teu.zombiealive.objects.Room;
-import jp.ac.teu.zombiealive.objects.BossCharacter;
 import jp.ac.teu.zombiealive.objects.DaughterCharacter;
 import jp.ac.teu.zombiealive.objects.Equipment;
 
@@ -38,7 +37,6 @@ public class ZombieAlive {
         mng.displayIntroduction();                          // タイトル出力
         if (Console.read().equals("1")) {
             mng.displayHelp();                             // ルール表示
-            Console.write("Press Any Key");
             Console.waitInput();                           // Press any key
         }
 
@@ -63,7 +61,7 @@ public class ZombieAlive {
             //プレイヤー移動 
             do {
                 rm.resetPlayerMapRoom(pc.getRoom());
-                Moved = pc.move();
+                Moved = pc.move(rm.getRoom());
             } while (!Moved);
             rm.setPlayerMapRoom(pc.getRoom());
             rm.setMapRoom(pc.getRoom());
@@ -74,7 +72,6 @@ public class ZombieAlive {
                 mng.restWindow();
                 rm.mapRoom();
                 mng.displayZombie();
-
                 if (num > 1) {//ゾンビが1体より多いならば
                     alive = Battle.vsZombie(pc, num);//複数処理
                 } else {
@@ -119,7 +116,10 @@ public class ZombieAlive {
                 if (alive) {
                     mng.displayGameClear();
                     break;
+                }else{//この処理を入れないと娘にもう一度殺される
+                    dc=Battle.getDc();
                 }
+                
             }
 
             if (rm.getItem(pc.getRoom())) {
@@ -130,6 +130,9 @@ public class ZombieAlive {
                     rm.setItem(pc.getRoom());
                     rm.resetMapRoom(pc.getRoom());
                     Console.text("救急箱を使用し、HPが回復しました");
+                    Console.waitInput();
+                }else{
+                    Console.write("使用しませんでした。");
                     Console.waitInput();
                 }
             }
@@ -176,6 +179,8 @@ public class ZombieAlive {
             turn++;
 
         }
-
+        if (alive) {//生存でクリアした場合スコア出力
+            mng.displayScore();//現在はKill数のみ指定。
+        }
     }
 }

@@ -1,7 +1,6 @@
 package jp.ac.teu.zombiealive.objects;
-
-import com.vdurmont.emoji.EmojiManager;
 import jp.ac.teu.zombiealive.ZombieAlive;
+import jp.ac.teu.zombiealive.objects.ZombieCharacter;
 import jp.ac.teu.zombiealive.util.Console;
 
 /**
@@ -59,11 +58,10 @@ public class Manager {
                 + " ■■   ■    ■■    ■■   ■ ■■  ■    \n"
                 + "  ■■■■     ■     ■■■■■■ ■■■ ■■   \n");
     }
-    
-    public static void displayGameClear() {
+    public void displayGameClear() {
         Console.write("");
         Console.write(
-                  "   ■■■■    ■    ■■■    ■■■ ■■■■■    \n"
+                "   ■■■■    ■    ■■■    ■■■ ■■■■■    \n"
                 + " ■■   ■    ■■    ■■    ■■  ■■  ■■   \n"
                 + " ■        ■■■    ■■■   ■■  ■■       \n"
                 + "■■        ■ ■    ■ ■  ■ ■  ■■■■     \n"
@@ -95,29 +93,36 @@ public class Manager {
                 + "自分のHPの細かい表示はない。状況を判断して回復せよ\n"
                 + "素手のダメージは1-3\n"
                 + "娘とエンカウントした場合、娘からのダメージと娘へのダメージが入ってしまう\n"
-                + "武器は交換式だ");
+                + "武器は交換式だ\n\n"
+                + "========== 勝利条件 ==========\n"
+                + "ワクチンの入手\n"
+                + "========== 敗北条件 ==========\n"
+                + "自分のHPが0になる\n"
+                + "時間切れになる\n"
+                + "娘を死なせてしまう");
+
     }
 
     public static void displayStatus(int weapon, String aboutHp) {
         Console.writeNoCR("現在の所持武器: ");
-        switch(weapon){
+        switch (weapon) {
             case 0: // 素手
-                Console.writeNoCR("素手");
+                Console.write("素手");
                 break;
             case 1: // ハンドガン
-                Console.writeNoCR("ハンドガン");
+                Console.write("ハンドガン");
                 break;
             case 2: // ショットガン
-                Console.writeNoCR("ショットガン");
+                Console.write("ショットガン");
                 break;
             case 3: // マシンガン
-                Console.writeNoCR("マシンガン");
+                Console.write("マシンガン");
                 break;
             case 4: // グレネードランチャー
-                Console.writeNoCR("グレネードランチャー");
+                Console.write("グレネードランチャー");
                 break;
             case 5: // ロケットランチャー
-                Console.writeNoCR("ロケットランチャー");
+                Console.write("ロケットランチャー");
                 break;
         }
         Console.write("現在の体力状態: " + aboutHp);
@@ -132,7 +137,7 @@ public class Manager {
     public static void displayScore() {
         Console.write("========== RESULT ==========\n");
         Console.write("CLEAR TIME: ");
-        Console.write("KILLED ZOMBIE: \n");
+        Console.write("KILLED ZOMBIE: "+ZombieCharacter.getKill());
         Console.write("TOTAL SCORE: ");
     }
 }

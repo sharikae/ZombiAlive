@@ -16,7 +16,7 @@ public class Console {
         String inputKeyCode = "";
         Scanner scan = new Scanner(System.in);
         inputKeyCode = scan.next();
-        return inputKeyCode;
+        return inputKeyCode.toLowerCase();
     }
 
     public static void write(String text) {
