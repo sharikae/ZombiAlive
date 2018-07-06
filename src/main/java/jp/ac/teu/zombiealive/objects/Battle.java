@@ -76,12 +76,6 @@ public class Battle {
                 break;
             }
 
-            if (test) {
-                Console.text("現在の体力状態: " + pc.getHp());
-            } else {
-                Console.text("現在の体力状態: " + pc.getAboutHp());
-            }
-
             /*
             Console.text("Please Any key");
             Console.waitInput();
@@ -246,7 +240,7 @@ public class Battle {
                         alive = Battle.vsDaughter(pc, dc);//戦闘
                     }
                     if (!alive) {//もし娘に殺された(殺した)なら
-                        Console.write("GAME OVER");
+                        Console.text("GAME OVER");
                         return false;
                     }                    
                 }

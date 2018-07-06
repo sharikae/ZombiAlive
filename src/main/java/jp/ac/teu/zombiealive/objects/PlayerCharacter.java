@@ -106,6 +106,7 @@ public class PlayerCharacter {
                 break;
             default:
                 Console.text("W:↑ A:← S:↓ D:→で入力してください");
+                Console.waitInput();
                 return false;
         }
 
@@ -113,12 +114,14 @@ public class PlayerCharacter {
             tmp_roomId = Dungeon.getDungeon(y + yd, x + xd);
         } catch (Exception e) {
             Console.text("移動できません");
+            Console.waitInput();
             return false;
         }
 
         switch (tmp_roomId) {
             case 0:
                 Console.text("移動できません");
+                Console.waitInput();
                 return false;
             case 6:
                 if (key) {
@@ -129,11 +132,13 @@ public class PlayerCharacter {
                     return true;
                 } else {
                     Console.text("鍵がかかっているようだ･･･");
+                    Console.waitInput();
                     return false;
                 }
             case 13:
                 if (roomId == 14 | roomId == 19) {
                     Console.text("移動できません");
+                    Console.waitInput();
                     return false;
                 } else {
                     escape(room);
@@ -152,25 +157,23 @@ public class PlayerCharacter {
     }
 
     public void escape(int[][] room) {
-        Console.write("次の部屋を覗きますか？");
-        Console.write("覗くならyを入力してください");
+        Console.text("次の部屋を覗きますか？ \n 覗くならyを入力してください");
         if ("y".equals(Console.read())) {
-            Console.write("次の部屋の情報を表示します");
-            Console.write("ゾンビの数　：" + room[0][tmp_roomId]);
+            Console.text("次の部屋の情報を表示します \n ゾンビの数　： " + room[0][tmp_roomId]);
             if (room[1][tmp_roomId] == 1) {
-                Console.write("アイテムがありそうだ");
+                Console.text("アイテムがありそうだ");
             } else {
-                Console.write("アイテムはなさそうだ");
+                Console.text("アイテムはなさそうだ");
             }
             if (room[2][tmp_roomId] == 1) {
-                Console.write("鍵がありそうだ");
+                Console.text("鍵がありそうだ");
             } else {
-                Console.write("鍵はなさそうだ");
+                Console.text("鍵はなさそうだ");
             }
             if (room[3][tmp_roomId] == 1) {
-                Console.write("BOSSがいそうだ");
+                Console.text("BOSSがいそうだ");
             } else {
-                Console.write("BOSSはいないようだ");
+                Console.text("BOSSはいないようだ");
             }
             tmp_roomId = roomId;
             yd = 0;
@@ -178,7 +181,7 @@ public class PlayerCharacter {
             Console.waitInput();
 
         } else {
-            Console.write("次の部屋にそのまま移行します");
+            Console.text("次の部屋にそのまま移行します");
             Console.waitInput();
         }
     }

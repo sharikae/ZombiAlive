@@ -132,7 +132,7 @@ public class ZombieAlive {
                     Console.text("救急箱を使用し、HPが回復しました");
                     Console.waitInput();
                 }else{
-                    Console.write("使用しませんでした。");
+                    Console.text("使用しませんでした。");
                     Console.waitInput();
                 }
             }
