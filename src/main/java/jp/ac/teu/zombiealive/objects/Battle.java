@@ -21,7 +21,7 @@ public class Battle {
     private static DaughterCharacter dc;
     static Manager mng = new Manager();
     private static boolean test = false;//テスト用か(trueでテスト用)
-    private static long time=500;//ウェイトタイムを修正する際はここで決定
+    private static long time=800;//ウェイトタイムを修正する際はここで決定
 
     private static boolean finished = true;//終了したら
     private static boolean vs = true;//戦闘に敗北したらfalseになる,
