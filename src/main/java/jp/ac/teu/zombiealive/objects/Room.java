@@ -230,6 +230,10 @@ public class Room {
     public void resetPlayerMapRoom(int roomNo) {
         r[roomNo][4] = "*     *";
     }
+    
+    public int[][] getRoom(){
+        return room;
+    }
 
     public void setMapRoom(int roomNo) {
         room[4][roomNo] = 1;

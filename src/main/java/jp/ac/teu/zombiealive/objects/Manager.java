@@ -101,22 +101,22 @@ public class Manager {
         Console.writeNoCR("現在の所持武器: ");
         switch(weapon){
             case 0: // 素手
-                Console.writeNoCR("素手");
+                Console.write("素手");
                 break;
             case 1: // ハンドガン
-                Console.writeNoCR("ハンドガン");
+                Console.write("ハンドガン");
                 break;
             case 2: // ショットガン
-                Console.writeNoCR("ショットガン");
+                Console.write("ショットガン");
                 break;
             case 3: // マシンガン
-                Console.writeNoCR("マシンガン");
+                Console.write("マシンガン");
                 break;
             case 4: // グレネードランチャー
-                Console.writeNoCR("グレネードランチャー");
+                Console.write("グレネードランチャー");
                 break;
             case 5: // ロケットランチャー
-                Console.writeNoCR("ロケットランチャー");
+                Console.write("ロケットランチャー");
                 break;
         }
         Console.write("現在の体力状態: " + aboutHp);
