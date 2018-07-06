@@ -180,7 +180,7 @@ public class ZombieAlive {
 
         }
         if (alive) {//生存でクリアした場合スコア出力
-            mng.displayScore();//現在はKill数のみ指定。
+            mng.displayScore(tm.getClearTimer(),pc.getHp(),dc.get_hp());//現在はKill数のみ指定。
         }
     }
 }
