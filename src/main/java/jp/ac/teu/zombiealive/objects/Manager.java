@@ -145,8 +145,19 @@ public class Manager {
         //制限時間による軽減 timer[3]×-10
         //主人公のＨＰボーナス +pcHp*100
         //娘のＨＰ減らしすぎか問題 +dtHp*200
+        
         Console.write("========== RESULT ==========\n");
-        Console.write("CLEAR TIME: " +timer[0]+":"+timer[1]);
+        switch(timer[2]){
+            case 1:
+                Console.write("CLEAR TIME: A" );
+                break;
+            case 2:
+                Console.write("CLEAR TIME: B" );
+                break;
+            case 3:
+                Console.write("CLEAR TIME: C" );
+                break;
+        }
         Console.write("KILLED ZOMBIE: "+ZombieCharacter.getKill());
         Console.write("PLAYER'S HITPOINT: "+pcHp);
         Console.write("DAUGHTER'S HITPOINT: "+dtHp);
