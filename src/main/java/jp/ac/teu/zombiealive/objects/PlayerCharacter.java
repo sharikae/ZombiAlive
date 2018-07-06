@@ -83,6 +83,7 @@ public class PlayerCharacter {
     public boolean move(int[][] room) {
         // TODO Player Move Logic
 
+        Room.setPlayerMapRoom(roomId);
         tmp_roomId = 0;
         xd = 0;
         yd = 0;
@@ -126,6 +127,7 @@ public class PlayerCharacter {
             case 6:
                 if (key) {
                     escape(room);
+                    Room.resetPlayerMapRoom(roomId);
                     roomId = tmp_roomId;
                     y = y + yd;
                     x = x + xd;
@@ -142,6 +144,7 @@ public class PlayerCharacter {
                     return false;
                 } else {
                     escape(room);
+                    Room.resetPlayerMapRoom(roomId);
                     roomId = tmp_roomId;
                     y = y + yd;
                     x = x + xd;
@@ -149,36 +152,44 @@ public class PlayerCharacter {
                 }
             default:
                 escape(room);
+                Room.resetPlayerMapRoom(roomId);
                 roomId = tmp_roomId;
                 y = y + yd;
                 x = x + xd;
                 return true;
         }
+
     }
 
     public void escape(int[][] room) {
         Console.text("次の部屋を覗きますか？ \n 覗くならyを入力してください");
         if ("y".equals(Console.read())) {
             Console.text("次の部屋の情報を表示します \n ゾンビの数　： " + room[0][tmp_roomId]);
+            Console.waitInput();
             if (room[1][tmp_roomId] == 1) {
                 Console.text("アイテムがありそうだ");
+                Console.waitInput();
             } else {
                 Console.text("アイテムはなさそうだ");
+                Console.waitInput();
             }
             if (room[2][tmp_roomId] == 1) {
                 Console.text("鍵がありそうだ");
+                Console.waitInput();
             } else {
                 Console.text("鍵はなさそうだ");
+                Console.waitInput();
             }
             if (room[3][tmp_roomId] == 1) {
                 Console.text("BOSSがいそうだ");
+                Console.waitInput();
             } else {
                 Console.text("BOSSはいないようだ");
+                Console.waitInput();
             }
             tmp_roomId = roomId;
             yd = 0;
             xd = 0;
-            Console.waitInput();
 
         } else {
             Console.text("次の部屋にそのまま移行します");

@@ -223,11 +223,11 @@ public class Room {
         r[roomNo][2] = "*     *";
     }
 
-    public void setPlayerMapRoom(int roomNo) {
+    public static void setPlayerMapRoom(int roomNo) {
         r[roomNo][4] = "*  P  *";
     }
 
-    public void resetPlayerMapRoom(int roomNo) {
+    public static void resetPlayerMapRoom(int roomNo) {
         r[roomNo][4] = "*     *";
     }
     
