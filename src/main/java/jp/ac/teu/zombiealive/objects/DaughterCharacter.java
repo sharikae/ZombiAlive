@@ -16,7 +16,7 @@ public class DaughterCharacter {
 
     public DaughterCharacter() { //娘の持つメンバの初期化
         daughterAttack = 5;
-        daughterHp = 30;
+        daughterHp = 25;
         daughter_possible_action = false;
         daughter_impossible_action_turn = 3;
         daughterPosition = 25;
