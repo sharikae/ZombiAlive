@@ -59,7 +59,6 @@ public class Manager {
                 + " ■■   ■    ■■    ■■   ■ ■■  ■    \n"
                 + "  ■■■■     ■     ■■■■■■ ■■■ ■■   \n");
     }
-
     public void displayGameClear() {
         Console.write("");
         Console.write(
@@ -139,10 +138,18 @@ public class Manager {
         }
     }
 
-    public static void displayScore() {
+    public static void displayScore(int[] timer,int pcHp,int dtHp) {
+        int total=ZombieCharacter.getKill()*100+1000-timer[3]*10+pcHp*100+dtHp*100;
+        //ゾンビ撃破数×100点
+        //ボス撃破ボーナス+1000
+        //制限時間による軽減 timer[3]×-10
+        //主人公のＨＰボーナス +pcHp*100
+        //娘のＨＰ減らしすぎか問題 +dtHp*200
         Console.write("========== RESULT ==========\n");
-        Console.write("CLEAR TIME: ");
-        Console.write("KILLED ZOMBIE: " + ZombieCharacter.getKill());
-        Console.write("TOTAL SCORE: " + ZombieCharacter.getKill() * 100 + 1000);
+        Console.write("CLEAR TIME: " +timer[0]+":"+timer[1]);
+        Console.write("KILLED ZOMBIE: "+ZombieCharacter.getKill());
+        Console.write("PLAYER'S HITPOINT: "+pcHp);
+        Console.write("DAUGHTER'S HITPOINT: "+dtHp);
+        Console.write("TOTAL SCORE: " +total);
     }
 }
