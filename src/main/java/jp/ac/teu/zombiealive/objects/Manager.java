@@ -1,4 +1,5 @@
-package jp.ac.teu.zombiealive.objects;
+﻿package jp.ac.teu.zombiealive.objects;
+
 import jp.ac.teu.zombiealive.ZombieAlive;
 import jp.ac.teu.zombiealive.objects.ZombieCharacter;
 import jp.ac.teu.zombiealive.util.Console;
@@ -58,6 +59,7 @@ public class Manager {
                 + " ■■   ■    ■■    ■■   ■ ■■  ■    \n"
                 + "  ■■■■     ■     ■■■■■■ ■■■ ■■   \n");
     }
+
     public void displayGameClear() {
         Console.write("");
         Console.write(
@@ -87,6 +89,9 @@ public class Manager {
                 + "========== ルール ==========\n"
                 + "１５分以内にダンジョン内を探索し、奥地にある研究者を倒してワクチンを入手せよ\n"
                 + "３ターン後には、ゾンビ化した娘が追いかけてくる\n"
+                + "ターンは部屋を移動するか部屋を覗くと経過する\n"
+                + "部屋を選択したら移動するか覗くかを選ぶ。覗いたら移動はできない\n"
+                + "ゾンビのいる部屋に入ると戦闘になる\n"
                 + "戦闘時はランダム攻撃だ\n"
                 + "通常ゾンビのHPは６\n"
                 + "ゾンビが武器をドロップする\n"
@@ -137,7 +142,7 @@ public class Manager {
     public static void displayScore() {
         Console.write("========== RESULT ==========\n");
         Console.write("CLEAR TIME: ");
-        Console.write("KILLED ZOMBIE: "+ZombieCharacter.getKill());
-        Console.write("TOTAL SCORE: " +ZombieCharacter.getKill()*100+1000);
+        Console.write("KILLED ZOMBIE: " + ZombieCharacter.getKill());
+        Console.write("TOTAL SCORE: " + ZombieCharacter.getKill() * 100 + 1000);
     }
 }
