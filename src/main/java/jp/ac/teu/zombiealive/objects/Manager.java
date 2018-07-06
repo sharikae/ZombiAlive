@@ -1,6 +1,8 @@
-﻿package jp.ac.teu.zombiealive.objects;
+package jp.ac.teu.zombiealive.objects;
+
 
 import jp.ac.teu.zombiealive.ZombieAlive;
+import jp.ac.teu.zombiealive.objects.ZombieCharacter;
 import jp.ac.teu.zombiealive.util.Console;
 
 /**
@@ -138,7 +140,7 @@ public class Manager {
     public void displayScore() {
         Console.write("========== RESULT ==========\n");
         Console.write("CLEAR TIME: ");
-        Console.write("KILLED ZOMBIE: \n");
+        Console.write("KILLED ZOMBIE: "+ZombieCharacter.getKill());
         Console.write("TOTAL SCORE: ");
     }
 }
