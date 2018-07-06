@@ -43,7 +43,8 @@ public class Battle {
         vs = true;//戦闘に敗北したらfalseになる,
         ZombieCharacter zc = new ZombieCharacter();
         pc = p;
-        Console.write("ゾンビが現れた！Press Any Key");
+        Console.write("ゾンビが現れた！");
+        //Console.write("Press Any Key");
         Console.waitInput();
         Console.write("戦闘開始！");
         
@@ -92,7 +93,8 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        Console.write("戦闘終了\nPress Any Key");
+        Console.write("戦闘終了");
+        //Console.write("Press Any Key");
         Console.waitInput();
         return vs;
     }
@@ -183,7 +185,7 @@ public class Battle {
             }
         }
         Console.write("戦闘終了");
-        Console.write("Press Any Key");
+        //Console.write("Press Any Key");
         Console.waitInput();
         return vs;
     }
@@ -309,7 +311,7 @@ public class Battle {
         }
 
         pc.clearStep();//主人公の位置を削除
-        Console.write("Press Any Key");
+        //Console.write("Press Any Key");
         Console.waitInput();
         return vs;
     }
