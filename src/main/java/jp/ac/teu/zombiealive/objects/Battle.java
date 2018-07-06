@@ -194,7 +194,7 @@ public class Battle {
         BossCharacter bc = new BossCharacter();
         dc = d;
         pc = p;//初期化
-        int turn = 0;
+        
         vs = true;
         int a, b;
         pc.setRoom(6);//とりあえず置いとくだけのやつ。最悪いらない
@@ -205,7 +205,6 @@ public class Battle {
         
 
         while (finished) {
-            Console.write("現在の状態:" + pc.getAboutHp());
             a = pc.getAttackDamage()[0];
             Console.write("あなたは" + a + "ダメージを与えた！");
             bc.damagedHitPoint(a);//ダメージ処理
@@ -225,8 +224,7 @@ public class Battle {
             pc.setHp(pc.getHp() - b);
             if (pc.getHp() <= 0) {
                 Console.write("ボスに敗北した...");
-                vs = false;
-                break;
+                return false;
             }//死んだら
             try {
                 //Console.waitInput();
@@ -234,25 +232,28 @@ public class Battle {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             pc.setNumberOfStep();
-            if (dc.get_daughterPosition() == 6 && dc.daughter_possible_action) {//部屋に入っているかつ移動可能ならば
-                //ここに娘出現時の処理を行う。
-                vs = Battle.vsDaughter(pc, dc);
-                dc = Battle.getDc();
-                pc = Battle.getPc();
-            }else{
-                //Console.write("アクション");//テスト用
-                dc.move_daughter(pc.getNumberOfStep());//移動処理
-                //娘との接触判定
-                if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入ってくるか
-                    alive = Battle.vsDaughter(pc, dc);//戦闘
-                    pc = Battle.getPc();//主人公の初期化
-                    dc = Battle.getDc();//娘の初期化
+            if (dc.daughter_possible_action) {
+                if (dc.get_daughterPosition() == 6) {//部屋に入っているかつ移動可能ならば
+                    //ここに娘出現時の処理を行う。
+                    vs = Battle.vsDaughter(pc, d);
+                    //dc = Battle.getDc();
+                    //pc = Battle.getPc();
+                } else {
+                    //Console.write("アクション");//テスト用
+                    dc.move_daughter(pc.getNumberOfStep());//移動処理
+                    //娘との接触判定
+                    if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入ってくるか
+                        alive = Battle.vsDaughter(pc, dc);//戦闘
+                        //pc = Battle.getPc();//主人公の初期化
+                        //dc = Battle.getDc();//娘の初期化
+                    }
+                    if (!alive) {//もし娘に殺された(殺した)なら
+                        Console.write("GAME OVER");
+                        return false;
+                    }                    
                 }
-                if(!alive){//もし娘に殺された(殺した)なら
-                    Console.write("GAME OVER");
-                    break;
-                } 
             }
             if (test) {
                 Console.write("現在の体力状態: " + pc.getHp() );
@@ -266,9 +267,8 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
             dc.turn_update();
-            turn++;
         }
-        Console.write("ボスを倒した。\n戦闘終了");
+        Console.write("戦闘終了");
         return vs;
     }
 
@@ -290,15 +290,28 @@ public class Battle {
         Console.write("                    ■   ■                          ");
         Console.write("                    ■■■■                           ");
 
+        try {
+            //Console.waitInput();
+            Thread.sleep(time);//１秒待つ
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Console.write("出現した娘の攻撃で5ダメージを喰らった!");
         pc.setHp(pc.getHp() - 5);
-
+        
         if (pc.getHp() <= 0) {
             Console.write("娘に殺されてしまった!");
             vs = false;
             return vs;
         }//死んだら
-
+        
+        try {
+            //Console.waitInput();
+            Thread.sleep(time);//１秒待つ
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         attack = pc.getAttackDamage()[0];
         Console.write("あなたの反撃!\n娘に" + attack + "ダメージを与えてしまった!");
         dc.battle_daughter(attack);
