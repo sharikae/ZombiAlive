@@ -5,7 +5,6 @@ import jp.ac.teu.zombiealive.objects.Battle;
 import jp.ac.teu.zombiealive.objects.Dungeon;
 import jp.ac.teu.zombiealive.objects.PlayerCharacter;
 import jp.ac.teu.zombiealive.objects.Room;
-import jp.ac.teu.zombiealive.objects.BossCharacter;
 import jp.ac.teu.zombiealive.objects.DaughterCharacter;
 import jp.ac.teu.zombiealive.objects.Equipment;
 
