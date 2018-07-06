@@ -108,12 +108,13 @@ public class Battle {
         int num = i;//書き換えを行うので一応やっとく処理
         int x = 3;
         switch (num) {
-            case 2://２体なら
-                zc3.damageToZombie(99);//ゾンビ3はいない
-                x-=1;
             case 1://１体なら
                 zc2.damageToZombie(99);//ゾンビ2もいない
                 x-=1;
+            case 2://２体なら
+                zc3.damageToZombie(99);//ゾンビ3はいない
+                x-=1;
+            
         }
         Console.write("ゾンビが"+x+"体現れた！");
         Console.waitInput();
@@ -249,6 +250,8 @@ public class Battle {
                         return false;
                     }                    
                 }
+                //System.out.println("DT:"+dc.get_hp());
+                System.out.println("PC:"+pc.getHp());
             }
             if (test) {
                 Console.write("現在の体力状態: " + pc.getHp() );
