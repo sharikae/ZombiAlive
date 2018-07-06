@@ -1,6 +1,5 @@
 package jp.ac.teu.zombiealive;
 
-import javax.net.ssl.ManagerFactoryParameters;
 import jp.ac.teu.zombiealive.objects.Battle;
 
 import jp.ac.teu.zombiealive.objects.Dungeon;
@@ -11,7 +10,6 @@ import jp.ac.teu.zombiealive.objects.DaughterCharacter;
 import jp.ac.teu.zombiealive.objects.Equipment;
 
 import jp.ac.teu.zombiealive.objects.Manager;
-import jp.ac.teu.zombiealive.objects.ZombieCharacter;
 import jp.ac.teu.zombiealive.util.Console;
 import jp.ac.teu.zombiealive.util.Timer;
 
@@ -65,7 +63,7 @@ public class ZombieAlive {
             //プレイヤー移動 
             do {
                 rm.resetPlayerMapRoom(pc.getRoom());
-                Moved = pc.move();
+                Moved = pc.move(rm.getRoom());
             } while (!Moved);
             rm.setPlayerMapRoom(pc.getRoom());
             rm.setMapRoom(pc.getRoom());
