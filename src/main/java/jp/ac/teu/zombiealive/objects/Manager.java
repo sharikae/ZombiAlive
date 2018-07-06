@@ -1,5 +1,6 @@
 package jp.ac.teu.zombiealive.objects;
 
+import com.vdurmont.emoji.EmojiManager;
 import jp.ac.teu.zombiealive.ZombieAlive;
 import jp.ac.teu.zombiealive.util.Console;
 
@@ -8,7 +9,7 @@ import jp.ac.teu.zombiealive.util.Console;
  */
 public class Manager {
 
-    public void displayIntroduction() {
+    public static void displayIntroduction() {
         Console.write("                         ■                                         ");
         Console.write(" ■■■■■                   ■      ■             ■    ■  ■            ");
         Console.write("     ■                   ■                    ■    ■               ");
@@ -23,7 +24,7 @@ public class Manager {
         Console.write("                           1.Help");
     }
 
-    public void displayZombie() {
+    public static void displayZombie() {
         Console.write("");
         Console.write(
                 "                     ■■                   \n"
@@ -37,7 +38,7 @@ public class Manager {
                 + "■■■■■  ■■■  ■■ ■■■■■■■■■■■  ■■■  ■■■  ■  ■\n");
     }
 
-    public void displayGameOver() {
+    public static void displayGameOver() {
         Console.write("");
         Console.write(""
                 + "   ■■■■    ■    ■■■    ■■■ ■■■■■ \n"
@@ -59,7 +60,7 @@ public class Manager {
                 + "  ■■■■     ■     ■■■■■■ ■■■ ■■   \n");
     }
     
-    public void displayGameClear() {
+    public static void displayGameClear() {
         Console.write("");
         Console.write(
                   "   ■■■■    ■    ■■■    ■■■ ■■■■■    \n"
@@ -81,7 +82,7 @@ public class Manager {
                 + "  ■■■■■ ■■■■■  ■■■■■■■■■ ■■■■ ■■■ ■■");
     }
 
-    public void displayHelp() {
+    public static void displayHelp() {
         Console.write("========== 操作方法 ==========\n"
                 + "移動： W↑ A← S↓ D→\n"
                 + "Press any key： なにか文字を入力してEnter\n\n"
@@ -97,7 +98,7 @@ public class Manager {
                 + "武器は交換式だ");
     }
 
-    public void displayStatus(int weapon, String aboutHp) {
+    public static void displayStatus(int weapon, String aboutHp) {
         Console.writeNoCR("現在の所持武器: ");
         switch(weapon){
             case 0: // 素手
@@ -122,13 +123,13 @@ public class Manager {
         Console.write("現在の体力状態: " + aboutHp);
     }
 
-    public void restWindow() {
+    public static void restWindow() {
         for (int i = 0; i < 30; i++) {
             Console.write("");
         }
     }
 
-    public void displayScore() {
+    public static void displayScore() {
         Console.write("========== RESULT ==========\n");
         Console.write("CLEAR TIME: ");
         Console.write("KILLED ZOMBIE: \n");

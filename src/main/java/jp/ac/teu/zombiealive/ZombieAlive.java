@@ -48,17 +48,16 @@ public class ZombieAlive {
         while (alive) {
 
             if (tm.getTimer()) {
-                Console.write("TIME UP!!");
-                Console.write("zombie virusに侵食されてしまった！");
+                Console.text("TIME UP!! \n zombie virusに侵食されてしまった！");
                 break;
             }
 
             /* ステータス表示 */
-            mng.restWindow();  // 画面クリア
-            rm.mapRoom();
-            mng.displayStatus( // ステータス表示
-                    pc.getWeapon(),
-                    pc.getAboutHp()
+            Manager.restWindow();  // 画面クリア
+            Room.mapRoom();
+            Manager.displayStatus( // ステータス表示
+                    PlayerCharacter.getWeapon(),
+                    PlayerCharacter.getAboutHp()
             );
 
             //プレイヤー移動 
@@ -115,7 +114,7 @@ public class ZombieAlive {
             //ボス部屋判定
             if (pc.getRoom() == 6) {
                 mng.restWindow();
-                Console.write("鍵を使用しました");
+                Console.text("鍵を使用しました");
                 alive = Battle.vsBoss(pc, dc);
                 if (alive) {
                     mng.displayGameClear();
@@ -125,18 +124,18 @@ public class ZombieAlive {
 
             if (rm.getItem(pc.getRoom())) {
                 rm.mapRoom();
-                Console.write("救急箱を見つけました。使用するならyを入力してください");
+                Console.text("救急箱を見つけました。使用するならyを入力してください");
                 if ("y".equals(Console.read())) {
                     pc.setHp(30);
                     rm.setItem(pc.getRoom());
                     rm.resetMapRoom(pc.getRoom());
-                    Console.write("救急箱を使用し、HPが回復しました");
+                    Console.text("救急箱を使用し、HPが回復しました");
                     Console.waitInput();
                 }
             }
 
             if (rm.getKey(pc.getRoom())) {//現在部屋に鍵があるか
-                Console.write("鍵が落ちている･･･\nとりあえず取っておこう");
+                Console.text("鍵が落ちている･･･\nとりあえず取っておこう");
                 pc.setKey(true);//鍵を手に入れる処理
                 rm.setKey(pc.getRoom());//鍵が無くなる処理
                 Console.waitInput();

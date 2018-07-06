@@ -39,8 +39,7 @@ public class DaughterCharacter {
             daughter_impossible_action_turn -= 1;
             if (daughter_impossible_action_turn == 0) {
                 daughter_possible_action = true;
-                Console.write("娘の叫び声が聞こえた");
-                Console.write("娘が追ってきそうだ....");
+                Console.text("娘の叫び声が聞こえた \n 娘が追ってきそうだ....");
                 Console.waitInput();
             }
         }

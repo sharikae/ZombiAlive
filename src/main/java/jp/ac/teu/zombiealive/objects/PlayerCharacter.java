@@ -9,23 +9,23 @@ import java.util.Random;
 
 public class PlayerCharacter {
 
-    private int hp = 30;
-    private int roomId = 25;
-    private int x = 4;
-    private int y = 7;
-    private int weapon = 0;
-    private boolean key = false;
-    private String read;
-    private int yd = 0;
-    private int xd = 0;
-    private int tmp_roomId;
+    private static int hp = 30;
+    private static int roomId = 25;
+    private static int x = 4;
+    private static int y = 7;
+    private static int weapon = 0;
+    private static boolean key = false;
+    private static String read;
+    private static int yd = 0;
+    private static int xd = 0;
+    private static int tmp_roomId;
     Queue<Integer> step = new ArrayDeque<>();
 
     public int getHp() {
         return hp;
     }
 
-    public String getAboutHp() {
+    public static String getAboutHp() {
         String str = "denger";
         if (hp >= 15) {
             str = "fine";
@@ -64,7 +64,7 @@ public class PlayerCharacter {
         this.roomId = roomId;
     }
 
-    public int getWeapon() {
+    public static int getWeapon() {
         return weapon;
     }
 
@@ -87,8 +87,7 @@ public class PlayerCharacter {
         xd = 0;
         yd = 0;
 
-        Console.write("行き先の方向を指定してください");
-        Console.write("W:↑ A:← S:↓ D:→");
+        Console.text("行き先の方向を指定してください \n W:↑ A:← S:↓ D:→");
 
         read = Console.read();
 
@@ -106,20 +105,20 @@ public class PlayerCharacter {
                 yd++;
                 break;
             default:
-                Console.write("W:↑ A:← S:↓ D:→で入力してください");
+                Console.text("W:↑ A:← S:↓ D:→で入力してください");
                 return false;
         }
 
         try {
             tmp_roomId = Dungeon.getDungeon(y + yd, x + xd);
         } catch (Exception e) {
-            Console.write("移動できません");
+            Console.text("移動できません");
             return false;
         }
 
         switch (tmp_roomId) {
             case 0:
-                Console.write("移動できません");
+                Console.text("移動できません");
                 return false;
             case 6:
                 if (key) {
@@ -128,12 +127,12 @@ public class PlayerCharacter {
                     x = x + xd;
                     return true;
                 } else {
-                    Console.write("鍵がかかっているようだ･･･");
+                    Console.text("鍵がかかっているようだ･･･");
                     return false;
                 }
             case 13:
                 if (roomId == 14 | roomId == 19) {
-                    Console.write("移動できません");
+                    Console.text("移動できません");
                     return false;
                 } else {
                     roomId = tmp_roomId;

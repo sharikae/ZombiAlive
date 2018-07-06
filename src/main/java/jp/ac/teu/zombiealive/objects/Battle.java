@@ -43,17 +43,17 @@ public class Battle {
         vs = true;//戦闘に敗北したらfalseになる,
         ZombieCharacter zc = new ZombieCharacter();
         pc = p;
-        Console.write("ゾンビが現れた！Press Any Key");
+        Console.text("ゾンビが現れた！Press Any Key");
         Console.waitInput();
-        Console.write("戦闘開始！");
+        Console.text("戦闘開始！");
         
         while (finished) {
             int a=pc.getAttackDamage()[0];//とりあえず帰ってくるのは[]ではない場合の処理
             //int a = 2;このままだとダメージが強制的に  2になる
             zc.damageToZombie(a);
-            Console.write("あなたは" + a + "ダメージを与えた");
+            Console.text("あなたは" + a + "ダメージを与えた");
             if (zc.getHp() <= 0) {//ゾンビが0ならば
-                Console.write("敵を倒した！");
+                Console.text("敵を倒した！");
                 //Console.write("Please Any Key");
                 //Console.waitInput();
                 break;//勝利は初期化されてるので戻る
@@ -66,23 +66,23 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            Console.write("あなたは1ダメージを喰らった!");
+            Console.text("あなたは1ダメージを喰らった!");
             pc.setHp(pc.getHp() - 1);//１ダメージ喰らう
 
             if (pc.getHp() <= 0) {
-                Console.write("あなたは死んだ！");
+                Console.text("あなたは死んだ！");
                 vs = false;
                 break;
             }
 
             if (test) {
-                Console.write("現在の体力状態: " + pc.getHp());
+                Console.text("現在の体力状態: " + pc.getHp());
             } else {
-                Console.write("現在の体力状態: " + pc.getAboutHp());
+                Console.text("現在の体力状態: " + pc.getAboutHp());
             }
 
             /*
-            Console.write("Please Any key");
+            Console.text("Please Any key");
             Console.waitInput();
              */
             try {
@@ -92,7 +92,7 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        Console.write("戦闘終了\nPress Any Key");
+        Console.text("戦闘終了\nPress Any Key");
         Console.waitInput();
         return vs;
     }
@@ -113,9 +113,9 @@ public class Battle {
                 zc2.damageToZombie(99);//ゾンビ2もいない
                 x-=1;
         }
-        Console.write("ゾンビが"+x+"体現れた！");
+        Console.text("ゾンビが"+x+"体現れた！");
         Console.waitInput();
-        Console.write("戦闘開始！");
+        Console.text("戦闘開始！");
         while (finished) {
             int[] a = pc.getAttackDamage();//とりあえず帰ってくるのは[]ではない場合の処理
 
@@ -130,13 +130,13 @@ public class Battle {
                     zc1.damageToZombie(a[0]);
                     x = 1;
                 }
-                Console.write("あなたはゾンビ" + x + "に" + a[0] + "ダメージを与えた!");
+                Console.text("あなたはゾンビ" + x + "に" + a[0] + "ダメージを与えた!");
 
             } else {//全体攻撃ならば
                 zc3.damageToZombie(a[0]);
                 zc2.damageToZombie(a[0]);
                 zc1.damageToZombie(a[0]);
-                Console.write("あなたは" + num + "体に" + a[0] + "ダメージ与えた！");
+                Console.text("あなたは" + num + "体に" + a[0] + "ダメージ与えた！");
 
             }
             try {
@@ -147,7 +147,7 @@ public class Battle {
             }
 
             if (zc1.getHp() <= 0 && zc2.getHp() <= 0 && zc3.getHp() <= 0) {//ゾンビが0ならば
-                Console.write("全ての敵を倒した！");
+                Console.text("全ての敵を倒した！");
                 //Console.waitInput();
                 break;//勝利は初期化されてるので戻る
             }
@@ -161,18 +161,18 @@ public class Battle {
             if (zc3.getHp() > 0) {
                 num++;//ゾンビ3の生存確認
             }
-            Console.write("あなたは" + num + "ダメージを喰らった!");
+            Console.text("あなたは" + num + "ダメージを喰らった!");
             pc.setHp(pc.getHp() - num);
             if (pc.getHp() <= 0) {
-                Console.write("あなたは死んだ！");
+                Console.text("あなたは死んだ！");
                 vs = false;
                 break;
             }
 
             if (test) {
-                Console.write("現在の体力状態: " + pc.getHp());
+                Console.text("現在の体力状態: " + pc.getHp());
             } else {
-                Console.write("現在の体力状態: " + pc.getAboutHp());
+                Console.text("現在の体力状態: " + pc.getAboutHp());
             }
 
             try {
@@ -182,8 +182,8 @@ public class Battle {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        Console.write("戦闘終了");
-        Console.write("Press Any Key");
+        Console.text("戦闘終了");
+        Console.text("Press Any Key");
         Console.waitInput();
         return vs;
     }
@@ -197,18 +197,18 @@ public class Battle {
         int a, b;
         pc.setRoom(6);//とりあえず置いとくだけのやつ。最悪いらない
 
-        Console.write("ボスが立ちはだかった！");
+        Console.text("ボスが立ちはだかった！");
         Console.waitInput();
-        Console.write("戦闘開始!");
+        Console.text("戦闘開始!");
         
 
         while (finished) {
-            Console.write("現在の状態:" + pc.getAboutHp());
+            Console.text("現在の状態:" + pc.getAboutHp());
             a = pc.getAttackDamage()[0];
-            Console.write("あなたは" + a + "ダメージを与えた！");
+            Console.text("あなたは" + a + "ダメージを与えた！");
             bc.damagedHitPoint(a);//ダメージ処理
             if (bc.getBossHitPoint() <= 0) {//ボスが死んだら
-                Console.write("ボスを倒した！");
+                Console.text("ボスを倒した！");
                 break;
             }
             try {
@@ -219,10 +219,10 @@ public class Battle {
             }
 
             b = bc.getBossAttack();//ボスの攻撃力参照
-            Console.write("ボスからの攻撃で" + b + "ダメージを喰らった！");
+            Console.text("ボスからの攻撃で" + b + "ダメージを喰らった！");
             pc.setHp(pc.getHp() - b);
             if (pc.getHp() <= 0) {
-                Console.write("ボスに敗北した...");
+                Console.text("ボスに敗北した...");
                 vs = false;
                 break;
             }//死んだら
@@ -248,14 +248,14 @@ public class Battle {
                     dc = Battle.getDc();//娘の初期化
                 }
                 if(!alive){//もし娘に殺された(殺した)なら
-                    Console.write("GAME OVER");
+                    Console.text("GAME OVER");
                     break;
                 } 
             }
             if (test) {
-                Console.write("現在の体力状態: " + pc.getHp() );
+                Console.text("現在の体力状態: " + pc.getHp() );
             } else {
-                Console.write("現在の体力状態: " + pc.getAboutHp() );
+                Console.text("現在の体力状態: " + pc.getAboutHp() );
             }
 
             try {
@@ -266,7 +266,7 @@ public class Battle {
             dc.turn_update();
             turn++;
         }
-        Console.write("ボスを倒した。\n戦闘終了");
+        Console.text("ボスを倒した。\n戦闘終了");
         return vs;
     }
 
@@ -288,28 +288,28 @@ public class Battle {
         Console.write("                    ■   ■                          ");
         Console.write("                    ■■■■                           ");
 
-        Console.write("出現した娘の攻撃で5ダメージを喰らった!");
+        Console.text("出現した娘の攻撃で5ダメージを喰らった!");
         pc.setHp(pc.getHp() - 5);
 
         if (pc.getHp() <= 0) {
-            Console.write("娘に殺されてしまった!");
+            Console.text("娘に殺されてしまった!");
             vs = false;
             return vs;
         }//死んだら
 
         attack = pc.getAttackDamage()[0];
-        Console.write("あなたの反撃!\n娘に" + attack + "ダメージを与えてしまった!");
+        Console.text("あなたの反撃!\n娘に" + attack + "ダメージを与えてしまった!");
         dc.battle_daughter(attack);
 
         if (dc.get_hp() <= 0) {//娘死んだら
-            Console.write("娘を殺してしまった！");
+            Console.text("娘を殺してしまった！");
             vs = false;
         }else{
-            Console.write("娘は気絶してしまった...");
+            Console.text("娘は気絶してしまった...");
         }
 
         pc.clearStep();//主人公の位置を削除
-        Console.write("Press Any Key");
+        Console.text("Press Any Key");
         Console.waitInput();
         return vs;
     }

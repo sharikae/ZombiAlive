@@ -3,6 +3,9 @@ package jp.ac.teu.zombiealive.util;
 import java.io.IOException;
 import java.util.Scanner;
 
+import jp.ac.teu.zombiealive.ZombieAlive;
+import jp.ac.teu.zombiealive.objects.*;
+
 /**
  * @author C0116221 Shota Harikae
  */
@@ -19,6 +22,16 @@ public class Console {
     public static void write(String text) {
         System.out.println(text);
         
+    }
+
+    public static void text(String text) {
+        Room.mapRoom();
+        Manager.displayStatus(PlayerCharacter.getWeapon(), PlayerCharacter.getAboutHp());
+        Console.write("####### Message #################################################################################");
+        Console.write("                                                                                                 ");
+        Console.write(text);
+        Console.write("                                                                                                 ");
+        Console.write("#################################################################################################");
     }
 
     public static void writeNoCR(String text) {

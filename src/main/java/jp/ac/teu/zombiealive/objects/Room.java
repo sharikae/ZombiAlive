@@ -7,15 +7,15 @@ import jp.ac.teu.zombiealive.util.Console;
  */
 public class Room {
 
-    int[][] room
+    static int[][] room
             = {{0, 0, 1, 2, 1, 0, 0, 3, 2, 0, 2, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0},//ゾンビの数
             {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//アイテム
             {0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//鍵
             {0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},//BOSS
             {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}};//行った部屋のフラグ
 
-    int[][] dungeon = Dungeon.getMapDungeon();
-    String[][] r = new String[26][6];
+    static int[][] dungeon = Dungeon.getMapDungeon();
+    static String[][] r = new String[26][6];
 
     public Room() {
         r[0][0] = "       ";
@@ -202,11 +202,11 @@ public class Room {
 
     }
 
-    public void mapRoom() {
+    public static void mapRoom() {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 6; j++) {
                 for (int k = 0; k < 8; k++) {
-                    if (room[4][dungeon[i][k]] == 1) {
+                    if (Room.room[4][dungeon[i][k]] == 1) {
                         System.out.print(r[dungeon[i][k]][j]);
                     } else {
                         System.out.print(r[0][j]);
