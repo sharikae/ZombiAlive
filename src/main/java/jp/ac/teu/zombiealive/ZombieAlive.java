@@ -74,7 +74,6 @@ public class ZombieAlive {
                 mng.restWindow();
                 rm.mapRoom();
                 mng.displayZombie();
-
                 if (num > 1) {//ゾンビが1体より多いならば
                     alive = Battle.vsZombie(pc, num);//複数処理
                 } else {
@@ -119,7 +118,10 @@ public class ZombieAlive {
                 if (alive) {
                     mng.displayGameClear();
                     break;
+                }else{//この処理を入れないと娘にもう一度殺される
+                    dc=Battle.getDc();
                 }
+                
             }
 
             if (rm.getItem(pc.getRoom())) {

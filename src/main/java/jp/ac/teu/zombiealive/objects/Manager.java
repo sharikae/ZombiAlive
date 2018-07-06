@@ -1,4 +1,4 @@
-package jp.ac.teu.zombiealive.objects;
+﻿package jp.ac.teu.zombiealive.objects;
 
 import jp.ac.teu.zombiealive.ZombieAlive;
 import jp.ac.teu.zombiealive.util.Console;
@@ -58,11 +58,11 @@ public class Manager {
                 + " ■■   ■    ■■    ■■   ■ ■■  ■    \n"
                 + "  ■■■■     ■     ■■■■■■ ■■■ ■■   \n");
     }
-    
+
     public void displayGameClear() {
         Console.write("");
         Console.write(
-                  "   ■■■■    ■    ■■■    ■■■ ■■■■■    \n"
+                "   ■■■■    ■    ■■■    ■■■ ■■■■■    \n"
                 + " ■■   ■    ■■    ■■    ■■  ■■  ■■   \n"
                 + " ■        ■■■    ■■■   ■■  ■■       \n"
                 + "■■        ■ ■    ■ ■  ■ ■  ■■■■     \n"
@@ -94,12 +94,19 @@ public class Manager {
                 + "自分のHPの細かい表示はない。状況を判断して回復せよ\n"
                 + "素手のダメージは1-3\n"
                 + "娘とエンカウントした場合、娘からのダメージと娘へのダメージが入ってしまう\n"
-                + "武器は交換式だ");
+                + "武器は交換式だ\n\n"
+                + "========== 勝利条件 ==========\n"
+                + "ワクチンの入手\n"
+                + "========== 敗北条件 ==========\n"
+                + "自分のHPが0になる\n"
+                + "時間切れになる\n"
+                + "娘を死なせてしまう");
+
     }
 
     public void displayStatus(int weapon, String aboutHp) {
         Console.writeNoCR("現在の所持武器: ");
-        switch(weapon){
+        switch (weapon) {
             case 0: // 素手
                 Console.write("素手");
                 break;

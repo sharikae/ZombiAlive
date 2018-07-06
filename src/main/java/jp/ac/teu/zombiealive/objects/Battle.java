@@ -108,12 +108,13 @@ public class Battle {
         int num = i;//書き換えを行うので一応やっとく処理
         int x = 3;
         switch (num) {
-            case 2://２体なら
-                zc3.damageToZombie(99);//ゾンビ3はいない
-                x-=1;
             case 1://１体なら
                 zc2.damageToZombie(99);//ゾンビ2もいない
                 x-=1;
+            case 2://２体なら
+                zc3.damageToZombie(99);//ゾンビ3はいない
+                x-=1;
+            
         }
         Console.write("ゾンビが"+x+"体現れた！");
         Console.waitInput();
@@ -232,28 +233,25 @@ public class Battle {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Battle.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
             pc.setNumberOfStep();
             if (dc.daughter_possible_action) {
                 if (dc.get_daughterPosition() == 6) {//部屋に入っているかつ移動可能ならば
                     //ここに娘出現時の処理を行う。
-                    vs = Battle.vsDaughter(pc, d);
-                    //dc = Battle.getDc();
-                    //pc = Battle.getPc();
+                    vs = Battle.vsDaughter(pc, dc);
                 } else {
                     //Console.write("アクション");//テスト用
                     dc.move_daughter(pc.getNumberOfStep());//移動処理
                     //娘との接触判定
                     if (dc.get_daughterPosition() == pc.getRoom()) {//娘が部屋に入ってくるか
                         alive = Battle.vsDaughter(pc, dc);//戦闘
-                        //pc = Battle.getPc();//主人公の初期化
-                        //dc = Battle.getDc();//娘の初期化
                     }
                     if (!alive) {//もし娘に殺された(殺した)なら
                         Console.write("GAME OVER");
                         return false;
                     }                    
                 }
+                //System.out.println("DT:"+dc.get_hp());
+                //System.out.println("PC:"+pc.getHp());
             }
             if (test) {
                 Console.write("現在の体力状態: " + pc.getHp() );
