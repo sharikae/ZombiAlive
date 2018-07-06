@@ -251,7 +251,7 @@ public class Battle {
                     }                    
                 }
                 //System.out.println("DT:"+dc.get_hp());
-                System.out.println("PC:"+pc.getHp());
+                //System.out.println("PC:"+pc.getHp());
             }
             if (test) {
                 Console.write("現在の体力状態: " + pc.getHp() );
