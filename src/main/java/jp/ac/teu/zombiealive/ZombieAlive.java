@@ -1,5 +1,6 @@
 package jp.ac.teu.zombiealive;
 
+import javax.net.ssl.ManagerFactoryParameters;
 import jp.ac.teu.zombiealive.objects.Battle;
 
 import jp.ac.teu.zombiealive.objects.Dungeon;
@@ -10,6 +11,7 @@ import jp.ac.teu.zombiealive.objects.DaughterCharacter;
 import jp.ac.teu.zombiealive.objects.Equipment;
 
 import jp.ac.teu.zombiealive.objects.Manager;
+import jp.ac.teu.zombiealive.objects.ZombieCharacter;
 import jp.ac.teu.zombiealive.util.Console;
 import jp.ac.teu.zombiealive.util.Timer;
 
@@ -181,6 +183,8 @@ public class ZombieAlive {
             turn++;
 
         }
-
+        if (alive) {//生存でクリアした場合スコア出力
+            mng.displayScore();//現在はKill数のみ指定。
+        }
     }
 }
