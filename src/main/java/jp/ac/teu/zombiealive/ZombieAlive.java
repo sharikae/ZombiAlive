@@ -38,7 +38,7 @@ public class ZombieAlive {
         mng.displayIntroduction();                          // タイトル出力
         if (Console.read().equals("1")) {
             mng.displayHelp();                             // ルール表示
-            Console.write("Press Any Key");
+            //Console.write("Press Any Key");
             Console.waitInput();                           // Press any key
         }
 
@@ -126,7 +126,7 @@ public class ZombieAlive {
             if (rm.getItem(pc.getRoom())) {
                 rm.mapRoom();
                 Console.write("救急箱を見つけました。使用するならyを入力してください");
-                if ("y".equals(Console.read().toLowerCase())) {
+                if ("y".equals(Console.read())) {
                     pc.setHp(30);
                     rm.setItem(pc.getRoom());
                     rm.resetMapRoom(pc.getRoom());
