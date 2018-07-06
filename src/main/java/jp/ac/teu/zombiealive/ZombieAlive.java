@@ -38,7 +38,6 @@ public class ZombieAlive {
         mng.displayIntroduction();                          // タイトル出力
         if (Console.read().equals("1")) {
             mng.displayHelp();                             // ルール表示
-            //Console.write("Press Any Key");
             Console.waitInput();                           // Press any key
         }
 
@@ -131,6 +130,9 @@ public class ZombieAlive {
                     rm.setItem(pc.getRoom());
                     rm.resetMapRoom(pc.getRoom());
                     Console.write("救急箱を使用し、HPが回復しました");
+                    Console.waitInput();
+                }else{
+                    Console.write("使用しませんでした。");
                     Console.waitInput();
                 }
             }
